@@ -1,17 +1,20 @@
 import { Container } from '@chakra-ui/react';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
+import { ProjectsXPType } from '../interfaces/projectsXP';
 import { xpTableType } from '../interfaces/xpTable';
 import {
   getBountiesRecordsFunction,
+  getXPFromAllViews,
   getXPRecordFunction,
 } from '../lib/airtable';
 export default function Home(props: {
   bountyDataJson: any;
   xpDataJson: xpTableType[];
+  xpDataWithDate: ProjectsXPType[];
 }) {
-  const { bountyDataJson, xpDataJson } = props;
-
+  const { bountyDataJson, xpDataJson, xpDataWithDate } = props;
+  console.log('total xp with date - ', xpDataWithDate.length);
   return (
     <main>
       <Container maxW={'full'} p="0">
@@ -23,6 +26,7 @@ export default function Home(props: {
 }
 
 export async function getStaticProps() {
+  const xpDataWithDate = await getXPFromAllViews();
   const xpDataJson = await getXPRecordFunction();
   const bountyDataJson = await getBountiesRecordsFunction();
 
@@ -30,6 +34,7 @@ export async function getStaticProps() {
     props: {
       bountyDataJson,
       xpDataJson: xpDataJson,
+      xpDataWithDate,
     },
     revalidate: 10,
   };

@@ -72,8 +72,8 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
             borderColor="superteamBlack.200"
             css={css({
               scrollbarWidth: 'none',
-              '::WebkitScrollbar': { display: 'none' },
-              'WebkitOverflowXScrolling': 'touch',
+              '::-webkit-scrollbar': { display: 'none' },
+              'WebkitOverflowXScrolling': 'touch', // todo: here there is a bug remove the scrollbar in x direction
             })}
             overflowX="scroll"
             overflowY={'visible'}
