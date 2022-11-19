@@ -1,14 +1,12 @@
 import {
   chakra,
-  Container,
-  Icon,
+  Container, Flex, Icon,
   Stack,
-  VisuallyHidden,
-  Flex,
+  VisuallyHidden
 } from '@chakra-ui/react';
+import { ReactNode } from 'react';
 import { FaDiscord, FaTwitter } from 'react-icons/fa';
 import { SiSubstack } from 'react-icons/si';
-import { ReactNode } from 'react';
 import Logo from '../Logo';
 
 const IconButton = ({
@@ -24,7 +22,7 @@ const IconButton = ({
     <chakra.button
       w={8}
       h={8}
-      color="superteam_gray.600"
+      color="superteamGray.600"
       cursor={'pointer'}
       as={'a'}
       href={href}
@@ -34,7 +32,7 @@ const IconButton = ({
       justifyContent={'center'}
       transition={'color 0.3s ease'}
       _hover={{
-        color: 'superteam_gray.200',
+        color: 'superteamGray.200',
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
@@ -47,10 +45,10 @@ export default function Header() {
   return (
     <Container
       maxW="full"
-      bg="superteam_black.800"
+      bg="superteamBlack.800"
       p="0.8rem"
       borderBottom={'1px solid '}
-      borderColor={'superteam_black.200'}
+      borderColor={'superteamBlack.200'}
     >
       <Flex
         flexDir={'row'}

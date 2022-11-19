@@ -2,12 +2,15 @@ import { Container } from '@chakra-ui/react';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
 import { xpTableType } from '../interfaces/xpTable';
-import { getXPRecordFunction } from '../lib/airtable';
+import {
+  getBountiesRecordsFunction,
+  getXPRecordFunction,
+} from '../lib/airtable';
 export default function Home(props: {
+  bountyDataJson: any;
   xpDataJson: xpTableType[];
 }) {
-  const { xpDataJson } = props;
-  console.log('xp data in index - ', xpDataJson);
+  const { bountyDataJson, xpDataJson } = props;
 
   return (
     <main>
@@ -21,10 +24,11 @@ export default function Home(props: {
 
 export async function getStaticProps() {
   const xpDataJson = await getXPRecordFunction();
-  console.log('xp data on server -', xpDataJson);
+  const bountyDataJson = await getBountiesRecordsFunction();
 
   return {
     props: {
+      bountyDataJson,
       xpDataJson: xpDataJson,
     },
     revalidate: 10,

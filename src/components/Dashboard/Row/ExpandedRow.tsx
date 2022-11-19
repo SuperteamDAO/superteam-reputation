@@ -1,5 +1,4 @@
 import { Flex, Td, Text, Tr } from '@chakra-ui/react';
-import React from 'react';
 import { xpTableType } from '../../../interfaces/xpTable';
 import CustomTag from '../../HOC/Tag.HOC';
 
@@ -14,9 +13,11 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
       display={expandRow ? 'auto' : 'none'}
       bg="#1B1F27"
       borderBottom="1px solid "
-      borderColor={'superteam_black.200'}
+      borderColor={'superteamBlack.200'}
     >
-      <Td></Td>
+      <Td>
+        <div></div>
+      </Td>
       <Td>
         <Flex minW="full" direction={'column'} gap="0.7rem">
           {row.dev_xp > 0 && <Text fontSize="14px">Development</Text>}
@@ -31,55 +32,63 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
         <Flex minW="full" direction={'column'} gap="0.7rem">
           {row.dev_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.dev_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}
           {row.design_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.design_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}
           {row.strategy_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.strategy_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}{' '}
           {row.video_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.video_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}{' '}
           {row.writing_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.writing_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}{' '}
           {row.ops_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.ops_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}
         </Flex>
-      </Td>{' '}
-      <Td></Td> <Td></Td> <Td></Td>
+      </Td>
+      <Td>
+        <div></div>
+      </Td>
+      <Td>
+        <div></div>
+      </Td>
+      <Td>
+        <div></div>
+      </Td>
     </Tr>
   );
 };
@@ -89,7 +98,7 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
     <Flex
       p="1rem"
       display={expandRow ? 'auto' : 'none'}
-      bg="superteam_black.800"
+      bg="superteamBlack.800"
       width="100%"
     >
       <Flex
@@ -109,50 +118,50 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
         <Flex w="100%" direction={'column'} gap="0.6rem">
           {row.dev_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color="superteam_white" fontSize={'14px'}>
+              <Text color="superteamWhite" fontSize={'14px'}>
                 {Math.round(row.dev_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}
           {row.design_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.design_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}
           {row.strategy_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.strategy_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}{' '}
           {row.video_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.video_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}{' '}
           {row.writing_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.writing_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}{' '}
           {row.ops_xp > 0 && (
             <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteam_white'} fontSize={'14px'}>
+              <Text color={'superteamWhite'} fontSize={'14px'}>
                 {Math.round(row.ops_xp)}
               </Text>
-              <CustomTag colorScheme={'superteam_gray'} text="XP" />
+              <CustomTag colorScheme={'superteamGray'} text="XP" />
             </Flex>
           )}
         </Flex>

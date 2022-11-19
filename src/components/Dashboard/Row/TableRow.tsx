@@ -1,12 +1,12 @@
+import { Center, Flex, Icon, Td, Text, Tr } from '@chakra-ui/react';
 import * as React from 'react';
-import { Td, Tr, Text, Flex, Icon, Center } from '@chakra-ui/react';
 import { FiChevronDown } from 'react-icons/fi';
-import CustomTag from '../../HOC/Tag.HOC';
-import RowCategories from './RowCategories';
-import { ExpandedRow } from './ExpandedRow';
 import { xpTableType } from '../../../interfaces/xpTable';
+import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
+import { ExpandedRow } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
+import RowCategories from './RowCategories';
 
 type propTypes = {
   row: xpTableType;
@@ -19,50 +19,52 @@ const TableRow = ({ row, index, searching }: propTypes) => {
   return (
     <>
       <Tr
-        bg={expandRow ? 'superteam_black.800' : ''}
+        bg={expandRow ? 'superteamBlack.800' : ''}
         _hover={{
-          background: 'superteam_black.800',
+          background: 'superteamBlack.800',
         }}
         onClick={() => {
           setExpandRow((prevState) => !prevState);
         }}
         cursor={'pointer'}
         borderBottom="1px solid"
-        borderColor="superteam_black.200"
+        borderColor="superteamBlack.200"
       >
         <Td cursor="" width="2rem" padding="24px">
-          {index + 1 <= 3 ? (
-            searching ? (
-              ` ${index + 1}.`
+          <div>
+            {index + 1 <= 3 ? (
+              searching ? (
+                ` ${index + 1}.`
+              ) : (
+                <MedalSVG index={index + 1} />
+              )
             ) : (
-              <MedalSVG index={index + 1} />
-            )
-          ) : (
-            ` ${index + 1}.`
-          )}
+              ` ${index + 1}.`
+            )}
+          </div>
         </Td>
         <Td padding="18px">
           <Text
-            color={'superteam_white'}
+            color={'superteamWhite'}
             fontSize={'14px'}
             textTransform="capitalize"
           >
             {row.name.split('#')[0]}
           </Text>
-          <Text color="superteam_gray.500" fontSize={'12px'}>
+          <Text color="superteamGray.500" fontSize={'12px'}>
             {row.name}
           </Text>
         </Td>
         <Td>
           <Flex h={10} flexDir="row" gap="0.4rem">
-            <Text color={'superteam_white'} fontSize={'14px'}>
+            <Text color={'superteamWhite'} fontSize={'14px'}>
               {Math.round(row.total_xp)}
             </Text>
-            <CustomTag colorScheme={'superteam_gray'} text="XP" />
+            <CustomTag colorScheme={'superteamGray'} text="XP" />
           </Flex>
         </Td>
         <Td>
-          <GraphColumn />
+        <GraphColumn /> 
         </Td>
         <Td>
           <RowCategories row={row} />
@@ -72,7 +74,7 @@ const TableRow = ({ row, index, searching }: propTypes) => {
             rounded={'full'}
             transition="background 0.4s ease"
             _hover={{
-              background: 'superteam_black.700',
+              background: 'superteamBlack.700',
             }}
           >
             <Icon
@@ -80,7 +82,7 @@ const TableRow = ({ row, index, searching }: propTypes) => {
               as={FiChevronDown}
               w={6}
               h={6}
-              color={'superteam_gray.600'}
+              color={'superteamGray.600'}
             />
           </Center>
         </Td>

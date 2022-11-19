@@ -1,7 +1,7 @@
-import { Icon, Stack, Center } from '@chakra-ui/react';
+import { Center, Icon, Stack } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
-import { usePagination, DOTS } from '../../hooks/usePagination';
-import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { DOTS, usePagination } from '../../hooks/usePagination';
 import { IPagination } from './pagination';
 {
   /*
@@ -34,15 +34,12 @@ const Pagination = ({
 
   useEffect(() => {
     if (lastPage === currentPage) {
-      console.log('next disabled');
       setDisableNext(true);
       setDisablePrev(false);
     } else if (currentPage === 1) {
-      console.log('prev disabled');
       setDisablePrev(true);
       setDisableNext(false);
     } else {
-      console.log('both enabled');
       setDisableNext(false);
       setDisablePrev(false);
     }
@@ -70,12 +67,12 @@ const Pagination = ({
     <Stack direction={'row'}>
       <Center
         border={'1px solid'}
-        borderColor="superteam_black.200"
+        borderColor="superteamBlack.200"
         h="2.6rem"
         w="2.6rem"
         rounded="4px"
         fontWeight="600"
-        background="superteam_black.800"
+        background="superteamBlack.800"
         as="button"
         onClick={onPrevious}
         disabled={disablePrev}
@@ -84,10 +81,10 @@ const Pagination = ({
           cursor: 'not-allowed! important',
         }}
         _hover={{
-          background: 'superteam_black.200',
+          background: 'superteamBlack.200',
         }}
       >
-        <Icon w={8} h={8} color="superteam_white" as={BiChevronLeft} />
+        <Icon w={8} h={8} color="superteamWhite" as={BiChevronLeft} />
       </Center>
       {paginationRange?.map(
         (
@@ -105,9 +102,9 @@ const Pagination = ({
             return (
               <Center
                 border={'1px solid'}
-                background="superteam_black.900"
-                color="superteam_gray.600"
-                borderColor="superteam_black.200"
+                background="superteamBlack.900"
+                color="superteamGray.600"
+                borderColor="superteamBlack.200"
                 rounded="4px"
                 h="2.6rem"
                 w="2.6rem"
@@ -123,16 +120,16 @@ const Pagination = ({
               border={'1px solid'}
               borderColor={
                 currentPage === pageNumber
-                  ? 'superteam_blue.900'
-                  : 'superteam_black.200'
+                  ? 'superteamBlue.900'
+                  : 'superteamBlack.200'
               }
               color={
                 currentPage === pageNumber
-                  ? 'superteam_blue.900'
-                  : 'superteam_gray.600'
+                  ? 'superteamBlue.900'
+                  : 'superteamGray.600'
               }
               fontWeight="600"
-              background="superteam_black.900"
+              background="superteamBlack.900"
               p="0.5rem"
               h="2.6rem"
               w="2.6rem"
@@ -142,7 +139,7 @@ const Pagination = ({
               key={key}
               onClick={() => onPageChange(pageNumber)}
               _hover={{
-                background: 'superteam_black.200',
+                background: 'superteamBlack.200',
               }}
             >
               {pageNumber}
@@ -152,12 +149,12 @@ const Pagination = ({
       )}
       <Center
         border={'1px solid'}
-        borderColor="superteam_black.200"
+        borderColor="superteamBlack.200"
         h="2.6rem"
         w="2.6rem"
         rounded="4px"
         fontWeight="600"
-        background="superteam_black.800"
+        background="superteamBlack.800"
         as="button"
         onClick={onNext}
         disabled={disableNext}
@@ -166,10 +163,10 @@ const Pagination = ({
           cursor: 'not-allowed! important',
         }}
         _hover={{
-          background: 'superteam_black.200',
+          background: 'superteamBlack.200',
         }}
       >
-        <Icon w={8} h={8} color="superteam_white" as={BiChevronRight} />
+        <Icon w={8} h={8} color="superteamWhite" as={BiChevronRight} />
       </Center>
     </Stack>
   );

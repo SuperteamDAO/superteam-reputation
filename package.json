@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": ">=18",
-    "pnpm": "^7.16.1",
+    "pnpm": "^7.16.0",
     "yarn": "forbidden, use pnpm",
     "npm": "forbidden, use pnpm"
   },
