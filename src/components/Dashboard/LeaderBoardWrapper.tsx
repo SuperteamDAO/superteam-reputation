@@ -1,24 +1,12 @@
 import {
-  Container,
-  Heading,
-  VStack,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  Input,
-  Flex,
-  InputGroup,
-  InputLeftElement,
-  Icon,
-  css,
+  Container, css, Flex, Heading, Icon, Input, InputGroup,
+  InputLeftElement, Tab, TabList, TabPanel, TabPanels, Tabs, VStack
 } from '@chakra-ui/react';
 import React from 'react';
-import EnhancedTable from './Leaderboard';
 import { HiSearch } from 'react-icons/hi';
-import { xpTableType } from '../../interfaces/xpTable';
 import { filters } from '../../interfaces/filters.enum';
+import { xpTableType } from '../../interfaces/xpTable';
+import EnhancedTable from './Leaderboard';
 
 type propsType = {
   xpData: xpTableType[];
@@ -72,19 +60,20 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
         <Tabs
           w="full"
           borderBottom={'1px solid'}
-          borderColor="superteam_black.200"
+          borderColor="superteamBlack.200"
           onDrag={() => {
-            console.log('tab dragged');
+            //todo: add draggable tabs for mobile ( on right drag tab should change to the next right tab ) console.log('tab dragged');
+            // to implement it find a function or hook that can be changed to change the index of current tab
           }}
         >
           <TabList
             gap="2rem"
             borderBottom={'1px solid '}
-            borderColor="superteam_black.200"
+            borderColor="superteamBlack.200"
             css={css({
               scrollbarWidth: 'none',
-              '::-webkit-scrollbar': { display: 'none' },
-              '-webkit-overflow-x-scrolling': 'touch',
+              '::WebkitScrollbar': { display: 'none' },
+              'WebkitOverflowXScrolling': 'touch',
             })}
             overflowX="scroll"
             overflowY={'visible'}
@@ -98,12 +87,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Everyone
@@ -115,12 +104,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Members
@@ -132,12 +121,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Contributors
@@ -149,12 +138,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Design
@@ -166,12 +155,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Development
@@ -183,12 +172,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Operations
@@ -200,12 +189,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Video
@@ -217,12 +206,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Strategy
@@ -234,12 +223,12 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               _active={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
               }}
               _selected={{
-                color: 'superteam_white',
+                color: 'superteamWhite',
                 borderBottom: '2px solid',
-                borderColor: 'superteam_blue.900',
+                borderColor: 'superteamBlue.900',
               }}
             >
               Writing
@@ -264,15 +253,15 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
                   <Icon as={HiSearch} w={4} h={4} />
                 </InputLeftElement>
                 <Input
-                  color={'superteam_white'}
+                  color={'superteamWhite'}
                   placeholder="Search User"
                   outline={'1px solid '}
-                  outlineColor="superteam_black.200"
+                  outlineColor="superteamBlack.200"
                   border={'none'}
                   borderRadius="4px"
                   rounded={'4px'}
                   _placeholder={{
-                    color: 'superteam_gray.400',
+                    color: 'superteamGray.400',
                     fontSize: '12px',
                   }}
                   h="2rem"
@@ -297,15 +286,15 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
                 <Icon as={HiSearch} w={4} h={4} />
               </InputLeftElement>
               <Input
-                color={'superteam_white'}
+                color={'superteamWhite'}
                 placeholder="Search User"
                 outline={'1px solid '}
-                outlineColor="superteam_black.200"
+                outlineColor="superteamBlack.200"
                 border={'none'}
                 borderRadius="4px"
                 rounded={'4px'}
                 _placeholder={{
-                  color: 'superteam_black.800',
+                  color: 'superteamBlack.800',
                   fontSize: '12px',
                 }}
                 h="2rem"

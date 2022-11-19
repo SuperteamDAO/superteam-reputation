@@ -1,9 +1,9 @@
 import { extendTheme, ThemeConfig } from '@chakra-ui/react';
 import { Button } from '../theme/components/button';
-import { fonts } from '../theme/fonts';
-import { styles } from '../theme/styles';
 import { tabsTheme } from '../theme/components/tabs';
 import { Tag } from '../theme/components/tag';
+import { fonts } from '../theme/fonts';
+import { styles } from '../theme/styles';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -12,14 +12,14 @@ const config: ThemeConfig = {
 
 const theme = extendTheme({
   colors: {
-    superteam_white: '#fff',
-    superteam_black: {
+    superteamWhite: '#fff',
+    superteamBlack: {
       200: '#232A34', // table border color
       700: '#22252B',
       800: '#1C2028', // table hover/expanded/heading background
       900: '#171A21',
     },
-    superteam_gray: {
+    superteamGray: {
       100: '#D5DBE0',
       200: '#BBCBDB',
       300: '#799BBE',
@@ -28,42 +28,42 @@ const theme = extendTheme({
       600: '#545C6D',
       900: '#1E222A',
     },
-    superteam_blue: {
+    superteamBlue: {
       100: '#202442',
       800: '#8773ff',
       900: '#0022D6',
     },
-    superteam_cyan: {
+    superteamCyan: {
       100: '#163642',
       800: '#0BD3FF',
     },
-    superteam_green: {
+    superteamGreen: {
       100: '#14352C',
       700: '#00A67E',
       800: '#00CF6C',
     },
-    superteam_pink: {
+    superteamPink: {
       100: '#3A1E41',
       800: '#FF34F7',
     },
-    superteam_red: {
+    superteamRed: {
       100: '#3A182D',
       800: '#FF0B71',
     },
-    superteam_yellow: {
+    superteamYellow: {
       100: '#3A3B1E',
       800: '#FFF50B',
     },
-    superteam_orange: {
+    superteamOrange: {
       100: '#332A1C',
       700: '#FFCA0D',
       800: '#CD8700',
     },
-    superteam_tusk: {
+    superteamTusk: {
       100: '#303C22',
       800: '#BAFF26',
     },
-    superteam_brown: {
+    superteamBrown: {
       300: '#BE8A79',
     },
   },

@@ -52,10 +52,10 @@ export default function EnhancedTable({
             {!isSmallerThan990 && (
               <Thead
                 border="1px solid"
-                borderColor={'superteam_black.800'}
-                borderBottomColor="superteam_black.200"
+                borderColor={'superteamBlack.800'}
+                borderBottomColor="superteamBlack.200"
                 borderTopRadius="6px"
-                bg="superteam_black.800"
+                bg="superteamBlack.800"
                 borderRadius={'10px'}
                 roundedTop="md"
               >
@@ -104,7 +104,7 @@ export default function EnhancedTable({
                 </Tr>
               </Thead>
             )}
-            <Tbody border="1px solid" borderColor={'superteam_black.200'}>
+            <Tbody border="1px solid" borderColor={'superteamBlack.200'}>
               {rows.map((row: any, key: number) =>
                 isSmallerThan990 ? (
                   <TableRowMobile
@@ -130,7 +130,7 @@ export default function EnhancedTable({
             height={'60vh'}
             w="100%"
             borderWidth="0px 1px 1px 1px"
-            borderColor={'superteam_black.200'}
+            borderColor={'superteamBlack.200'}
             flexDir={'column'}
             gap="1rem"
             textAlign={'center'}
@@ -172,7 +172,7 @@ export default function EnhancedTable({
                 />
               </svg>
             </Center>
-            <Text fontWeight="500" fontSize="18px" color={'superteam_white'}>
+            <Text fontWeight="500" fontSize="18px" color={'superteamWhite'}>
               404 Nothing Found
             </Text>
             <Text maxW="26rem" fontWeight="400" fontSize="17px">

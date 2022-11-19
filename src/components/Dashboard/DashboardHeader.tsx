@@ -5,15 +5,14 @@ import {
   HStack,
   Stack,
   Text,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 const DashboardHeader = () => {
   const router = useRouter();
   return (
-    <Container maxW={'full'} bg="superteam_black.800" p="1rem">
+    <Container maxW={'full'} bg="superteamBlack.800" p="1rem">
       <VStack
         py={{ base: '2rem', md: '', lg: '4.6rem' }}
         gap="0.6rem"
@@ -25,7 +24,7 @@ const DashboardHeader = () => {
           textAlign={'start'}
           fontSize={['17px', '18px', '18px']}
           fontWeight="600"
-          color="superteam_white"
+          color="superteamWhite"
         >
           ✨ The XP System
         </Heading>
