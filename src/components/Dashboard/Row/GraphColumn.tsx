@@ -1,124 +1,91 @@
-import { Flex, Icon, Text } from '@chakra-ui/react';
+import { Flex, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { BsCaretDownFill } from 'react-icons/bs';
 import CustomTag from '../../HOC/Tag.HOC';
-// const ReactApexChart = dynamic(() => import('react-apexcharts'), {
-//   ssr: false,
-// });
+import Chart from './Chart';
+import { xpType } from './interfaces/xp';
 
-export enum curveEnum {
-  SMOOTH = 'smooth',
-  STRAIGHT = 'straight',
-  STEPLINE = 'stepline',
-}
+type propsType = {
+  row: xpType;
+};
 
-export enum xaxisType {
-  CATEGORY = 'category',
-  DATETIME = 'datetime',
-  NUMERIC = 'numeric',
-}
-function randomArray(length: number, max: number): [number[], number] {
-  const arr = [...new Array(length)].map(() => Math.round(Math.random() * max));
-  const arrDiff = arr[length - 1] - arr[0];
-  return [arr, arrDiff];
-}
-const GraphColumn = () => {
-  const [_numArray, arrDiff] = randomArray(8, 100);
+const GraphColumn = ({ row }: propsType) => {
+  const cumulativeData: { date: Date; xp: number }[] = row.xp.amount.map(
+    (amount, index) => {
+      return {
+        date: new Date(row.xp.dates[index]),
+        xp: amount,
+      };
+    }
+  );
 
-  const graphColor = arrDiff >= 0 ? ['#00A67E'] : ['#FF0B71'];
+  const monthlyData = cumulativeData.reduce((acc, curr) => {
+    const month = curr.date.getMonth();
+    const year = curr.date.getFullYear();
+    const monthYear = `${month}-${year}`;
+    const existingMonth = acc.find((item) => item.monthYear === monthYear);
+    if (existingMonth) {
+      existingMonth.xp += curr.xp;
+    } else {
+      acc.push({
+        xp: curr.xp,
+        monthYear,
+      });
+    }
+    return acc;
+  }, [] as { xp: number; monthYear: string }[]);
 
-  // const [chartData, setChartData] = React.useState({
-  //   series: [
-  //     {
-  //       name: 'series1',
-  //       data: numArray,
-  //     },
-  //   ],
-  //   options: {
-  //     chart: {
-  //       height: 70,
-  //       width: 130,
-  //       toolbar: {
-  //         show: false,
-  //         tools: {
-  //           download: false,
-  //           selection: false,
-  //           zoom: false,
-  //           zoomin: false,
-  //           zoomout: false,
-  //           pan: false,
-  //           reset: false,
-  //         },
-  //       },
-  //     },
-  //     stroke: {
-  //       colors: graphColor,
-  //       curve: curveEnum.SMOOTH,
-  //       width: 1,
-  //     },
-  //     fill: {
-  //       colors: graphColor,
-  //       type: 'gradient',
-  //       gradient: {
-  //         shade: 'dark',
-  //         type: 'vertical',
-  //         shadeIntensity: 1,
-  //         gradientToColors: graphColor,
-  //         inverseColors: true,
-  //         opacityFrom: 0.4,
-  //         opacityTo: 0.1,
-  //         stops: [0, 100],
-  //         colorStops: [],
-  //       },
-  //     },
-  //     dataLabels: {
-  //       enabled: false,
-  //     },
+  const lastSixMonths = [...new Array(6)].map((_, index) => {
+    const date = new Date();
+    date.setMonth(date.getMonth() - index);
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const monthYear = `${month}-${year}`;
+    const existingMonth = monthlyData.find(
+      (item) => item.monthYear === monthYear
+    );
+    return {
+      xp: existingMonth ? existingMonth.xp : 0,
+      monthYear,
+    };
+  });
 
-  //     xaxis: {
-  //       show: false,
-  //       axisTicks: {
-  //         show: false,
-  //       },
-  //       crosshairs: {
-  //         show: false,
-  //       },
-  //       labels: {
-  //         show: false,
-  //       },
-  //       type: xaxisType.DATETIME,
-  //       categories: [
-  //         '2018-09-19T04:30:00.000Z',
-  //         '2018-09-19T05:30:00.000Z',
-  //         '2018-09-19T06:30:00.000Z',
-  //         '2018-09-19T07:00:00.000Z',
-  //         '2018-09-19T08:30:00.000Z',
-  //         '2018-09-19T09:30:00.000Z',
-  //         '2018-09-19T10:30:00.000Z',
-  //         '2018-09-19T11:30:00.000Z',
-  //       ],
-  //     },
-  //     grid: { show: false },
-  //     yaxis: {
-  //       show: false,
-  //       labels: {
-  //         show: false,
-  //       },
-  //     },
-  //     tooltip: {
-  //       enabled: false,
-  //       x: {
-  //         format: 'dd/MM/yy HH:mm',
-  //       },
-  //     },
-  //   },
-  // });
+  const calculateXpGrowth = () => {
+    const lastMonth = lastSixMonths[0].xp;
+    const secondLastMonth = lastSixMonths[1].xp;
+    const diff = lastMonth - secondLastMonth;
+    const growth = (diff / secondLastMonth) * 100;
+    if (growth > 0) {
+      return Math.round(growth);
+    } else if (growth < 0) {
+      return Math.round(growth);
+    } else {
+      return 0;
+    }
+  };
+
+  const graphColor = calculateXpGrowth() > 0 ? ['#00A67E'] : ['#FF0B71'];
+
   return (
-    <Flex h={10} flexDir="row" gap={{ base: '1.8rem', md: '3rem' }}>
-      <Flex h={10} flexDir="column">
+    <Flex
+      h={10}
+      flexDir="row"
+      gap={{ base: '1.8rem', md: '3rem' }}
+      justify="space-between" 
+    >
+      <Flex h={10} flexDir="column" >
         <Flex flexDir="row" gap="0.4rem">
-          <Text color={'superteamWhite'} fontSize={'14px'}>
-            162
-          </Text>
+          <Tooltip
+            label="XP earned this month"
+            fontSize="xs"
+            colorScheme={'whiteAlpha'}
+            bg={'superteamWhite'}
+            rounded="md"
+            fontWeight="400"
+          >
+            <Text color={'superteamWhite'} fontSize={'14px'}>
+              {lastSixMonths[0].xp}
+            </Text>
+          </Tooltip>
           <CustomTag colorScheme={'superteamGray'} text="XP" />
         </Flex>
 
@@ -128,27 +95,39 @@ const GraphColumn = () => {
             w={3}
             h={3}
             color={graphColor}
-            transform={arrDiff >= 0 ? 'rotate(180deg)' : 'rotate(0deg)'}
+            transform={
+              graphColor[0] === '#00A67E' ? 'rotate(180deg)' : 'rotate(0deg)'
+            }
           />
-          <Text fontSize={'12px'} color={graphColor}>
-            31(13%)
-          </Text>
+          <Tooltip
+            label="XP earned last month"
+            fontSize="xs"
+            colorScheme={'whiteAlpha'}
+            bg={'superteamWhite'}
+            rounded="md"
+            fontWeight="400"
+          >
+            <Text as="span" fontSize={'12px'} color={graphColor}>
+              {Math.round(lastSixMonths[1].xp)}
+            </Text>
+          </Tooltip>
+          <Tooltip
+            label="XP growth"
+            fontSize="xs"
+            colorScheme={'whiteAlpha'}
+            bg={'superteamWhite'}
+            rounded="md"
+            fontWeight="400"
+          >
+            <Text as="span" fontSize={'12px'} color={graphColor}>
+              ({calculateXpGrowth()}%)
+            </Text>
+          </Tooltip>
         </Flex>
       </Flex>{' '}
+      <Chart lastSixMonths={lastSixMonths} graphColor={graphColor} />
     </Flex>
   );
 };
-{
-  /* typeof window !== 'undefined' ? (
-      <Center>
-        <ReactApexChart
-          options={chartData.options}
-          series={chartData.series}
-          type="area"
-          height={70}
-          width={130}
-        />
-      </Center> */
-}
 
 export default GraphColumn;

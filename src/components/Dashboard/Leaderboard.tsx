@@ -3,35 +3,34 @@ import {
   Container,
   Table,
   TableContainer,
-  Tbody, Text, Th, Thead, Tr, useMediaQuery
+  Tbody,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import { filters } from '../../interfaces/filters.enum';
-import { xpTableType } from '../../interfaces/xpTable';
 import Pagination from '../Pagination';
+import { xpType } from './Row/interfaces/xp';
 import TableRow from './Row/TableRow';
 import TableRowMobile from './Row/TableRowMobile';
 //import XPGraph from './graph';
 
 type propsType = {
-  _filter_by: filters;
-  row: xpTableType[];
+  row: (xpType | undefined)[];
   searching: boolean;
 };
 
 //todo: for now the data which is received is sorted for the highest overall xp, we need to sort this as per filter_by value for each tab
-function sortArrayAscending(
-  array: xpTableType[],
-  _filter_by: filters
-): xpTableType[] {
-  return array.sort(({ dev_xp: a }, { dev_xp: b }) => a - b);
-}
+// function sortArrayAscending(
+//   array: xpType[] | undefined,
+//   _filter_by: filters
+// ): xpTableType[] {
+//   return array.sort(({ development: a }, { development: b }) => a - b);
+// }
 
-export default function EnhancedTable({
-  row,
-  _filter_by,
-  searching,
-}: propsType) {
+export default function EnhancedTable({ row, searching }: propsType) {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [isSmallerThan990] = useMediaQuery('(max-width: 990px)');
 
@@ -41,8 +40,18 @@ export default function EnhancedTable({
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     const arr = row.slice(firstPageIndex, lastPageIndex);
-    return arr;
+    return arr as xpType[];
   }, [currentPage, row]);
+
+  rows.sort((a: xpType, b: xpType) => {
+    if (a?.total_amount > b?.total_amount) {
+      return -1;
+    }
+    if (a?.total_amount < b?.total_amount) {
+      return 1;
+    }
+    return 0;
+  });
 
   return (
     <>

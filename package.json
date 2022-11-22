@@ -31,6 +31,7 @@
     "eslint-config-next": "13.0.3",
     "framer-motion": "^7.6.6",
     "next": "13.0.3",
+    "next-superjson-plugin": "^0.4.9",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "18.2.0",
@@ -43,7 +44,8 @@
     "@commitlint/config-conventional": "^17.2.0",
     "husky": "^8.0.2",
     "only-pnpm": "^1.0.5",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "simple-zustand-devtools": "^1.1.0"
   },
   "packageManager": "pnpm@7.16.1"
 }
