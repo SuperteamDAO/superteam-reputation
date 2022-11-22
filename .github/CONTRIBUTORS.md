@@ -27,8 +27,11 @@ git clone https://github.com/irffanasiff/Superteam-Reputation.git
 cd Superteam-Reputation
 # install the dependencies using pnpm
 pnpm i 
+# create a new branch and start working
+git checkout -b <your-branch-name>
 # run the development server
 pnpm run dev 
 ```
 
-Once you have made the changes check commitlint.config.js for how to commit your code. If the build is succesfully you will be able to push the code and make the pr. Follow the pull request.
+
+Once you have made the changes check ```commitlint.config.js``` for how to commit your code. If the build is succesfully you will be able to push the code and make the pr. Follow the pull request.

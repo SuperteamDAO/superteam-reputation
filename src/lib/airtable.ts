@@ -1,11 +1,6 @@
+import { skillKind } from '../enums/skill';
+
 const Airtable = require('airtable');
-import { ProjectsXPType } from '../interfaces/projectsXP';
-import { xpTableType } from '../interfaces/xpTable';
-import {
-  getIndieWork_xp_view,
-  getProjectWork_xp_view,
-  getWorkingGroups_xp_view,
-} from './getXPDistributions';
 
 const getFilteredRecords = (records: any[]) => {
   // filter out the records where allocation is null and xp is not null
@@ -320,7 +315,7 @@ const getAllTitleFunction = async () => {
 };
 
 const getXPRecordFunction = async () => {
-  const xps: xpTableType[] | null = [];
+  const xps: any = [];
   try {
     var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
       process.env.BASE
@@ -349,12 +344,12 @@ const getXPRecordFunction = async () => {
               name: name,
               person_type: personType,
               total_xp: total || 0,
-              design_xp: design || 0,
-              dev_xp: dev || 0,
-              ops_xp: ops || 0,
-              strategy_xp: strategy || 0,
-              writing_xp: writing || 0,
-              video_xp: video || 0,
+              design: design || 0,
+              development: dev || 0,
+              operations: ops || 0,
+              strategy: strategy || 0,
+              writing: writing || 0,
+              videography: video || 0,
             });
           });
           fetchNextPage();
@@ -373,19 +368,6 @@ const getXPRecordFunction = async () => {
   return xps;
 };
 
-// this function will get xp from all views -> Indie Work, Project Work, Working Groups(cab), Internal Ops, Bounties, Stack Exchange
-const getXPFromAllViews = async () => {
-  // const bounties = await getBounties_xp_view();
-  const indieWork = (await getIndieWork_xp_view()) as ProjectsXPType[];
-  const projectWork = (await getProjectWork_xp_view()) as ProjectsXPType[];
-  const workingGroups = (await getWorkingGroups_xp_view()) as ProjectsXPType[];
-  // const stackExchange = await getStackExchange_xp_view();
-  // const internalOperations = await getInternalOperations_xp_view();
-  const totalXP = [...indieWork, ...projectWork, ...workingGroups];
-
-  return totalXP;
-  // now will combine all that into an array
-};
 export {
   getIndieRecordsFunction,
   getCommunityRecordsFunction,

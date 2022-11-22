@@ -1,10 +1,11 @@
 import { Flex, Td, Text, Tr } from '@chakra-ui/react';
-import { xpTableType } from '../../../interfaces/xpTable';
+import { skillKind } from '../../../enums/skill'; 
 import CustomTag from '../../HOC/Tag.HOC';
+import { xpType } from './interfaces/xp';
 
 type propsType = {
   expandRow: boolean;
-  row: xpTableType;
+  row: xpType;
 };
 
 export const ExpandedRow = ({ expandRow, row }: propsType) => {
@@ -20,64 +21,116 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
       </Td>
       <Td>
         <Flex minW="full" direction={'column'} gap="0.7rem">
-          {row.dev_xp > 0 && <Text fontSize="14px">Development</Text>}
-          {row.design_xp > 0 && <Text fontSize="14px">Design</Text>}
-          {row.strategy_xp > 0 && <Text fontSize="14px">Strategy</Text>}{' '}
-          {row.video_xp > 0 && <Text fontSize="14px">Videography</Text>}{' '}
-          {row.writing_xp > 0 && <Text fontSize="14px">Writing</Text>}{' '}
-          {row.ops_xp > 0 && <Text fontSize="14px">Operations</Text>}
+          {row?.skills.map((skill, key) => {
+            if (skill.skill === skillKind.DEV) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Development
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.DESIGN) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Design
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.STRATEGY) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Strategy
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.VIDEO) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Videography
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.WRITING) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Writing
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.OPS) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Operations
+                </Text>
+              );
+            }
+          })}
         </Flex>
       </Td>
       <Td>
         <Flex minW="full" direction={'column'} gap="0.7rem">
-          {row.dev_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.dev_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}
-          {row.design_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.design_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}
-          {row.strategy_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.strategy_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}{' '}
-          {row.video_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.video_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}{' '}
-          {row.writing_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.writing_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}{' '}
-          {row.ops_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.ops_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}
+          {row?.skills.map((skill, key) => {
+            if (skill.skill === skillKind.DEV) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.DESIGN) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.STRATEGY) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.VIDEO) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.WRITING) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.OPS) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+          })}
         </Flex>
       </Td>
       <Td>
@@ -108,62 +161,114 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
         justify={'center'}
       >
         <Flex w="100%" direction={'column'} gap="0.6rem">
-          {row.dev_xp > 0 && <Text fontSize="14px">Development</Text>}
-          {row.design_xp > 0 && <Text fontSize="14px">Design</Text>}
-          {row.strategy_xp > 0 && <Text fontSize="14px">Strategy</Text>}{' '}
-          {row.video_xp > 0 && <Text fontSize="14px">Videography</Text>}{' '}
-          {row.writing_xp > 0 && <Text fontSize="14px">Writing</Text>}{' '}
-          {row.ops_xp > 0 && <Text fontSize="14px">Operations</Text>}
+          {row?.skills.map((skill, key) => {
+            if (skill.skill === skillKind.DEV) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Development
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.DESIGN) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Design
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.STRATEGY) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Strategy
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.VIDEO) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Videography
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.WRITING) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Writing
+                </Text>
+              );
+            }
+            if (skill.skill === skillKind.OPS) {
+              return (
+                <Text key={key} fontSize="14px">
+                  Operations
+                </Text>
+              );
+            }
+          })}
         </Flex>
         <Flex w="100%" direction={'column'} gap="0.6rem">
-          {row.dev_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color="superteamWhite" fontSize={'14px'}>
-                {Math.round(row.dev_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}
-          {row.design_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.design_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}
-          {row.strategy_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.strategy_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}{' '}
-          {row.video_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.video_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}{' '}
-          {row.writing_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.writing_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}{' '}
-          {row.ops_xp > 0 && (
-            <Flex flexDir="row" gap="0.4rem">
-              <Text color={'superteamWhite'} fontSize={'14px'}>
-                {Math.round(row.ops_xp)}
-              </Text>
-              <CustomTag colorScheme={'superteamGray'} text="XP" />
-            </Flex>
-          )}
+          {row.skills.map((skill, key) => {
+            if (skill.skill === skillKind.DEV) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.DESIGN) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.STRATEGY) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.VIDEO) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.WRITING) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+            if (skill.skill === skillKind.OPS) {
+              return (
+                <Flex flexDir="row" gap="0.4rem" key={key}>
+                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                    {Math.round(skill.amount)}
+                  </Text>
+                  <CustomTag colorScheme={'superteamGray'} text="XP" />
+                </Flex>
+              );
+            }
+          })}
         </Flex>
       </Flex>
     </Flex>

@@ -1,42 +1,89 @@
 import {
-  Container, css, Flex, Heading, Icon, Input, InputGroup,
-  InputLeftElement, Tab, TabList, TabPanel, TabPanels, Tabs, VStack
+  Container,
+  css,
+  Flex,
+  Heading,
+  Icon,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  VStack,
 } from '@chakra-ui/react';
 import React from 'react';
 import { HiSearch } from 'react-icons/hi';
-import { filters } from '../../interfaces/filters.enum';
-import { xpTableType } from '../../interfaces/xpTable';
 import EnhancedTable from './Leaderboard';
+import { dashboardDataType } from './Row/interfaces/dashboardStore';
 
 type propsType = {
-  xpData: xpTableType[];
+  dashboardData: dashboardDataType[];
 };
 
-const LeaderBoardWrapper = ({ xpData }: propsType) => {
+const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
   const [wordEntered, setWordEntered] = React.useState('');
-  const [data, setData] = React.useState(xpData);
+  const [data, setData] = React.useState(dashboardData);
   const [searching, _setSearching] = React.useState(false);
 
-  const ContributorsData: xpTableType[] = data.filter(
-    (person) => person.person_type === 'Contributor'
+  const ContributorsData = data.map((item) => {
+    if (item.personType === 'Contributor') {
+      return item.overallXP.details;
+    }
+  });
+
+  const ContributorsDataFiltered = ContributorsData.filter(
+    (item) => item !== undefined
   );
 
-  const MembersData: xpTableType[] = data.filter(
-    (person) => person.person_type === 'Member'
+  const MembersData = data.map((item) => {
+    if (item.personType === 'Member') {
+      return item.overallXP.details;
+    }
+  });
+
+  const filteredMembersData = MembersData.filter((item) => item !== undefined);
+
+  const ProjectWorkXPData = data.map((item) => {
+    if (item.projectWorkXP) {
+      return item.projectWorkXP;
+    }
+  });
+
+  // filter the undefined values from the projectworkxp array
+  const filteredProjectWorkXPData = ProjectWorkXPData.filter(
+    (item) => item !== undefined
   );
 
-  const Developers: xpTableType[] = data.filter((person) => person.dev_xp > 0);
-  const Designers: xpTableType[] = data.filter(
-    (person) => person.design_xp > 0
+  const IndieWorkXPData = data.map((item) => {
+    if (item.indieWorkXP) {
+      return item.indieWorkXP;
+    }
+  });
+
+  // filter the undefined values from the indieWorkXP array
+  const filteredIndieWorkXPData = IndieWorkXPData.filter(
+    (item) => item !== undefined
   );
-  const Strategies: xpTableType[] = data.filter(
-    (person) => person.strategy_xp > 0
+
+  const workingGroupXPData = data.map((item) => {
+    if (item.internalOps) {
+      return item.internalOps;
+    }
+  });
+
+  // filter the undefined values from the workingGroupXP array
+  const filteredWorkingGroupXPData = workingGroupXPData.filter(
+    (item) => item !== undefined
   );
-  const Operations: xpTableType[] = data.filter((person) => person.ops_xp > 0);
-  const Videography: xpTableType[] = data.filter(
-    (person) => person.video_xp > 0
-  );
-  const Writers: xpTableType[] = data.filter((person) => person.writing_xp > 0);
+
+  const allXPData = data.map((item) => {
+    if (item.overallXP.details) {
+      return item.overallXP.details;
+    }
+  });
 
   const handleSearch = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
@@ -46,7 +93,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
     });
 
     if (searchWord === '') {
-      setData(xpData);
+      setData(dashboardData);
     } else {
       setData(newFilter);
     }
@@ -73,7 +120,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
             css={css({
               scrollbarWidth: 'none',
               '::-webkit-scrollbar': { display: 'none' },
-              'WebkitOverflowXScrolling': 'touch', // todo: here there is a bug remove the scrollbar in x direction
+              WebkitOverflowXScrolling: 'touch', // todo: here there is a bug remove the scrollbar in x direction
             })}
             overflowX="scroll"
             overflowY={'visible'}
@@ -86,6 +133,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               py="0.9rem"
               fontSize={'14px'}
               fontWeight="400"
+              whiteSpace="nowrap"
               _active={{
                 color: 'superteamWhite',
               }}
@@ -103,6 +151,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               py="0.9rem"
               fontSize={'14px'}
               fontWeight="400"
+              whiteSpace="nowrap"
               _active={{
                 color: 'superteamWhite',
               }}
@@ -120,6 +169,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               py="0.9rem"
               fontSize={'14px'}
               fontWeight="400"
+              whiteSpace="nowrap"
               _active={{
                 color: 'superteamWhite',
               }}
@@ -137,6 +187,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               py="0.9rem"
               fontSize={'14px'}
               fontWeight="400"
+              whiteSpace="nowrap"
               _active={{
                 color: 'superteamWhite',
               }}
@@ -146,7 +197,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
                 borderColor: 'superteamBlue.900',
               }}
             >
-              Design
+              Project Work
             </Tab>
             <Tab
               h="3.35rem"
@@ -154,6 +205,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               py="0.9rem"
               fontSize={'14px'}
               fontWeight="400"
+              whiteSpace="nowrap"
               _active={{
                 color: 'superteamWhite',
               }}
@@ -163,7 +215,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
                 borderColor: 'superteamBlue.900',
               }}
             >
-              Development
+              Indie Work
             </Tab>
             <Tab
               h="3.35rem"
@@ -171,6 +223,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
               py="0.9rem"
               fontSize={'14px'}
               fontWeight="400"
+              whiteSpace="nowrap"
               _active={{
                 color: 'superteamWhite',
               }}
@@ -180,58 +233,7 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
                 borderColor: 'superteamBlue.900',
               }}
             >
-              Operations
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              _active={{
-                color: 'superteamWhite',
-              }}
-              _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
-              }}
-            >
-              Video
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              _active={{
-                color: 'superteamWhite',
-              }}
-              _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
-              }}
-            >
-              Strategy
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              _active={{
-                color: 'superteamWhite',
-              }}
-              _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
-              }}
-            >
-              Writing
+              Internal Operations
             </Tab>
             <Flex
               display={{ base: 'none', md: 'none', lg: 'flex' }}
@@ -306,68 +308,35 @@ const LeaderBoardWrapper = ({ xpData }: propsType) => {
           </Flex>
           <TabPanels p="0">
             <TabPanel p="0">
-              <EnhancedTable
-                row={data}
-                _filter_by={filters.TOTAL}
-                searching={searching}
-              />
+              <EnhancedTable row={allXPData} searching={searching} />
+            </TabPanel>
+            <TabPanel p="0">
+              <EnhancedTable row={filteredMembersData} searching={searching} />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
-                row={MembersData}
-                _filter_by={filters.TOTAL}
-                searching={searching}
-              />
-            </TabPanel>
-            <TabPanel p="0">
-              <EnhancedTable
-                row={ContributorsData}
-                _filter_by={filters.TOTAL}
+                row={ContributorsDataFiltered}
                 searching={searching}
               />
             </TabPanel>{' '}
             <TabPanel p="0">
               <EnhancedTable
-                row={Designers}
-                _filter_by={filters.DESIGN}
+                row={filteredProjectWorkXPData}
                 searching={searching}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
-                row={Developers}
-                _filter_by={filters.DEV}
+                row={filteredIndieWorkXPData}
                 searching={searching}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
-                row={Operations}
-                _filter_by={filters.OPS}
+                row={filteredWorkingGroupXPData}
                 searching={searching}
               />
             </TabPanel>{' '}
-            <TabPanel p="0">
-              <EnhancedTable
-                row={Videography}
-                _filter_by={filters.VIDEO}
-                searching={searching}
-              />
-            </TabPanel>
-            <TabPanel p="0">
-              <EnhancedTable
-                row={Strategies}
-                _filter_by={filters.STRATEGY}
-                searching={searching}
-              />
-            </TabPanel>{' '}
-            <TabPanel p="0">
-              <EnhancedTable
-                row={Writers}
-                _filter_by={filters.WRITING}
-                searching={searching}
-              />
-            </TabPanel>
           </TabPanels>
         </Tabs>
       </VStack>

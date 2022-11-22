@@ -1,5 +1,44 @@
 const Airtable = require('airtable');
-import { ProjectsXPType } from '../interfaces/projectsXP';
+import { receivedXPFromAirtableType } from '../components/Dashboard/Row/interfaces/airtableRecievedXP';
+import { skillKind } from '../enums/skill';
+
+// this function fetches xp distribution
+async function getXPDistribution(
+  baseName: string
+): Promise<receivedXPFromAirtableType[] | undefined> {
+  const xp_allocated_for_work: receivedXPFromAirtableType[] = [];
+  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+    process.env.BASE
+  );
+  await base(baseName)
+    .select({
+      maxRecords: 1000,
+      view: 'xp_view',
+    })
+    .eachPage(
+      function page(records: any[], fetchNextPage: () => void) { 
+        records.forEach((record) => {
+          const fields = record.fields;
+          const name = fields._Name as string;
+          const total_amount = fields._XP as number;
+          const date = fields._Date as Date;
+          const skill = fields._Skill as skillKind;
+          xp_allocated_for_work.push({
+            name,
+            xp: { total_amount, date, skill },
+          });
+        });
+        fetchNextPage();
+      },
+      function done(err: any) {
+        if (err) {
+          console.error('there was an error - ', err);
+          return;
+        }
+      }
+    );
+  return xp_allocated_for_work;
+}
 {
   /*
    * xp view are the views in airtable where all the xp allocated for that source is listed
@@ -8,195 +47,45 @@ import { ProjectsXPType } from '../interfaces/projectsXP';
    */
 }
 
-// this function fetches xp distributed for project work
-const getProjectWork_xp_view = async () => {
-  const xp_allocated_for_projects: ProjectsXPType[] = [];
-  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-    process.env.BASE
-  );
-  try {
-    base('Project Work')
-      .select({
-        // Selecting the first 3 records in All XP Requests:
-        maxRecords: 1000,
-        view: 'xp_view',
-      })
-      .eachPage(
-        function page(records: any[], fetchNextPage: () => void) {
-          records.forEach((record) => {
-            //   console.log('records fetched - ', record.fields);
-            const fields = record.fields;
-            const name = fields._Name as string;
+async function getProjectWork_xp_view(): Promise<
+  receivedXPFromAirtableType[] | undefined
+> {
+  return await getXPDistribution('Project Work');
+}
 
-            const xp = fields._XP as number;
-            const date = fields._Date as Date;
-            xp_allocated_for_projects.push({
-              name,
-              xp: { xp_allocated: xp, date: date },
-            });
-            // console.log('xp - ', xp_allocated_for_projects);
-          });
+async function getIndieWork_xp_view(): Promise<
+  receivedXPFromAirtableType[] | undefined
+> {
+  return await getXPDistribution('Indie Work');
+}
+async function getWorkingGroups_xp_view(): Promise<
+  receivedXPFromAirtableType[] | undefined
+> {
+  return await getXPDistribution('CAB/SubDAO XPs');
+}
 
-          fetchNextPage();
-        },
-        function done(err: any) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        }
-      );
-    return xp_allocated_for_projects;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-};
+async function getInternalOperations_xp_view(): Promise<
+  receivedXPFromAirtableType[] | undefined
+> {
+  return await getXPDistribution('CAB/SubDAO XPs');
+}
 
-// this function fetches xp distributed for Indie work
-const getIndieWork_xp_view = async () => {
-  const xp_allocated_for_indieWork: ProjectsXPType[] = [];
-  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-    process.env.BASE
-  );
-  try {
-    base('Indie Work')
-      .select({
-        // Selecting the first 3 records in All XP Requests:
-        maxRecords: 1000,
-        view: 'xp_view',
-      })
-      .eachPage(
-        function page(records: any[], fetchNextPage: () => void) {
-          records.forEach((record) => {
-            //   console.log('records fetched - ', record.fields);
-            const fields = record.fields;
-            const name = fields._Name as string;
-
-            const xp = fields._XP as number;
-            const date = fields._Date as Date;
-            xp_allocated_for_indieWork.push({
-              name,
-              xp: { xp_allocated: xp, date: date },
-            });
-            // console.log('xp - ', xp_allocated_for_projects);
-          });
-
-          fetchNextPage();
-        },
-        function done(err: any) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        }
-      );
-    return xp_allocated_for_indieWork;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-};
-// this function fetches xp distributed for Working Groups
-const getWorkingGroups_xp_view = async () => {
-  const xp_allocated_for_working_groups: ProjectsXPType[] = [];
-  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-    process.env.BASE
-  );
-  try {
-    base('CAB/SubDAO XPs')
-      .select({
-        // Selecting the first 3 records in All XP Requests:
-        maxRecords: 1000,
-        view: 'xp_view',
-      })
-      .eachPage(
-        function page(records: any[], fetchNextPage: () => void) {
-          records.forEach((record) => {
-            //   console.log('records fetched - ', record.fields);
-            const fields = record.fields;
-            const name = fields._Name as string;
-
-            const xp = fields._XP as number;
-            const date = fields._Date as Date;
-            xp_allocated_for_working_groups.push({
-              name,
-              xp: { xp_allocated: xp, date: date },
-            });
-            // console.log('xp - ', xp_allocated_for_projects);
-          });
-
-          fetchNextPage();
-        },
-        function done(err: any) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        }
-      );
-    return xp_allocated_for_working_groups;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-};
-
-// this function fetches xp distributed for Internal Operations
-const getInternalOperations_xp_view = async () => {
-  const xp_allocated_for_projects: ProjectsXPType[] = [];
-  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-    process.env.BASE
-  );
-  try {
-    base('Project Work')
-      .select({
-        // Selecting the first 3 records in All XP Requests:
-        maxRecords: 1000,
-        view: 'xp_view',
-      })
-      .eachPage(
-        function page(records: any[], fetchNextPage: () => void) {
-          records.forEach((record) => {
-            //   console.log('records fetched - ', record.fields);
-            const fields = record.fields;
-            const name = fields._Name as string;
-
-            const xp = fields._XP as number;
-            const date = fields._Date as Date;
-            xp_allocated_for_projects.push({
-              name,
-              xp: { xp_allocated: xp, date: date },
-            });
-            // console.log('xp - ', xp_allocated_for_projects);
-          });
-
-          fetchNextPage();
-        },
-        function done(err: any) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-        }
-      );
-    return xp_allocated_for_projects;
-  } catch (error) {
-    console.log(error);
-    return error;
-  }
-};
-
-// this function fetches xp distributed for Bounties
-const getBounties_xp_view = async () => {};
-// this function fetches xp distributed for Stack Exchanges
-const getStackExchange_xp_view = async () => {};
+async function getBounties_xp_view(): Promise<
+  receivedXPFromAirtableType[] | undefined
+> {
+  return await getXPDistribution('Indie Work');
+}
+async function getStackExchange_xp_view(): Promise<
+  receivedXPFromAirtableType[] | undefined
+> {
+  return await getXPDistribution('Indie Work');
+}
 
 export {
-  getBounties_xp_view,
-  getIndieWork_xp_view,
   getProjectWork_xp_view,
+  getIndieWork_xp_view,
   getWorkingGroups_xp_view,
+  getBounties_xp_view,
   getStackExchange_xp_view,
   getInternalOperations_xp_view,
 };

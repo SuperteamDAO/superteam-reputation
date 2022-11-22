@@ -1,21 +1,22 @@
-import { Center, Flex, Icon, Td, Text, Tr } from '@chakra-ui/react';
+import { Box, Center, Flex, Icon, Td, Text, Tr } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
-import { xpTableType } from '../../../interfaces/xpTable';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
 import { ExpandedRow } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
+import { xpType } from './interfaces/xp';
 import RowCategories from './RowCategories';
 
 type propTypes = {
-  row: xpTableType;
+  row: xpType;
   index: number;
   searching: boolean;
 };
 
 const TableRow = ({ row, index, searching }: propTypes) => {
   const [expandRow, setExpandRow] = React.useState(false);
+
   return (
     <>
       <Tr
@@ -49,22 +50,24 @@ const TableRow = ({ row, index, searching }: propTypes) => {
             fontSize={'14px'}
             textTransform="capitalize"
           >
-            {row.name.split('#')[0]}
+            {row?.name.split('#')[0]}
           </Text>
           <Text color="superteamGray.500" fontSize={'12px'}>
-            {row.name}
+            {row?.name}
           </Text>
         </Td>
         <Td>
           <Flex h={10} flexDir="row" gap="0.4rem">
             <Text color={'superteamWhite'} fontSize={'14px'}>
-              {Math.round(row.total_xp)}
+              {Math.round(row?.total_amount)}
             </Text>
             <CustomTag colorScheme={'superteamGray'} text="XP" />
           </Flex>
         </Td>
         <Td>
-        <GraphColumn /> 
+          <Box w="18rem">
+            <GraphColumn row={row} />
+          </Box>
         </Td>
         <Td>
           <RowCategories row={row} />
