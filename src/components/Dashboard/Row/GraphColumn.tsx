@@ -70,9 +70,9 @@ const GraphColumn = ({ row }: propsType) => {
       h={10}
       flexDir="row"
       gap={{ base: '1.8rem', md: '3rem' }}
-      justify="space-between" 
+      justify="space-between"
     >
-      <Flex h={10} flexDir="column" >
+      <Flex h={10} flexDir="column">
         <Flex flexDir="row" gap="0.4rem">
           <Tooltip
             label="XP earned this month"

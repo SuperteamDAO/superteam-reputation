@@ -148,13 +148,13 @@ const Chart = ({ lastSixMonths, graphColor }: propsType) => {
     // the second time but not the first
     setHydrated(true);
   }, []);
-  if (!hydrated) {
+ // if (!hydrated) {
     // Returns null on first render, so the client and server match
-    return null;
-  }
+ //   return null;
+  //}
 
   return (
-    <Center marginLeft={'auto'} >
+    <Center marginLeft={'auto'}>
       {typeof window !== 'undefined' ? (
         <ReactApexChart
           options={chartData.options}
