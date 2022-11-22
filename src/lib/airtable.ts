@@ -378,4 +378,5 @@ export {
   getCabsRecordsFunction,
   getBrainTrustRecordsFunction,
   getStackXpRecordsFunction,
+  getXPFromAllViews,
 };

@@ -33,4 +33,5 @@ git checkout -b <your-branch-name>
 pnpm run dev 
 ```
 
+
 Once you have made the changes check ```commitlint.config.js``` for how to commit your code. If the build is succesfully you will be able to push the code and make the pr. Follow the pull request.

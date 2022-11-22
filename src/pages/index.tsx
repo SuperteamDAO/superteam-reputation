@@ -3,13 +3,11 @@ import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
 import { dashboardDataType } from '../components/Dashboard/Row/interfaces/dashboardStore';
 import { dataCalculator } from '../util/dataCalculator';
-
 export default function Home(props: {
   dashboardData: dashboardDataType[];
   bountyDataJson: any;
 }) {
   const { dashboardData } = props;
-
   return (
     <main>
       <Container maxW={'full'} p="0">

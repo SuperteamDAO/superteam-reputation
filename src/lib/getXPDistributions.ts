@@ -39,7 +39,6 @@ async function getXPDistribution(
     );
   return xp_allocated_for_work;
 }
-
 {
   /*
    * xp view are the views in airtable where all the xp allocated for that source is listed
