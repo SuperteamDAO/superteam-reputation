@@ -26,8 +26,6 @@ type propsType = {
 };
 
 const Chart = ({ lastSixMonths, graphColor }: propsType) => {
-  const [hydrated, setHydrated] = React.useState(false);
-
   const [chartData, setChartData] = React.useState({
     series: [
       {
@@ -141,17 +139,6 @@ const Chart = ({ lastSixMonths, graphColor }: propsType) => {
       },
     },
   });
-
-  // to prevent hydration issue we remove content from initial render
-  React.useEffect(() => {
-    // This forces a rerender, so the date is rendered
-    // the second time but not the first
-    setHydrated(true);
-  }, []);
- // if (!hydrated) {
-    // Returns null on first render, so the client and server match
- //   return null;
-  //}
 
   return (
     <Center marginLeft={'auto'}>
