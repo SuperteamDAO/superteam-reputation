@@ -7,7 +7,7 @@ import {
   Collapse,
   Container,
   List,
-  ListItem,
+  ListItem,  
 } from '@chakra-ui/react';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());

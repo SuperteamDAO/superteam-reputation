@@ -20,12 +20,8 @@ export type dashboardDataType = {
   overallXP: overallXP;
   projectWorkXP?: xpType;
   indieWorkXP?: xpType;
-  internalOps?: xpType;
+  internalOpsXP?: xpType;
+  workingGroupsXP?: xpType;
   bountiesXP?: xpType;
   stackExchangeXP?: xpType;
-};
-
-export type dashboardStoreType = {
-  dashboardData?: dashboardDataType;
-  setDashboardData?: (data: dashboardDataType) => any;
 };

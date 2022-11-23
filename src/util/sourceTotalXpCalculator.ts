@@ -1,7 +1,10 @@
 import { receivedXPFromAirtableType } from '../components/Dashboard/Row/interfaces/airtableRecievedXP';
 import { receivedXPFromAirtableTotalType } from '../components/Dashboard/Row/interfaces/airtableRecievedXPTotal';
 import { totalOverallXPType } from '../components/Dashboard/Row/interfaces/dashboardStore';
-import { allocated_xp, xpType } from '../components/Dashboard/Row/interfaces/xp';
+import {
+  allocated_xp,
+  xpType
+} from '../components/Dashboard/Row/interfaces/xp';
 import { skillKind } from '../enums/skill';
 
 function remove_duplicates_and_add_value(
@@ -34,31 +37,31 @@ export function overallXPDetails(
   name: string,
   overallXP: totalOverallXPType
 ): xpType {
-  let total_xp = overallXP.total_xp;
+  let total_xp = overallXP?.total_xp;
   let skills: { skill: skillKind; amount: number }[] = [
     {
       skill: skillKind.DEV,
-      amount: overallXP.development,
+      amount: overallXP?.development  || 0,
     },
     {
       skill: skillKind.DESIGN,
-      amount: overallXP.design,
+      amount: overallXP?.design || 0,
     },
     {
       skill: skillKind.OPS,
-      amount: overallXP.operations,
+      amount: overallXP?.operations  || 0,
     },
     {
       skill: skillKind.VIDEO,
-      amount: overallXP.videography,
+      amount: overallXP?.videography  || 0,
     },
     {
       skill: skillKind.STRATEGY,
-      amount: overallXP.strategy,
+      amount: overallXP?.strategy  || 0,
     },
     {
       skill: skillKind.WRITING,
-      amount: overallXP.writing,
+      amount: overallXP?.writing  || 0,
     },
   ];
   let xp: { amount: number[]; dates: Date[] } = { amount: [], dates: [] };

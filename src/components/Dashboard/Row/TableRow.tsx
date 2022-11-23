@@ -45,27 +45,29 @@ const TableRow = ({ row, index, searching }: propTypes) => {
           </div>
         </Td>
         <Td padding="18px">
-          <Text
-            color={'superteamWhite'}
-            fontSize={'14px'}
-            textTransform="capitalize"
-          >
-            {row?.name.split('#')[0]}
-          </Text>
-          <Text color="superteamGray.500" fontSize={'12px'}>
-            {row?.name}
-          </Text>
+          <Flex flexDir={'column'} w="13rem">
+            <Text
+              color={'superteamWhite'}
+              fontSize={'14px'}
+              textTransform="capitalize"
+            >
+              {row?.name.split('#')[0]}
+            </Text>
+            <Text color="superteamGray.500" fontSize={'12px'}>
+              {row?.name}
+            </Text>
+          </Flex>
         </Td>
         <Td>
-          <Flex h={10} flexDir="row" gap="0.4rem">
+          <Flex h={10} w="7rem" flexDir="row" gap="0.4rem">
             <Text color={'superteamWhite'} fontSize={'14px'}>
               {Math.round(row?.total_amount)}
             </Text>
             <CustomTag colorScheme={'superteamGray'} text="XP" />
           </Flex>
         </Td>
-        <Td>
-          <Box w="18rem">
+        <Td w="12rem">
+          <Box w="8rem">
             <GraphColumn row={row} />
           </Box>
         </Td>

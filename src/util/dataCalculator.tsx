@@ -14,6 +14,7 @@ import {
   getInternalOperations_xp_view,
   getProjectWork_xp_view,
   getStackExchange_xp_view,
+  getWorkingGroups_xp_view,
 } from '../lib/getXPDistributions';
 import {
   overallXPDetails,
@@ -39,10 +40,12 @@ export async function dataCalculator() {
 
   const projectWorkXP =
     (await getProjectWork_xp_view()) as receivedXPFromAirtableType[];
-  const indieWorkXp =
+  const indieWorkXP =
     (await getIndieWork_xp_view()) as receivedXPFromAirtableType[];
-  const internalOpsXp =
+  const internalOpsXP =
     (await getInternalOperations_xp_view()) as receivedXPFromAirtableType[];
+  const workingGroupsXP =
+    (await getWorkingGroups_xp_view()) as receivedXPFromAirtableType[];
   const bountiesXP =
     (await getBounties_xp_view()) as receivedXPFromAirtableType[];
   const stackExchangeXP =
@@ -82,7 +85,7 @@ export async function dataCalculator() {
   });
 
   const indieWorkCalculatedXP: xpType[] = sourceTotalXPCalculator(
-    indieWorkXp
+    indieWorkXP
   ).map((person) => {
     return {
       name: person.name,
@@ -92,8 +95,8 @@ export async function dataCalculator() {
     };
   });
 
-  const internalOpsCalculateXP: xpType[] = sourceTotalXPCalculator(
-    internalOpsXp
+  const internalOpsCalculatedXP: xpType[] = sourceTotalXPCalculator(
+    internalOpsXP
   ).map((person) => {
     return {
       name: person.name,
@@ -102,8 +105,17 @@ export async function dataCalculator() {
       xp: xpSumPerPersonCalculator(person).xp,
     };
   });
-  // console.log('internal ops per person - ', internalOpsCalculateXP[0])
   //todo: internal ops data is not working till here it works
+  const workingGroupsCalculateXP: xpType[] = sourceTotalXPCalculator(
+    workingGroupsXP
+  ).map((person) => {
+    return {
+      name: person.name,
+      skills: xpSumBySkillCalculator(person),
+      total_amount: xpSumPerPersonCalculator(person).total_amount,
+      xp: xpSumPerPersonCalculator(person).xp,
+    };
+  });
 
   const bountiesCalculatedXP: xpType[] = sourceTotalXPCalculator(
     bountiesXP
@@ -127,6 +139,20 @@ export async function dataCalculator() {
     };
   });
 
+  // push the data for stack exchange person into person details array if the person is not there already inside personDetailsData and write personType as "normie"
+  stackExchangeCalculatedXP.forEach((person) => {
+    if (
+      !personDetailsData.some(
+        (personDetails) => personDetails.name === person.name
+      )
+    ) {
+      personDetailsData.push({
+        name: person.name,
+        personType: 'normie',
+      });
+    }
+  });
+
   // add all the xps into one object called person: {name: string, personType: string, overallXP: , projectWorkXP: , indieWorkXP: , internalOpsXp: }
   const personData: dashboardDataType[] = personDetailsData.map((person) => {
     const xpSourcesSum = overallXPDetails(
@@ -135,7 +161,10 @@ export async function dataCalculator() {
           (personXP) => personXP.name === person.name
         ),
         indieWorkCalculatedXP.find((personXP) => personXP.name === person.name),
-        internalOpsCalculateXP.find(
+        internalOpsCalculatedXP.find(
+          (personXP) => personXP.name === person.name
+        ),
+        workingGroupsCalculateXP.find(
           (personXP) => personXP.name === person.name
         ),
         bountiesCalculatedXP.find((personXP) => personXP.name === person.name),
@@ -161,7 +190,10 @@ export async function dataCalculator() {
       indieWorkXP: indieWorkCalculatedXP.find(
         (personXP) => personXP.name === person.name
       ),
-      internalOpsXp: internalOpsCalculateXP.find(
+      internalOpsXP: internalOpsCalculatedXP.find((personXP) => {
+        return personXP.name === person.name;
+      }),
+      workingGroupsXP: workingGroupsCalculateXP.find(
         (personXP) => personXP.name === person.name
       ),
       bountiesXP: bountiesCalculatedXP.find(

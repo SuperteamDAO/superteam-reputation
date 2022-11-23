@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { HiSearch } from 'react-icons/hi';
+import { filteredData } from '../../util/filterData';
 import EnhancedTable from './Leaderboard';
 import { dashboardDataType } from './Row/interfaces/dashboardStore';
 
@@ -27,63 +28,17 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
   const [wordEntered, setWordEntered] = React.useState('');
   const [data, setData] = React.useState(dashboardData);
   const [searching, _setSearching] = React.useState(false);
-
-  const ContributorsData = data.map((item) => {
-    if (item.personType === 'Contributor') {
-      return item.overallXP.details;
-    }
-  });
-
-  const ContributorsDataFiltered = ContributorsData.filter(
-    (item) => item !== undefined
-  );
-
-  const MembersData = data.map((item) => {
-    if (item.personType === 'Member') {
-      return item.overallXP.details;
-    }
-  });
-
-  const filteredMembersData = MembersData.filter((item) => item !== undefined);
-
-  const ProjectWorkXPData = data.map((item) => {
-    if (item.projectWorkXP) {
-      return item.projectWorkXP;
-    }
-  });
-
-  // filter the undefined values from the projectworkxp array
-  const filteredProjectWorkXPData = ProjectWorkXPData.filter(
-    (item) => item !== undefined
-  );
-
-  const IndieWorkXPData = data.map((item) => {
-    if (item.indieWorkXP) {
-      return item.indieWorkXP;
-    }
-  });
-
-  // filter the undefined values from the indieWorkXP array
-  const filteredIndieWorkXPData = IndieWorkXPData.filter(
-    (item) => item !== undefined
-  );
-
-  const workingGroupXPData = data.map((item) => {
-    if (item.internalOps) {
-      return item.internalOps;
-    }
-  });
-
-  // filter the undefined values from the workingGroupXP array
-  const filteredWorkingGroupXPData = workingGroupXPData.filter(
-    (item) => item !== undefined
-  );
-
-  const allXPData = data.map((item) => {
-    if (item.overallXP.details) {
-      return item.overallXP.details;
-    }
-  });
+  const {
+    allXPData,
+    filteredMembersData,
+    filteredBountiesXPData,
+    filteredIndieWorkXPData,
+    filteredContributorsData,
+    filteredProjectWorkXPData,
+    filteredWorkingGroupXPData,
+    filteredStackExchangeXPData,
+    filteredInternalOperationsXPData,
+  } = filteredData(data);
 
   const handleSearch = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
@@ -233,8 +188,62 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
                 borderColor: 'superteamBlue.900',
               }}
             >
-              Internal Operations
+              Internal Ops
             </Tab>
+            <Tab
+              h="3.35rem"
+              px="0"
+              py="0.9rem"
+              fontSize={'14px'}
+              fontWeight="400"
+              whiteSpace="nowrap"
+              _active={{
+                color: 'superteamWhite',
+              }}
+              _selected={{
+                color: 'superteamWhite',
+                borderBottom: '2px solid',
+                borderColor: 'superteamBlue.900',
+              }}
+            >
+              Working Groups
+            </Tab>
+            <Tab
+              h="3.35rem"
+              px="0"
+              py="0.9rem"
+              fontSize={'14px'}
+              fontWeight="400"
+              whiteSpace="nowrap"
+              _active={{
+                color: 'superteamWhite',
+              }}
+              _selected={{
+                color: 'superteamWhite',
+                borderBottom: '2px solid',
+                borderColor: 'superteamBlue.900',
+              }}
+            >
+              Stack Exchange
+            </Tab>{' '}
+            {/* <Tab
+              h="3.35rem"
+              px="0"
+              py="0.9rem"
+              fontSize={'14px'}
+              fontWeight="400"
+              whiteSpace="nowrap"
+              _active={{
+                color: 'superteamWhite',
+              }}
+              _selected={{
+                color: 'superteamWhite',
+                borderBottom: '2px solid',
+                borderColor: 'superteamBlue.900',
+              }}
+            >
+              Bounties
+            </Tab> */}
             <Flex
               display={{ base: 'none', md: 'none', lg: 'flex' }}
               w="full"
@@ -315,7 +324,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
-                row={ContributorsDataFiltered}
+                row={filteredContributorsData}
                 searching={searching}
               />
             </TabPanel>{' '}
@@ -333,10 +342,28 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
-                row={filteredWorkingGroupXPData}
+                row={filteredInternalOperationsXPData}
                 searching={searching}
               />
             </TabPanel>{' '}
+            <TabPanel p="0">
+              <EnhancedTable
+                row={filteredWorkingGroupXPData}
+                searching={searching}
+              />
+            </TabPanel>
+            <TabPanel p="0">
+              <EnhancedTable
+                row={filteredStackExchangeXPData}
+                searching={searching}
+              />
+            </TabPanel>
+            {/* <TabPanel p="0">
+              <EnhancedTable
+                row={filteredBountiesXPData}
+                searching={searching}
+              />
+            </TabPanel> */}
           </TabPanels>
         </Tabs>
       </VStack>

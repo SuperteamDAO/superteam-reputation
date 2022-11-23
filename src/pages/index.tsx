@@ -11,6 +11,7 @@ export default function Home(props: {
   bountyDataJson: any;
 }) {
   const { dashboardData } = props;
+
   return (
     <>
       <SEO

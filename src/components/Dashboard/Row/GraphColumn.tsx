@@ -52,6 +52,7 @@ const GraphColumn = ({ row }: propsType) => {
   const calculateXpGrowth = () => {
     const lastMonth = lastSixMonths[0].xp;
     const secondLastMonth = lastSixMonths[1].xp;
+    if (secondLastMonth === 0) return 0;
     const diff = lastMonth - secondLastMonth;
     const growth = (diff / secondLastMonth) * 100;
     if (growth > 0) {
@@ -83,7 +84,7 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text color={'superteamWhite'} fontSize={'14px'}>
-              {lastSixMonths[0].xp}
+              {Math.round(lastSixMonths[0].xp)}
             </Text>
           </Tooltip>
           <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -120,12 +121,12 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text as="span" fontSize={'12px'} color={graphColor}>
-              ({calculateXpGrowth()}%)
+              ({Math.round(calculateXpGrowth())}%)
             </Text>
           </Tooltip>
         </Flex>
       </Flex>{' '}
-      <Chart lastSixMonths={lastSixMonths} graphColor={graphColor} />
+      {/* <Chart lastSixMonths={lastSixMonths} graphColor={graphColor} /> */}
     </Flex>
   );
 };
