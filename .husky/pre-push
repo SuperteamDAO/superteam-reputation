@@ -4,3 +4,4 @@
 pnpm build
 pnpm build
 pnpm exec build
+pnpm build
