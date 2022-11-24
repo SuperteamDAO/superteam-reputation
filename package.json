@@ -40,8 +40,8 @@
     "typescript": "4.8.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
-    "@commitlint/config-conventional": "^17.2.0",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
     "husky": "^8.0.2",
     "only-pnpm": "^1.0.5",
     "prettier": "^2.7.1",

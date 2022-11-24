@@ -2,7 +2,3 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm lint
-pnpm lint
-pnpm exec lint
-pnpm lint
-pnpm lint
