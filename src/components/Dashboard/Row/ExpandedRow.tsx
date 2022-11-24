@@ -1,7 +1,7 @@
 import { Flex, Td, Text, Tr } from '@chakra-ui/react';
 import { skillKind } from '../../../enums/skill'; 
 import CustomTag from '../../HOC/Tag.HOC';
-import { xpType } from './interfaces/xp';
+import { xpType } from '../../../interfaces/xp';
 
 type propsType = {
   expandRow: boolean;
