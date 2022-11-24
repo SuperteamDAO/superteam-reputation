@@ -2,7 +2,7 @@ import { Flex, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { BsCaretDownFill } from 'react-icons/bs';
 import CustomTag from '../../HOC/Tag.HOC';
 import Chart from './Chart';
-import { xpType } from './interfaces/xp';
+import { xpType } from '../../../interfaces/xp';
 
 type propsType = {
   row: xpType;
@@ -52,9 +52,10 @@ const GraphColumn = ({ row }: propsType) => {
   const calculateXpGrowth = () => {
     const lastMonth = lastSixMonths[0].xp;
     const secondLastMonth = lastSixMonths[1].xp;
-    if (secondLastMonth === 0) return 0;
-    const diff = lastMonth - secondLastMonth;
-    const growth = (diff / secondLastMonth) * 100;
+    const thirdLastMonth = lastSixMonths[2].xp;
+    if (thirdLastMonth === 0) return 0;
+    const diff = lastMonth - thirdLastMonth;
+    const growth = (diff / thirdLastMonth) * 100;
     if (growth > 0) {
       return Math.round(growth);
     } else if (growth < 0) {
@@ -84,7 +85,7 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text color={'superteamWhite'} fontSize={'14px'}>
-              {Math.round(lastSixMonths[0].xp)}
+              {Math.round(lastSixMonths[1].xp)}
             </Text>
           </Tooltip>
           <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -109,7 +110,7 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text as="span" fontSize={'12px'} color={graphColor}>
-              {Math.round(lastSixMonths[1].xp)}
+              {Math.round(lastSixMonths[2].xp)}
             </Text>
           </Tooltip>
           <Tooltip

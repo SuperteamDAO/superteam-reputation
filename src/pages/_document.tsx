@@ -5,6 +5,8 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts*/}
+        <script src="/static/theme.js" />
       </Head>
       <body>
         <Main />

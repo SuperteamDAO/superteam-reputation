@@ -1,9 +1,7 @@
-import { receivedXPFromAirtableType } from '../components/Dashboard/Row/interfaces/airtableRecievedXP';
-import {
-  dashboardDataType,
-  totalOverallXPType,
-} from '../components/Dashboard/Row/interfaces/dashboardStore';
-import { xpType } from '../components/Dashboard/Row/interfaces/xp';
+import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
+import { dashboardDataType,
+  totalOverallXPType, } from '../interfaces/dashboardStore';
+import { xpType } from '../interfaces/xp';
 import {
   getBountiesRecordsFunction,
   getXPRecordFunction,

@@ -16,9 +16,9 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { HiSearch } from 'react-icons/hi';
+import { dashboardDataType } from '../../interfaces/dashboardStore';
 import { filteredData } from '../../util/filterData';
 import EnhancedTable from './Leaderboard';
-import { dashboardDataType } from './Row/interfaces/dashboardStore';
 
 type propsType = {
   dashboardData: dashboardDataType[];
@@ -46,7 +46,6 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     const newFilter = data.filter((value: { name: string }) => {
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-
     if (searchWord === '') {
       setData(dashboardData);
     } else {

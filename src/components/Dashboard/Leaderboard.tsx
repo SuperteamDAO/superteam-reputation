@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import Pagination from '../Pagination';
-import { xpType } from './Row/interfaces/xp';
+import { xpType } from '../../interfaces/xp';
 import TableRow from './Row/TableRow';
 import TableRowMobile from './Row/TableRowMobile';
 //import XPGraph from './graph';

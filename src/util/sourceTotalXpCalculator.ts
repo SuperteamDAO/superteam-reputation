@@ -1,4 +1,4 @@
-import { receivedXPFromAirtableType } from '../components/Dashboard/Row/interfaces/airtableRecievedXP';
+import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { receivedXPFromAirtableTotalType } from '../components/Dashboard/Row/interfaces/airtableRecievedXPTotal';
 import { totalOverallXPType } from '../components/Dashboard/Row/interfaces/dashboardStore';
 import {

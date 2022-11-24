@@ -1,4 +1,4 @@
-import { dashboardDataType } from '../components/Dashboard/Row/interfaces/dashboardStore';
+import { dashboardDataType } from '../interfaces/dashboardStore';
 
 export function filteredData(data: dashboardDataType[]) {
   const ContributorsData = data.map((item) => {

@@ -9,7 +9,7 @@ import {
   MenuList,
   Stack,
   Text,
-  VStack
+  VStack,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 const DashboardHeader = () => {
@@ -67,7 +67,7 @@ const DashboardHeader = () => {
                 flexDir="row"
                 backgroundColor="superteamBlue.900"
                 padding={[
-                  '0.9rem 2rem 0.8rem 2rem',
+                  '0.7rem 1.6rem 0.6rem 1.6rem',
                   '1rem 2.2rem 0.9rem 2.2rem',
                 ]}
                 fontSize={['14px', '15px', '16px']}
@@ -86,6 +86,7 @@ const DashboardHeader = () => {
                   as="a"
                   href="https://airtable.com/shrOqa7YLUB29Gq3n"
                   target="_blank"
+                  fontSize={{ base: 'sm', md: 'md' }}
                   background="superteamGray.900"
                   _hover={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}
                   _focus={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}
@@ -96,6 +97,7 @@ const DashboardHeader = () => {
                   as="a"
                   href=" https://airtable.com/shrxXBIaztqhDCG79"
                   target="_blank"
+                  fontSize={{ base: 'sm', md: 'md' }}
                   background="superteamGray.900"
                   _hover={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}
                   _focus={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}
@@ -105,7 +107,7 @@ const DashboardHeader = () => {
                 {/* <MenuItem
                   as="a"
                   href=" https://airtable.com/shrxXBIaztqhDCG79"
-                  target="_blank"
+                  target="_blank"    fontSize={{base:'sm', md:'md'}}
                   background="superteamGray.900"
                   _hover={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}
                   _focus={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}
@@ -117,6 +119,7 @@ const DashboardHeader = () => {
                   as="a"
                   href="https://superteam.fun/bounties"
                   target="_blank"
+                  fontSize={{ base: 'sm', md: 'md' }}
                   background="superteamGray.900"
                   _hover={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}
                   _focus={{ bg: 'superteamBlack.200', color: 'superteamWhite' }}

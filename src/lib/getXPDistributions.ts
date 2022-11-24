@@ -1,5 +1,5 @@
 const Airtable = require('airtable');
-import { receivedXPFromAirtableType } from '../components/Dashboard/Row/interfaces/airtableRecievedXP';
+import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { skillKind } from '../enums/skill';
 
 // this function fetches xp distribution
