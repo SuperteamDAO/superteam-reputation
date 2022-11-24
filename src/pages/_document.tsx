@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 
+// this prevents white flash on page load
 const themeScript = `
 (function () {
   var currentTheme;
@@ -51,7 +52,6 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts*/}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </Head>
       <body>

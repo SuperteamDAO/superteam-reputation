@@ -53,9 +53,9 @@ const GraphColumn = ({ row }: propsType) => {
     const lastMonth = lastSixMonths[0].xp;
     const secondLastMonth = lastSixMonths[1].xp;
     const thirdLastMonth = lastSixMonths[2].xp;
-    if (thirdLastMonth === 0) return 0;
-    const diff = lastMonth - thirdLastMonth;
-    const growth = (diff / thirdLastMonth) * 100;
+    if (secondLastMonth === 0) return 0;
+    const diff = lastMonth - secondLastMonth;
+    const growth = (diff / secondLastMonth) * 100;
     if (growth > 0) {
       return Math.round(growth);
     } else if (growth < 0) {
@@ -79,13 +79,13 @@ const GraphColumn = ({ row }: propsType) => {
           <Tooltip
             label="XP earned this month"
             fontSize="xs"
-            colorScheme={'whiteAlpha'}
-            bg={'superteamWhite'}
+            colorScheme='whiteAlpha'
+            bg='superteamWhite'
             rounded="md"
             fontWeight="400"
           >
-            <Text color={'superteamWhite'} fontSize={'14px'}>
-              {Math.round(lastSixMonths[1].xp)}
+            <Text color='superteamWhite' fontSize='14px'>
+              {Math.round(lastSixMonths[0].xp)}
             </Text>
           </Tooltip>
           <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -110,7 +110,7 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text as="span" fontSize={'12px'} color={graphColor}>
-              {Math.round(lastSixMonths[2].xp)}
+              {Math.round(lastSixMonths[1].xp)}
             </Text>
           </Tooltip>
           <Tooltip
