@@ -1,7 +1,7 @@
 export interface ConfigInterface {
-    general: {
-      name: string;
-      domain: string;
-      twitterHandle: string;
-    };
-  }
+  general: {
+    name: string;
+    domain: string;
+    twitterHandle: string;
+  };
+}

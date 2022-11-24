@@ -79,12 +79,12 @@ const GraphColumn = ({ row }: propsType) => {
           <Tooltip
             label="XP earned this month"
             fontSize="xs"
-            colorScheme='whiteAlpha'
-            bg='superteamWhite'
+            colorScheme="whiteAlpha"
+            bg="superteamWhite"
             rounded="md"
             fontWeight="400"
           >
-            <Text color='superteamWhite' fontSize='14px'>
+            <Text color="superteamWhite" fontSize="14px">
               {Math.round(lastSixMonths[0].xp)}
             </Text>
           </Tooltip>

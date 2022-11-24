@@ -5,3 +5,4 @@ pnpm lint
 pnpm lint
 pnpm exec lint
 pnpm lint
+pnpm lint

@@ -8,7 +8,7 @@ import {
   Th,
   Thead,
   Tr,
-  useMediaQuery
+  useMediaQuery,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import Pagination from '../Pagination';
@@ -99,7 +99,7 @@ export default function EnhancedTable({ row, searching }: propsType) {
                     XP Growth
                   </Th>
                   <Th
-                    w='full'
+                    w="full"
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}

@@ -377,5 +377,5 @@ export {
   getBountiesRecordsFunction,
   getCabsRecordsFunction,
   getBrainTrustRecordsFunction,
-  getStackXpRecordsFunction, 
+  getStackXpRecordsFunction,
 };

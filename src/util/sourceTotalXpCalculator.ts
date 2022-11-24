@@ -1,5 +1,5 @@
 import { receivedXPFromAirtableTotalType } from '../interfaces/airtableRecievedXPTotal';
-import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP'; 
+import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { totalOverallXPType } from '../interfaces/dashboardStore';
 import { allocated_xp, xpType } from '../interfaces/xp';
 import { skillKind } from '../enums/skill';

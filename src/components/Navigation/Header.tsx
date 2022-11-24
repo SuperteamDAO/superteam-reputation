@@ -1,8 +1,10 @@
 import {
   chakra,
-  Container, Flex, Icon,
+  Container,
+  Flex,
+  Icon,
   Stack,
-  VisuallyHidden
+  VisuallyHidden,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { FaDiscord, FaTwitter } from 'react-icons/fa';
