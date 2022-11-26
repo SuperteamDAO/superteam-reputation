@@ -7,6 +7,8 @@ specifiers:
   '@commitlint/config-conventional': ^17.3.0
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
+  '@fontsource/inter': ^4.5.14
+  '@next/font': ^13.0.5
   '@notionhq/client': ^2.2.2
   '@types/node': 18.11.9
   '@types/react': 18.0.25
@@ -16,6 +18,7 @@ specifiers:
   eslint: 8.27.0
   eslint-config-next: 13.0.3
   framer-motion: ^7.6.6
+  google: link:@next/font/google
   husky: ^8.0.2
   next: 13.0.3
   next-superjson-plugin: ^0.4.9
@@ -34,6 +37,8 @@ dependencies:
   '@chakra-ui/react': 2.4.1_ydu7fid2w3vesyc65jyv4dbawa
   '@emotion/react': 11.10.5_cuziicjcvwawlf5iuhzacuhqcy
   '@emotion/styled': 11.10.5_hmjty4frusbltjhl3xd7udcm2y
+  '@fontsource/inter': 4.5.14
+  '@next/font': 13.0.5
   '@notionhq/client': 2.2.2
   '@types/node': 18.11.9
   '@types/react': 18.0.25
@@ -43,6 +48,7 @@ dependencies:
   eslint: 8.27.0
   eslint-config-next: 13.0.3_rmayb2veg2btbq6mbmnyivgasy
   framer-motion: 7.6.6_biqbaboplfbrettd7655fr4n2y
+  google: link:@next/font/google
   next: 13.0.3_mqvh5p7ejg4taogoj6tpk3gd5a
   next-superjson-plugin: 0.4.9_f6u5o4wezvqlz2l4c6obuika34
   react: 18.2.0
@@ -1651,6 +1657,10 @@ packages:
       - supports-color
     dev: false
 
+  /@fontsource/inter/4.5.14:
+    resolution: {integrity: sha512-JDC9AocdPLuGsASkvWw9hS5gtHE7K9dOwL98XLrk5yjYqxy4uVnScG58NUvFMJDVJRl/7c8Wnap6PEs+7Zvj1Q==}
+    dev: false
+
   /@humanwhocodes/config-array/0.11.7:
     resolution: {integrity: sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw==}
     engines: {node: '>=10.10.0'}
@@ -1769,6 +1779,10 @@ packages:
     resolution: {integrity: sha512-slmTAHNKDyc7jhx4VF8lFbmOPWJ3PShtUUWpb6x9+ga59CyOxgP6AdcDhxfapnWYACKe/TwYiaveufu7LqXgZg==}
     dependencies:
       glob: 7.1.7
+    dev: false
+
+  /@next/font/13.0.5:
+    resolution: {integrity: sha512-NrP4B8pxwerrkkuG/m7MQv0ks89Kk4Lc0kzbiRaYX+Xb0coDaw+I9T+g42aOHf8j8ta1vtKqb5XE1+troZ4CoQ==}
     dev: false
 
   /@next/swc-android-arm-eabi/13.0.3:

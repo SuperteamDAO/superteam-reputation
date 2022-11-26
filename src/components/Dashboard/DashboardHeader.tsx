@@ -9,13 +9,13 @@ import {
   MenuList,
   Stack,
   Text,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 const DashboardHeader = () => {
   const router = useRouter();
   return (
-    <Container maxW={'full'} bg="superteamBlack.800" p="1rem">
+    <Container fontFamily={'Inter'} maxW={'full'} bg="superteamBlack.800" p="1rem">
       <VStack
         py={{ base: '2rem', md: '', lg: '4.6rem' }}
         gap="0.6rem"

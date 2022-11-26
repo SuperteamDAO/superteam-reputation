@@ -53,7 +53,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     }
   };
   return (
-    <Container maxW="full" p="1rem">
+    <Container fontFamily={'Inter'} maxW="full" p="1rem">
       <VStack maxW="7xl" mx="auto" align={'start'} justify="start" py="1rem">
         <Heading fontWeight={'600'} fontSize={'14px'} textTransform="uppercase">
           Browse By

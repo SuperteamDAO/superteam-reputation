@@ -55,7 +55,7 @@ export default function EnhancedTable({ row, searching }: propsType) {
 
   return (
     <>
-      <Container maxW="7xl" p="0" mt={'1.6rem'} rounded="6px">
+      <Container fontFamily={'Inter'} maxW="7xl" p="0" mt={'1.6rem'} rounded="6px">
         <TableContainer>
           <Table variant="unstyled">
             {!isSmallerThan990 && (
