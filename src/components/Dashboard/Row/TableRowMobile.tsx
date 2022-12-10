@@ -6,7 +6,6 @@ import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
 import { ExpandedRowMobile } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
-import { xpType } from './interfaces/xp';
 import RowCategories from './RowCategories';
 
 type propTypes = {
