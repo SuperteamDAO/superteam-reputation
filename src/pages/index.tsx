@@ -30,10 +30,9 @@ export default function Home(props: {
 }
 
 export async function getStaticProps() {
-  // fetch personData, bountyDataJson from process.env.BACKEND_URL using axios
   return axios
     .get(`${process.env.BACKEND_URL}/xp`)
-    .then(async (res) => { 
+    .then(async (res) => {
       const personData = res.data.personData;
       const bountyDataJson = res.data.bountyDataJson;
       return {
