@@ -19,6 +19,7 @@ import { HiSearch } from 'react-icons/hi';
 import { dashboardDataType } from '../../interfaces/dashboardStore';
 import { filteredData } from '../../util/filterData';
 import EnhancedTable from './Leaderboard';
+import { dashboardDataType } from './Row/interfaces/dashboardStore';
 
 type propsType = {
   dashboardData: dashboardDataType[];
