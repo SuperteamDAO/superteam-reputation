@@ -1,13 +1,15 @@
 import {
   chakra,
-  Container, Flex, Icon,
+  Container,
+  Flex,
+  Icon,
   Stack,
-  VisuallyHidden
+  VisuallyHidden,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { FaDiscord, FaTwitter } from 'react-icons/fa';
 import { SiSubstack } from 'react-icons/si';
-import Logo from '../Logo';
+import LogoImg from '../Logo/LogoImg';
 
 const IconButton = ({
   children,
@@ -58,7 +60,7 @@ export default function Header() {
         w="100%"
         maxW="7xl"
       >
-        <Logo />
+        <LogoImg />
         <Stack direction={'row'} spacing={[2, 6]}>
           <IconButton
             label={'Discord'}

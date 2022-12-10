@@ -1,6 +1,6 @@
 import { Wrap } from '@chakra-ui/react';
 import { skillKind } from '../../../enums/skill';
-import { xpType } from './interfaces/xp';
+import { xpType } from '../../../interfaces/xp';
 import CustomChip from '../../HOC/Chip.HOC';
 
 type propTypes = {

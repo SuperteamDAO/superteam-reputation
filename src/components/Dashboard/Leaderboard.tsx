@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import Pagination from '../Pagination';
-import { xpType } from './Row/interfaces/xp';
+import { xpType } from '../../interfaces/xp';
 import TableRow from './Row/TableRow';
 import TableRowMobile from './Row/TableRowMobile';
 //import XPGraph from './graph';
@@ -55,7 +55,7 @@ export default function EnhancedTable({ row, searching }: propsType) {
 
   return (
     <>
-      <Container maxW="7xl" p="0" mt={'1.6rem'} rounded="6px">
+      <Container fontFamily={'Inter'} maxW="7xl" p="0" mt={'1.6rem'} rounded="6px">
         <TableContainer>
           <Table variant="unstyled">
             {!isSmallerThan990 && (
@@ -78,16 +78,13 @@ export default function EnhancedTable({ row, searching }: propsType) {
                     Rank
                   </Th>
                   <Th
-                    w="12rem"
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
                   >
-                    {' '}
                     Name
                   </Th>
                   <Th
-                    w="8rem"
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
@@ -95,14 +92,14 @@ export default function EnhancedTable({ row, searching }: propsType) {
                     Total
                   </Th>
                   <Th
-                    w="18rem"
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
                   >
-                    Last 30d
+                    XP Growth
                   </Th>
                   <Th
+                    w="full"
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}

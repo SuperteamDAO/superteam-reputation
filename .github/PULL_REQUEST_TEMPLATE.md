@@ -10,12 +10,13 @@
   design: For design/UX improvement
 -->
 
-<!-- Checklist!!! If you're unsure about any of them, don't hesitate to ask. We're here to help! This is simply a reminder of what we are going to look for before merging your code. 
-  - I have read the Contributing Guide - https://github.com/irffanasiff/Superteam-Reputation/tree/prod/.github/CONTRIBUTING.md doc 
-  - I have added necessary documentation (if applicable) 
+<!-- Checklist!!! If you're unsure about any of them, don't hesitate to ask. We're here to help! This is simply a reminder of what we are going to look for before merging your code.
+  - I have read the Contributing Guide - https://github.com/irffanasiff/Superteam-Reputation/tree/prod/.github/CONTRIBUTING.md doc
+  - I have added necessary documentation (if applicable)
 -->
 
 ## Proposed changes (including videos or screenshots)
+
 <!-- CHANGELOG -->
 <!--
   Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request.
@@ -26,10 +27,13 @@
 <!-- END CHANGELOG -->
 
 ## Issue(s)
+
 <!-- Link the issues being closed by or related to this PR. For example, you can use #594 if this PR closes issue number 594 -->
 
 ## Steps to reproduce
+
 <!-- Mention how you would reproduce the bug if not mentioned on the issue page already. Also mention which screens are going to have the changes if applicable -->
 
 ## Further comments
+
 <!-- If this is a relatively large or complex change, kick off the discussion by explaining why you chose the solution you did and what alternatives you considered, etc... -->

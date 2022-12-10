@@ -2,7 +2,7 @@ import { Flex, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { BsCaretDownFill } from 'react-icons/bs';
 import CustomTag from '../../HOC/Tag.HOC';
 import Chart from './Chart';
-import { xpType } from './interfaces/xp';
+import { xpType } from '../../../interfaces/xp';
 
 type propsType = {
   row: xpType;
@@ -52,6 +52,8 @@ const GraphColumn = ({ row }: propsType) => {
   const calculateXpGrowth = () => {
     const lastMonth = lastSixMonths[0].xp;
     const secondLastMonth = lastSixMonths[1].xp;
+    const thirdLastMonth = lastSixMonths[2].xp;
+    if (secondLastMonth === 0) return 0;
     const diff = lastMonth - secondLastMonth;
     const growth = (diff / secondLastMonth) * 100;
     if (growth > 0) {
@@ -70,20 +72,20 @@ const GraphColumn = ({ row }: propsType) => {
       h={10}
       flexDir="row"
       gap={{ base: '1.8rem', md: '3rem' }}
-      justify="space-between" 
+      justify="space-between"
     >
-      <Flex h={10} flexDir="column" >
+      <Flex h={10} flexDir="column">
         <Flex flexDir="row" gap="0.4rem">
           <Tooltip
             label="XP earned this month"
             fontSize="xs"
-            colorScheme={'whiteAlpha'}
-            bg={'superteamWhite'}
+            colorScheme="whiteAlpha"
+            bg="superteamWhite"
             rounded="md"
             fontWeight="400"
           >
-            <Text color={'superteamWhite'} fontSize={'14px'}>
-              {lastSixMonths[0].xp}
+            <Text color="superteamWhite" fontSize="14px">
+              {Math.round(lastSixMonths[0].xp)}
             </Text>
           </Tooltip>
           <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -120,12 +122,12 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text as="span" fontSize={'12px'} color={graphColor}>
-              ({calculateXpGrowth()}%)
+              ({Math.round(calculateXpGrowth())}%)
             </Text>
           </Tooltip>
         </Flex>
       </Flex>{' '}
-      <Chart lastSixMonths={lastSixMonths} graphColor={graphColor} />
+      {/* <Chart lastSixMonths={lastSixMonths} graphColor={graphColor} /> */}
     </Flex>
   );
 };

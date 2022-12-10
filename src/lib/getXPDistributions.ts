@@ -1,5 +1,5 @@
 const Airtable = require('airtable');
-import { receivedXPFromAirtableType } from '../components/Dashboard/Row/interfaces/airtableRecievedXP';
+import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { skillKind } from '../enums/skill';
 
 // this function fetches xp distribution
@@ -16,13 +16,13 @@ async function getXPDistribution(
       view: 'xp_view',
     })
     .eachPage(
-      function page(records: any[], fetchNextPage: () => void) { 
+      function page(records: any[], fetchNextPage: () => void) {
         records.forEach((record) => {
           const fields = record.fields;
           const name = fields._Name as string;
           const total_amount = fields._XP as number;
-          const date = fields._Date as Date;
-          const skill = fields._Skill as skillKind;
+          const date = (fields._Date || new Date()) as Date;
+          const skill = (fields._Skill || skillKind.DEV) as skillKind;
           xp_allocated_for_work.push({
             name,
             xp: { total_amount, date, skill },
@@ -67,7 +67,40 @@ async function getWorkingGroups_xp_view(): Promise<
 async function getInternalOperations_xp_view(): Promise<
   receivedXPFromAirtableType[] | undefined
 > {
-  return await getXPDistribution('CAB/SubDAO XPs');
+  const xp_allocated_for_work: receivedXPFromAirtableType[] = [];
+  var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+    process.env.INTERNAL_OPS_BASE
+  );
+  await base('Recurring Team XP')
+    .select({
+      maxRecords: 1000,
+      view: 'xp_view',
+    })
+    .eachPage(
+      function page(records: any[], fetchNextPage: () => void) {
+        records.forEach((record) => {
+          const fields = record.fields;
+          const userName = fields._Name as string[];
+          const name = userName[0];
+          const total_amount_Arr = fields._XP as number[];
+          const total_amount = total_amount_Arr[0];
+          const date = fields._Date as Date;
+          const skill = fields._Skill as skillKind;
+          xp_allocated_for_work.push({
+            name,
+            xp: { total_amount, date, skill },
+          });
+        });
+        fetchNextPage();
+      },
+      function done(err: any) {
+        if (err) {
+          console.error('there was an error - ', err);
+          return;
+        }
+      }
+    );
+  return xp_allocated_for_work;
 }
 
 async function getBounties_xp_view(): Promise<
@@ -78,7 +111,7 @@ async function getBounties_xp_view(): Promise<
 async function getStackExchange_xp_view(): Promise<
   receivedXPFromAirtableType[] | undefined
 > {
-  return await getXPDistribution('Indie Work');
+  return await getXPDistribution('Superteam StackEx XP');
 }
 
 export {

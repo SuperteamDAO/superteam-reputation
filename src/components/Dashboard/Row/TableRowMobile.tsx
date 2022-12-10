@@ -1,6 +1,7 @@
 import { Center, Flex, Icon, Text, Tr } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
+import { xpType } from '../../../interfaces/xp';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
 import { ExpandedRowMobile } from './ExpandedRow';
@@ -23,9 +24,6 @@ const TableRowMobile = ({ row, index, searching }: propTypes) => {
       borderBottom="1px solid rgba(121, 155, 190, 0.2)"
       onDragEnd={() => {}}
       onTouchEndCapture={() => {
-        setExpandRow((prevState) => !prevState);
-      }}
-      onClick={() => {
         setExpandRow((prevState) => !prevState);
       }}
       _hover={{
