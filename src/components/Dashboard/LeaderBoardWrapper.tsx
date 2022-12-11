@@ -26,7 +26,8 @@ type propsType = {
 
 const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
   const [wordEntered, setWordEntered] = React.useState('');
-  const [data, setData] = React.useState(dashboardData);
+  const sourceData = dashboardData || [];
+  const [data, setData] = React.useState(sourceData);
   const [searching, _setSearching] = React.useState(false);
   const {
     allXPData,
@@ -43,11 +44,11 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
   const handleSearch = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = data.filter((value: { name: string }) => {
+    const newFilter = sourceData.filter((value: { name: string }) => {
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
     if (searchWord === '') {
-      setData(dashboardData);
+      setData(sourceData);
     } else {
       setData(newFilter);
     }
