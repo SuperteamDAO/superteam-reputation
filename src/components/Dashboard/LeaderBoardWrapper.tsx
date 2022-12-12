@@ -43,14 +43,16 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
   const handleSearch = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const newFilter = data.filter((value: { name: string }) => {
+
+    if (searchWord === '') {
+      return setData(dashboardData);
+    }
+
+    const newFilter = dashboardData.filter((value) => {
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-    if (searchWord === '') {
-      setData(dashboardData);
-    } else {
-      setData(newFilter);
-    }
+
+    setData(newFilter);
   };
   return (
     <Container fontFamily={'Inter'} maxW="full" p="1rem">
