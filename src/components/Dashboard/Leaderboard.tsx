@@ -1,6 +1,7 @@
 import {
   Center,
   Container,
+  HStack,
   Table,
   TableContainer,
   Tbody,
@@ -11,8 +12,8 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import * as React from 'react';
-import Pagination from '../Pagination';
 import { xpType } from '../../interfaces/xp';
+import Pagination from '../Pagination';
 import TableRow from './Row/TableRow';
 import TableRowMobile from './Row/TableRowMobile';
 //import XPGraph from './graph';
@@ -20,6 +21,7 @@ import TableRowMobile from './Row/TableRowMobile';
 type propsType = {
   row: (xpType | undefined)[];
   searching: boolean;
+  searchResult: boolean;
 };
 
 //todo: for now the data which is received is sorted for the highest overall xp, we need to sort this as per filter_by value for each tab
@@ -30,7 +32,12 @@ type propsType = {
 //   return array.sort(({ development: a }, { development: b }) => a - b);
 // }
 
-export default function EnhancedTable({ row, searching }: propsType) {
+export default function EnhancedTable({
+  row,
+  searching,
+  searchResult,
+}: propsType) {
+  console.log('rowww', row);
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [isSmallerThan990] = useMediaQuery('(max-width: 990px)');
 
@@ -55,7 +62,19 @@ export default function EnhancedTable({ row, searching }: propsType) {
 
   return (
     <>
-      <Container fontFamily={'Inter'} maxW="7xl" p="0" mt={'1.6rem'} rounded="6px">
+      <Container
+        fontFamily={'Inter'}
+        maxW="7xl"
+        p="0"
+        mt={'1.6rem'}
+        rounded="6px"
+      >
+        {searchResult && (
+          <HStack mb={'1.6rem'}>
+            <Text>Found</Text>
+            <Text color="superteamGray.300">{row.length} results</Text>
+          </HStack>
+        )}
         <TableContainer>
           <Table variant="unstyled">
             {!isSmallerThan990 && (
@@ -118,6 +137,7 @@ export default function EnhancedTable({ row, searching }: propsType) {
                     key={key}
                     index={(currentPage - 1) * 15 + key}
                     searching={searching}
+                    searchResult={searchResult}
                   />
                 ) : (
                   <TableRow
@@ -125,6 +145,7 @@ export default function EnhancedTable({ row, searching }: propsType) {
                     key={key}
                     index={(currentPage - 1) * 15 + key}
                     searching={searching}
+                    searchResult={searchResult}
                   />
                 )
               )}

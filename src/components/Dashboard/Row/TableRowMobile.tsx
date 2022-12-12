@@ -12,9 +12,10 @@ type propTypes = {
   row: xpType;
   index: number;
   searching: boolean;
+  searchResult: boolean;
 };
 
-const TableRowMobile = ({ row, index, searching }: propTypes) => {
+const TableRowMobile = ({ row, index, searching, searchResult }: propTypes) => {
   const [expandRow, setExpandRow] = React.useState(false);
   return (
     <Tr
@@ -30,12 +31,10 @@ const TableRowMobile = ({ row, index, searching }: propTypes) => {
       }}
     >
       <Flex p="1.2rem" w="100%" gap="2rem" direction="row">
-        {index + 1 <= 3 ? (
-          searching ? (
-            ` ${index + 1}.`
-          ) : (
-            <MedalSVG index={index + 1} />
-          )
+        {searchResult ? (
+          ` ${index + 1}.`
+        ) : index + 1 <= 3 ? (
+          <MedalSVG index={index + 1} />
         ) : (
           ` ${index + 1}.`
         )}
