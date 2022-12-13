@@ -1,4 +1,4 @@
-import { Center, Icon, Stack } from '@chakra-ui/react';
+import { Center, Icon, Stack, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { DOTS, usePagination } from '../../hooks/usePagination';
@@ -30,6 +30,30 @@ const Pagination = ({
     pageSize,
   });
 
+  const SelectedBorderColor = useColorModeValue(
+    'superteamGreyLT.800',
+    'superteamGreyLT.400'
+  );
+  const SelectedColor = useColorModeValue(
+    'superteamGreyDT.600',
+    'superteamGreyLT.200'
+  );
+  const NotSelectedColor = useColorModeValue(
+    'superteamGreyDT.500',
+    'superteamGreyLT.100'
+  );
+  const borderColor = useColorModeValue(
+    'superteamGreyLT.500',
+    'superteamGreyDT.50'
+  );
+  const dotsColor = useColorModeValue(
+    'superteamGreyDT.200',
+    'superteamGreyLT.200 '
+  );
+  const backgroundColor = useColorModeValue(
+    'superteamGreyLT.100',
+    'superteamGreyDT.900 '
+  );
   let lastPage = paginationRange[paginationRange.length - 1];
 
   useEffect(() => {
@@ -67,24 +91,24 @@ const Pagination = ({
     <Stack direction={'row'}>
       <Center
         border={'1px solid'}
-        borderColor="superteamBlack.200"
+        borderColor={borderColor}
         h="2.6rem"
         w="2.6rem"
         rounded="4px"
         fontWeight="600"
-        background="superteamBlack.800"
+        background={backgroundColor}
         as="button"
         onClick={onPrevious}
         disabled={disablePrev}
         _disabled={{
-          opacity: '0.5',
+          opacity: '0.3',
           cursor: 'not-allowed! important',
         }}
         _hover={{
-          background: 'superteamBlack.200',
+          background: borderColor,
         }}
       >
-        <Icon w={8} h={8} color="superteamWhite" as={BiChevronLeft} />
+        <Icon w={8} h={8} color={SelectedColor} as={BiChevronLeft} />
       </Center>
       {paginationRange?.map(
         (
@@ -102,9 +126,9 @@ const Pagination = ({
             return (
               <Center
                 border={'1px solid'}
-                background="superteamBlack.900"
-                color="superteamGray.600"
-                borderColor="superteamBlack.200"
+                background={backgroundColor}
+                color={dotsColor}
+                borderColor={borderColor}
                 rounded="4px"
                 h="2.6rem"
                 w="2.6rem"
@@ -119,17 +143,13 @@ const Pagination = ({
             <Center
               border={'1px solid'}
               borderColor={
-                currentPage === pageNumber
-                  ? 'superteamBlue.900'
-                  : 'superteamBlack.200'
+                currentPage === pageNumber ? SelectedBorderColor : borderColor
               }
               color={
-                currentPage === pageNumber
-                  ? 'superteamBlue.900'
-                  : 'superteamGray.600'
+                currentPage === pageNumber ? SelectedColor : NotSelectedColor
               }
-              fontWeight="600"
-              background="superteamBlack.900"
+              fontWeight="400"
+              background={'transparent'}
               p="0.5rem"
               h="2.6rem"
               w="2.6rem"
@@ -139,7 +159,7 @@ const Pagination = ({
               key={key}
               onClick={() => onPageChange(pageNumber)}
               _hover={{
-                background: 'superteamBlack.200',
+                background: borderColor,
               }}
             >
               {pageNumber}
@@ -149,12 +169,12 @@ const Pagination = ({
       )}
       <Center
         border={'1px solid'}
-        borderColor="superteamBlack.200"
+        borderColor={borderColor}
         h="2.6rem"
         w="2.6rem"
         rounded="4px"
         fontWeight="600"
-        background="superteamBlack.800"
+        background={backgroundColor}
         as="button"
         onClick={onNext}
         disabled={disableNext}
@@ -163,10 +183,10 @@ const Pagination = ({
           cursor: 'not-allowed! important',
         }}
         _hover={{
-          background: 'superteamBlack.200',
+          background: borderColor,
         }}
       >
-        <Icon w={8} h={8} color="superteamWhite" as={BiChevronRight} />
+        <Icon w={8} h={8} color={SelectedColor} as={BiChevronRight} />
       </Center>
     </Stack>
   );

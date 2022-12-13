@@ -1,8 +1,7 @@
 import { Flex, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { BsCaretDownFill } from 'react-icons/bs';
-import CustomTag from '../../HOC/Tag.HOC';
-import Chart from './Chart';
 import { xpType } from '../../../interfaces/xp';
+import CustomTag from '../../HOC/Tag.HOC';
 
 type propsType = {
   row: xpType;
@@ -88,7 +87,9 @@ const GraphColumn = ({ row }: propsType) => {
               {Math.round(lastSixMonths[0].xp)}
             </Text>
           </Tooltip>
-          <CustomTag colorScheme={'superteamGray'} text="XP" />
+          <CustomTag
+            text="XP"
+          />
         </Flex>
 
         <Flex alignItems={'center'} align="center" gap="0.4rem" direction="row">

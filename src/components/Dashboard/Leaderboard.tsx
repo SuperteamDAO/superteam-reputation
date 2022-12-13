@@ -9,6 +9,7 @@ import {
   Th,
   Thead,
   Tr,
+  useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react';
 import * as React from 'react';
@@ -60,6 +61,24 @@ export default function EnhancedTable({
     return 0;
   });
 
+  const TheadBGColor = useColorModeValue(
+    'superteamGreyLT.50',
+    'superteamGreyDT.900'
+  );
+  const TableBorderColor = useColorModeValue('white', 'superteamGreyDT.900');
+  const borderColor = useColorModeValue(
+    'superteamGreyLT.500',
+    'superteamGreyDT.50'
+  );
+  const textColor = useColorModeValue(
+    'superteamGreyLT.200',
+    'superteamGreyLT.200 '
+  );
+  const tableHeadingFontColor = useColorModeValue(
+    'superteamGreyDT.400',
+    'superteamGreyLT.800 '
+  );
+
   return (
     <>
       <Container
@@ -80,10 +99,10 @@ export default function EnhancedTable({
             {!isSmallerThan990 && (
               <Thead
                 border="1px solid"
-                borderColor={'superteamBlack.800'}
-                borderBottomColor="superteamBlack.200"
+                borderColor={TableBorderColor}
+                borderBottomColor={borderColor}
                 borderTopRadius="6px"
-                bg="superteamBlack.800"
+                bg={TheadBGColor}
                 borderRadius={'10px'}
                 roundedTop="md"
               >
@@ -93,6 +112,7 @@ export default function EnhancedTable({
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
+                    color={tableHeadingFontColor}
                   >
                     Rank
                   </Th>
@@ -100,6 +120,7 @@ export default function EnhancedTable({
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
+                    color={tableHeadingFontColor}
                   >
                     Name
                   </Th>
@@ -107,6 +128,7 @@ export default function EnhancedTable({
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
+                    color={tableHeadingFontColor}
                   >
                     Total
                   </Th>
@@ -114,6 +136,7 @@ export default function EnhancedTable({
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
+                    color={tableHeadingFontColor}
                   >
                     XP Growth
                   </Th>
@@ -122,6 +145,7 @@ export default function EnhancedTable({
                     textTransform={'capitalize'}
                     fontWeight="500"
                     fontSize={'14px'}
+                    color={tableHeadingFontColor}
                   >
                     Categories
                   </Th>
@@ -129,7 +153,13 @@ export default function EnhancedTable({
                 </Tr>
               </Thead>
             )}
-            <Tbody border="1px solid" borderColor={'superteamBlack.200'}>
+            <Tbody
+              border="1px solid"
+              borderColor={useColorModeValue(
+                'superteamGreyLT.500',
+                'superteamGreyDT.50'
+              )}
+            >
               {rows.map((row: any, key: number) =>
                 isSmallerThan990 ? (
                   <TableRowMobile
@@ -157,7 +187,7 @@ export default function EnhancedTable({
             height={'60vh'}
             w="100%"
             borderWidth="0px 1px 1px 1px"
-            borderColor={'superteamBlack.200'}
+            borderColor={borderColor}
             flexDir={'column'}
             gap="1rem"
             textAlign={'center'}
@@ -199,7 +229,7 @@ export default function EnhancedTable({
                 />
               </svg>
             </Center>
-            <Text fontWeight="500" fontSize="18px" color={'superteamWhite'}>
+            <Text fontWeight="500" fontSize="18px" color={textColor}>
               404 Nothing Found
             </Text>
             <Text maxW="26rem" fontWeight="400" fontSize="17px">

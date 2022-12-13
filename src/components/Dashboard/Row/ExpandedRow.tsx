@@ -1,4 +1,4 @@
-import { Flex, Td, Text, Tr } from '@chakra-ui/react';
+import { Flex, Td, Text, Tr, useColorModeValue } from '@chakra-ui/react';
 import { skillKind } from '../../../enums/skill';
 import { xpType } from '../../../interfaces/xp';
 import CustomTag from '../../HOC/Tag.HOC';
@@ -12,9 +12,12 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
   return (
     <Tr
       display={expandRow ? 'auto' : 'none'}
-      bg="#1B1F27"
+      bg={useColorModeValue('superteamGreyLT.50', 'superteamGreyDT.900')}
       borderBottom="1px solid "
-      borderColor={'superteamBlack.200'}
+      borderColor={useColorModeValue(
+        'superteamGreyLT.500',
+        'superteamGreyDT.50'
+      )}
     >
       <Td>
         <div></div>

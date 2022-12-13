@@ -1,11 +1,11 @@
-import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 
-const CustomTag = ({ colorScheme, text }: any) => {
+const CustomTag = ({ text }: any) => {
   return (
     <Box
-      bg={`${colorScheme}.900`}
-      color={`${colorScheme}.400`}
+      bg={useColorModeValue('superteamGreyLT.100', 'superteamGreyDT.800')}
+      color={useColorModeValue('superteamGreyLT.900', 'superteamGreyDT.100')}
+      opacity="0.8"
       fontSize={'10px'}
       p="1px 6px 1px 6px"
       rounded="4px"
