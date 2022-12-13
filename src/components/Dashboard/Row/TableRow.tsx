@@ -22,13 +22,14 @@ type propTypes = {
   row: xpType;
   index: number;
   searching: boolean;
+  searchResult: boolean;
 };
 const inter = Inter({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   style: ['normal'],
   subsets: ['latin'],
 });
-const TableRow = ({ row, index, searching }: propTypes) => {
+const TableRow = ({ row, index, searching, searchResult }: propTypes) => {
   const [expandRow, setExpandRow] = React.useState(false);
 
   const BackgroundColor = useColorModeValue(
@@ -63,12 +64,10 @@ const TableRow = ({ row, index, searching }: propTypes) => {
           )}
         >
           <div>
-            {index + 1 <= 3 ? (
-              searching ? (
-                ` ${index + 1}.`
-              ) : (
-                <MedalSVG index={index + 1} />
-              )
+            {searchResult ? (
+              ` ${index + 1}.`
+            ) : index + 1 <= 3 ? (
+              <MedalSVG index={index + 1} />
             ) : (
               ` ${index + 1}.`
             )}
