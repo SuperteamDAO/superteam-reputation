@@ -1,12 +1,16 @@
 import {
+  Button,
   chakra,
   Container,
   Flex,
   Icon,
   Stack,
+  useColorMode,
+  useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
+import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
 import { FaDiscord, FaTwitter } from 'react-icons/fa';
 import { SiSubstack } from 'react-icons/si';
 import LogoImg from '../Logo/LogoImg';
@@ -24,7 +28,7 @@ const IconButton = ({
     <chakra.button
       w={8}
       h={8}
-      color="superteamGray.600"
+      color={useColorModeValue('superteamGreyDT.100', 'superteamGreyLT.600')}
       cursor={'pointer'}
       as={'a'}
       href={href}
@@ -34,7 +38,7 @@ const IconButton = ({
       justifyContent={'center'}
       transition={'color 0.3s ease'}
       _hover={{
-        color: 'superteamGray.200',
+        color: useColorModeValue('superteamGreyDT.500', 'superteamGreyLT.100'),
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
@@ -44,13 +48,18 @@ const IconButton = ({
 };
 
 export default function Header() {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Container
       maxW="full"
-      bg="superteamBlack.800"
+      backgroundColor={useColorModeValue(
+        'superteamGreyLT.50',
+        'superteamGreyDT.900'
+      )}
       p="0.8rem"
       borderBottom={'1px solid '}
-      borderColor={'superteamBlack.200'}
+      borderColor={useColorModeValue('superteamGreyLT.500', 'superteamGreyDT.50')}
     >
       <Flex
         flexDir={'row'}
@@ -79,7 +88,14 @@ export default function Header() {
             href={'https://superteam.substack.com/p'}
           >
             <Icon as={SiSubstack} w={[4, 5]} h={[4, 5]} />
-          </IconButton>
+          </IconButton>{' '}
+          <Button variant={'unstyled'} onClick={toggleColorMode}>
+            {colorMode === 'light' ? (
+              <Icon as={BsFillMoonFill} color={'superteamGreyDT.100'} w={[4, 5]} h={[4, 5]} />
+            ) : (
+              <Icon as={BsSunFill} color={'superteamGreyLT.600'} w={[4, 5]} h={[4, 5]} />
+            )}
+          </Button>
         </Stack>
       </Flex>
     </Container>

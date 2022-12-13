@@ -12,6 +12,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -53,15 +54,34 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     }
   };
   return (
-    <Container fontFamily={'Inter'} maxW="full" p="1rem">
+    <Container
+      backgroundColor={useColorModeValue(
+        'superteamWhite.100',
+        'superteamGreyDT.1000'
+      )}
+      fontFamily={'Inter'}
+      maxW="full"
+      p="1rem"
+    >
       <VStack maxW="7xl" mx="auto" align={'start'} justify="start" py="1rem">
-        <Heading fontWeight={'600'} fontSize={'14px'} textTransform="uppercase">
+        <Heading
+          color={useColorModeValue(
+            'superteamGreyLT.800',
+            'superteamGreyLT.800'
+          )}
+          fontWeight={'600'}
+          fontSize={'14px'}
+          textTransform="uppercase"
+        >
           Browse By
         </Heading>
         <Tabs
           w="full"
           borderBottom={'1px solid'}
-          borderColor="superteamBlack.200"
+          borderColor={useColorModeValue(
+            'superteamGreyLT.500',
+            'superteamGreyDT.50'
+          )}
           onDrag={() => {
             //todo: add draggable tabs for mobile ( on right drag tab should change to the next right tab ) console.log('tab dragged');
             // to implement it find a function or hook that can be changed to change the index of current tab
@@ -70,7 +90,10 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
           <TabList
             gap="2rem"
             borderBottom={'1px solid '}
-            borderColor="superteamBlack.200"
+            borderColor={useColorModeValue(
+              'superteamGreyLT.500',
+              'superteamGreyDT.50'
+            )}
             css={css({
               scrollbarWidth: 'none',
               '::-webkit-scrollbar': { display: 'none' },
@@ -88,13 +111,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Everyone
@@ -106,13 +153,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Members
@@ -124,13 +195,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Contributors
@@ -142,13 +237,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Project Work
@@ -160,13 +279,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Indie Work
@@ -178,13 +321,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Internal Ops
@@ -196,13 +363,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Working Groups
@@ -214,13 +405,37 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              transform="translateY(2px)"
+              transition="0.4s all"
+              borderBottom={'3px solid'}
+              borderColor={useColorModeValue(
+                'superteamWhite.100',
+                'superteamGreyDT.1000'
+              )}
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                transition: '0.4s color',
               }}
               _selected={{
-                color: 'superteamWhite',
-                borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
+                fontWeight: '600',
+                borderBottom: '3px solid',
+                borderColor: useColorModeValue(
+                  'superteamOrange.800',
+                  'superteamBlueLT.800'
+                ),
+                transition: '0.4s all',
               }}
             >
               Stack Exchange
@@ -232,13 +447,23 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               fontSize={'14px'}
               fontWeight="400"
               whiteSpace="nowrap"
+              color={useColorModeValue(
+                'superteamGreyDT.100',
+                'superteamGreyLT.800'
+              )}
               _active={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
               }}
               _selected={{
-                color: 'superteamWhite',
+                color: useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                ),
                 borderBottom: '2px solid',
-                borderColor: 'superteamBlue.900',
+                borderColor: useColorModeValue('superteamOrange.800', 'superteamBlueLT.800'),
               }}
             >
               Bounties
@@ -260,18 +485,35 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
                 mr="0.1rem"
               >
                 <InputLeftElement w={'2.6rem'} h={'2rem'} pointerEvents="none">
-                  <Icon as={HiSearch} w={4} h={4} />
+                  <Icon
+                    color={useColorModeValue(
+                      'superteamGreyLT.800',
+                      'superteamGreyDT.200'
+                    )}
+                    as={HiSearch}
+                    w={4}
+                    h={4}
+                  />
                 </InputLeftElement>
                 <Input
-                  color={'superteamWhite'}
+                  color={useColorModeValue(
+                    'superteamGreyDT.600',
+                    'superteamWhite.100'
+                  )}
                   placeholder="Search User"
                   outline={'1px solid '}
-                  outlineColor="superteamBlack.200"
+                  outlineColor={useColorModeValue(
+                    'superteamGreyLT.600',
+                    'superteamGreyDT.50'
+                  )}
                   border={'none'}
                   borderRadius="4px"
                   rounded={'4px'}
                   _placeholder={{
-                    color: 'superteamGray.400',
+                    color: useColorModeValue(
+                      'superteamGrayDT.100',
+                      'superteamGrayLT.700'
+                    ),
                     fontSize: '12px',
                   }}
                   h="2rem"

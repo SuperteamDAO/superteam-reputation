@@ -1,19 +1,24 @@
-import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 
 const CustomChip = ({ colorScheme, text }: any) => {
   return (
     <Box
-      bg={`${colorScheme}.100`}
+      bg={useColorModeValue(`${colorScheme}.50`, `${colorScheme}.100`)}
+      backgroundBlendMode=""
       fontSize={'10px'}
       p="4px 18px 5px 18px"
       rounded="full"
       h="1.6rem"
+      border="0.1px solid"
+      borderColor={useColorModeValue(
+        `${colorScheme}.800`,
+        `${colorScheme}.800`
+      )}
     >
       <Text
         p="0"
         lineHeight={'17px'}
-        color={`${colorScheme}.800`}
+        color={useColorModeValue(`${colorScheme}.800`, `${colorScheme}.800`)}
         fontSize={'13px'}
         fontWeight="500"
       >

@@ -1,11 +1,21 @@
-import { Box, Center, Flex, Icon, Td, Text, Tr } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  Icon,
+  Td,
+  Text,
+  Tr,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { Inter } from '@next/font/google';
 import * as React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
+import { xpType } from '../../../interfaces/xp';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
 import { ExpandedRow } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
-import { xpType } from '../../../interfaces/xp';
 import RowCategories from './RowCategories';
 
 type propTypes = {
@@ -13,25 +23,45 @@ type propTypes = {
   index: number;
   searching: boolean;
 };
-
+const inter = Inter({
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal'],
+  subsets: ['latin'],
+});
 const TableRow = ({ row, index, searching }: propTypes) => {
   const [expandRow, setExpandRow] = React.useState(false);
+
+  const BackgroundColor = useColorModeValue(
+    'superteamGreyLT.50',
+    'superteamGreyDT.900'
+  );
 
   return (
     <>
       <Tr
-        bg={expandRow ? 'superteamBlack.800' : ''}
+        bg={expandRow ? BackgroundColor : ''}
         _hover={{
-          background: 'superteamBlack.800',
+          background: BackgroundColor,
         }}
         onClick={() => {
           setExpandRow((prevState) => !prevState);
         }}
         cursor={'pointer'}
         borderBottom="1px solid"
-        borderColor="superteamBlack.200"
+        borderColor={useColorModeValue(
+          'superteamGreyLT.500',
+          'superteamGreyDT.50'
+        )}
       >
-        <Td cursor="" width="2rem" padding="24px">
+        <Td
+          cursor=""
+          width="2rem"
+          padding="24px"
+          color={useColorModeValue(
+            'superteamGreyLT.700',
+            'superteamGreyDT.500'
+          )}
+        >
           <div>
             {index + 1 <= 3 ? (
               searching ? (
@@ -47,23 +77,43 @@ const TableRow = ({ row, index, searching }: propTypes) => {
         <Td padding="18px">
           <Flex flexDir={'column'} w="13rem">
             <Text
-              color={'superteamWhite'}
+              color={useColorModeValue(
+                'superteamBlack.100',
+                'superteamWhite.100'
+              )}
               fontSize={'14px'}
               textTransform="capitalize"
+              fontWeight="500"
+              className={inter.className}
             >
               {row?.name.split('#')[0]}
             </Text>
-            <Text color="superteamGray.500" fontSize={'12px'}>
+            <Text
+              color={useColorModeValue(
+                'superteamGreyLT.800',
+                'superteamGreyDT.100'
+              )}
+              opacity="0.8"
+              fontSize={'12px'}
+            >
               {row?.name}
             </Text>
           </Flex>
         </Td>
         <Td>
           <Flex h={10} w="7rem" flexDir="row" gap="0.4rem">
-            <Text color={'superteamWhite'} fontSize={'14px'}>
+            <Text
+              fontWeight="500"
+              className={inter.className}
+              color={useColorModeValue(
+                'superteamBlack.100',
+                'superteamWhite.100'
+              )}
+              fontSize={'14px'}
+            >
               {Math.round(row?.total_amount)}
             </Text>
-            <CustomTag colorScheme={'superteamGray'} text="XP" />
+            <CustomTag text="XP" />
           </Flex>
         </Td>
         <Td w="12rem">
@@ -79,7 +129,10 @@ const TableRow = ({ row, index, searching }: propTypes) => {
             rounded={'full'}
             transition="background 0.4s ease"
             _hover={{
-              background: 'superteamBlack.700',
+              background: useColorModeValue(
+                'superteamGreyLT.300',
+                'superteamGreyDT.800'
+              ),
             }}
           >
             <Icon
@@ -87,7 +140,10 @@ const TableRow = ({ row, index, searching }: propTypes) => {
               as={FiChevronDown}
               w={6}
               h={6}
-              color={'superteamGray.600'}
+              color={useColorModeValue(
+                'superteamGreyLT.700',
+                'superteamGreyDT.100'
+              )}
             />
           </Center>
         </Td>
