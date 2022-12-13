@@ -1,20 +1,21 @@
 import { Box, Center, Flex, Icon, Td, Text, Tr } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
+import { xpType } from '../../../interfaces/xp';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
 import { ExpandedRow } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
-import { xpType } from '../../../interfaces/xp';
 import RowCategories from './RowCategories';
 
 type propTypes = {
   row: xpType;
   index: number;
   searching: boolean;
+  searchResult: boolean;
 };
 
-const TableRow = ({ row, index, searching }: propTypes) => {
+const TableRow = ({ row, index, searching, searchResult }: propTypes) => {
   const [expandRow, setExpandRow] = React.useState(false);
 
   return (
@@ -33,12 +34,10 @@ const TableRow = ({ row, index, searching }: propTypes) => {
       >
         <Td cursor="" width="2rem" padding="24px">
           <div>
-            {index + 1 <= 3 ? (
-              searching ? (
-                ` ${index + 1}.`
-              ) : (
-                <MedalSVG index={index + 1} />
-              )
+            {searchResult ? (
+              ` ${index + 1}.`
+            ) : index + 1 <= 3 ? (
+              <MedalSVG index={index + 1} />
             ) : (
               ` ${index + 1}.`
             )}

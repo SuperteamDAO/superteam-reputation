@@ -28,6 +28,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
   const [wordEntered, setWordEntered] = React.useState('');
   const [data, setData] = React.useState(dashboardData);
   const [searching, _setSearching] = React.useState(false);
+  const [searchResult, setSearchResult] = React.useState(false);
   const {
     allXPData,
     filteredMembersData,
@@ -45,13 +46,17 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     setWordEntered(searchWord);
 
     if (searchWord === '') {
+      setSearchResult(false);
       return setData(dashboardData);
+    }
+
+    if (searchWord !== '') {
+      setSearchResult(true);
     }
 
     const newFilter = dashboardData.filter((value) => {
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-
     setData(newFilter);
   };
   return (
@@ -276,6 +281,10 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
                     color: 'superteamGray.400',
                     fontSize: '12px',
                   }}
+                  _focus={{
+                    border: '1px solid',
+                    borderColor: 'superteamBlue.900',
+                  }}
                   h="2rem"
                   pb={'3px'}
                   value={wordEntered}
@@ -313,50 +322,68 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
                 pb={'3px'}
                 value={wordEntered}
                 onChange={handleSearch}
+                _focus={{
+                  border: '1px solid',
+                  borderColor: 'superteamBlue.900',
+                }}
               />
             </InputGroup>
           </Flex>
           <TabPanels p="0">
             <TabPanel p="0">
-              <EnhancedTable row={allXPData} searching={searching} />
+              <EnhancedTable
+                row={allXPData}
+                searching={searching}
+                searchResult={searchResult}
+              />
             </TabPanel>
             <TabPanel p="0">
-              <EnhancedTable row={filteredMembersData} searching={searching} />
+              <EnhancedTable
+                row={filteredMembersData}
+                searching={searching}
+                searchResult={searchResult}
+              />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredContributorsData}
                 searching={searching}
+                searchResult={searchResult}
               />
             </TabPanel>{' '}
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredProjectWorkXPData}
                 searching={searching}
+                searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredIndieWorkXPData}
                 searching={searching}
+                searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredInternalOperationsXPData}
                 searching={searching}
+                searchResult={searchResult}
               />
             </TabPanel>{' '}
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredWorkingGroupXPData}
                 searching={searching}
+                searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredStackExchangeXPData}
                 searching={searching}
+                searchResult={searchResult}
               />
             </TabPanel>
             {/* <TabPanel p="0">
