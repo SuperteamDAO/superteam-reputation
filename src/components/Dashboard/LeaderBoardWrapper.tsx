@@ -1,4 +1,5 @@
 import {
+  Box,
   Container,
   css,
   Flex,
@@ -12,6 +13,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
   VStack,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -45,6 +47,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     setWordEntered(searchWord);
 
     if (searchWord === '') {
+      _setSearching(false);
       return setData(dashboardData);
     }
 
@@ -53,6 +56,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     });
 
     setData(newFilter);
+    _setSearching(true);
   };
   return (
     <Container fontFamily={'Inter'} maxW="full" p="1rem">
@@ -276,6 +280,12 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
                     color: 'superteamGray.400',
                     fontSize: '12px',
                   }}
+                  _active={{
+                    outlineColor: 'superteamBlue.800',
+                  }}
+                  _focus={{
+                    outlineColor: 'superteamBlue.800',
+                  }}
                   h="2rem"
                   pb={'3px'}
                   value={wordEntered}
@@ -309,6 +319,12 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
                   color: 'superteamBlack.800',
                   fontSize: '12px',
                 }}
+                _active={{
+                  outlineColor: 'superteamBlack.800',
+                }}
+                _focus={{
+                  outlineColor: 'superteamBlue.800',
+                }}
                 h="2rem"
                 pb={'3px'}
                 value={wordEntered}
@@ -316,6 +332,18 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               />
             </InputGroup>
           </Flex>
+
+          {searching && (
+            <Box my="5" mx="2">
+              <Text fontWeight={400}>
+                Found{' '}
+                <Text as="span" color="superteamGray.300" fontWeight={500}>
+                  {allXPData.length} Results
+                </Text>
+              </Text>
+            </Box>
+          )}
+
           <TabPanels p="0">
             <TabPanel p="0">
               <EnhancedTable row={allXPData} searching={searching} />
