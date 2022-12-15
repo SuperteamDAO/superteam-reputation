@@ -32,10 +32,10 @@ const GraphColumn = ({ row }: propsType) => {
     }
     return acc;
   }, [] as { xp: number; monthYear: string }[]);
-
+// last month data 
   const lastSixMonths = [...new Array(6)].map((_, index) => {
     const date = new Date();
-    date.setMonth(date.getMonth() - index);
+    date.setMonth(date.getMonth() - index); // get  month index starts from 0 - Jan
     const month = date.getMonth();
     const year = date.getFullYear();
     const monthYear = `${month}-${year}`;
@@ -47,11 +47,13 @@ const GraphColumn = ({ row }: propsType) => {
       monthYear,
     };
   });
-
+  if (row.name === 'Apoorvdwi#9124') {
+    console.log('name - ', row.name);
+    console.log('last six months - ', lastSixMonths);
+  }
   const calculateXpGrowth = () => {
     const lastMonth = lastSixMonths[0].xp;
     const secondLastMonth = lastSixMonths[1].xp;
-    const thirdLastMonth = lastSixMonths[2].xp;
     if (secondLastMonth === 0) return 0;
     const diff = lastMonth - secondLastMonth;
     const growth = (diff / secondLastMonth) * 100;
@@ -87,9 +89,7 @@ const GraphColumn = ({ row }: propsType) => {
               {Math.round(lastSixMonths[0].xp)}
             </Text>
           </Tooltip>
-          <CustomTag
-            text="XP"
-          />
+          <CustomTag text="XP" />
         </Flex>
 
         <Flex alignItems={'center'} align="center" gap="0.4rem" direction="row">

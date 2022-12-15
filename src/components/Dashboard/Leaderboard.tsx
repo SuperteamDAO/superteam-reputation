@@ -38,7 +38,6 @@ export default function EnhancedTable({
   searching,
   searchResult,
 }: propsType) {
-  console.log('rowww', row);
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [isSmallerThan990] = useMediaQuery('(max-width: 990px)');
 

@@ -100,7 +100,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
             borderColor={useColorModeValue(
               'superteamGreyLT.500',
               'superteamGreyDT.50'
-            )}
+            )} 
             css={css({
               scrollbarWidth: 'none',
               '::-webkit-scrollbar': { display: 'none' },
