@@ -4,14 +4,18 @@ import config from '../../config/general.config';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
 import SEO from '../components/SEO/SEO';
+import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { dashboardDataType } from '../interfaces/dashboardStore';
 
 export default function Home(props: {
   dashboardData: dashboardDataType[];
   bountyDataJson: any;
+  lastSevenDaysData: receivedXPFromAirtableType[];
 }) {
-  const { dashboardData } = props;
+  const { dashboardData, lastSevenDaysData } = props;
   console.log('dash data - ', dashboardData.length);
+  // console.log('last seven days data - ', lastSevenDaysData);
+
   return (
     <>
       <SEO
@@ -21,7 +25,7 @@ export default function Home(props: {
       />
       <main>
         <Container maxW="full" p="0">
-          <DashboardHeader />
+          <DashboardHeader lastSevenDaysData={lastSevenDaysData} />
           <LeaderBoardWrapper dashboardData={dashboardData} />
         </Container>
       </main>
@@ -35,10 +39,12 @@ export async function getStaticProps() {
     .then(async (res) => {
       const personData = res.data.personData;
       const bountyDataJson = res.data.bountyDataJson;
+      const lastSevenDaysData = res.data.lastSevenDaysData;
       return {
         props: {
           bountyDataJson,
           dashboardData: personData,
+          lastSevenDaysData,
         },
         revalidate: 10,
       };
@@ -49,6 +55,7 @@ export async function getStaticProps() {
         props: {
           bountyDataJson: {},
           dashboardData: {},
+          lastSevenDaysData: {},
         },
         revalidate: 10,
       };
