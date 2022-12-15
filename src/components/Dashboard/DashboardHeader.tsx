@@ -39,6 +39,7 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
         grouped.push({
           name: element.name,
           xp: {
+            // @ts-ignore
             skill: element.xp.skill.toLowerCase(),
             date: element.xp.date,
             total_amount: element.xp.total_amount,
@@ -50,6 +51,7 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
       grouped.push({
         name: element.name,
         xp: {
+          // @ts-ignore
           skill: element.xp.skill.toLowerCase(),
           date: element.xp.date,
           total_amount: element.xp.total_amount,
@@ -71,6 +73,15 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
   const [selectedSkill, setSelectedSkill] = useState(development);
 
   const router = useRouter();
+
+  const lightTextColor = useColorModeValue(
+    'superteamGreyLT.800',
+    'superteamGreyDT.100'
+  )
+  const darkTextColor = useColorModeValue(
+    'superteamBlack.100',
+    'superteamWhite.100'
+  )
   return (
     <Container
       fontFamily={'Inter'}
@@ -220,10 +231,7 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
                           <Text
                             lineHeight={'12px'}
                             fontWeight={'600'}
-                            color={useColorModeValue(
-                              'superteamBlack.100',
-                              'superteamWhite.100'
-                            )}
+                            color={darkTextColor}
                             fontSize={'14px'}
                             textTransform="capitalize"
                             textAlign={'start'}
@@ -232,10 +240,7 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
                           </Text>
                           <Text
                             lineHeight={'10px'}
-                            color={useColorModeValue(
-                              'superteamGreyLT.800',
-                              'superteamGreyDT.100'
-                            )}
+                            color={lightTextColor}
                             opacity="0.8"
                             fontSize={'12px'}
                           >
@@ -246,10 +251,7 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
                       <HStack>
                         <Text
                           fontWeight={'600'}
-                          color={useColorModeValue(
-                            'superteamBlack.100',
-                            'superteamWhite.100'
-                          )}
+                          color={darkTextColor}
                           fontSize={'14px'}
                         >
                           {el.xp.total_amount}
