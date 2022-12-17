@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { skillKind } from '../../enums/skill';
 import CustomTag from '../HOC/Tag.HOC';
+import MedalSVG from '../Logo/MedalSVG';
 import { receivedXPFromAirtableType } from './Row/interfaces/airtableRecievedXP';
 
 type propsType = {
@@ -280,7 +281,13 @@ const DashboardHeader = ({
                       flexDir={'row'}
                     >
                       <HStack gap="1.2rem" alignItems={'flex-start'}>
-                        <Text>{index + 1}</Text>
+                        <Text>
+                          {index + 1 <= 3 ? (
+                            <MedalSVG index={index + 1} />
+                          ) : (
+                            ` ${index + 1}.`
+                          )}
+                        </Text>
                         <VStack alignItems={'start'}>
                           <Text
                             lineHeight={'12px'}
