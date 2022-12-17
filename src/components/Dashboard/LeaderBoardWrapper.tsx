@@ -1,12 +1,10 @@
 import {
+  Box,
+  Button,
   Container,
   css,
   Flex,
   Heading,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Tab,
   TabList,
   TabPanel,
@@ -16,7 +14,6 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { HiSearch } from 'react-icons/hi';
 import { useSwipeable } from 'react-swipeable';
 import { dashboardDataType } from '../../interfaces/dashboardStore';
 import { filteredData } from '../../util/filterData';
@@ -24,13 +21,18 @@ import EnhancedTable from './Leaderboard';
 
 type propsType = {
   dashboardData: dashboardDataType[];
+  searchResult: boolean;
+  sortByLowToHigh: boolean;
+  setSortByLowToHigh: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
-  const [wordEntered, setWordEntered] = React.useState('');
-  const [data, setData] = React.useState(dashboardData);
+const LeaderBoardWrapper = ({
+  dashboardData,
+  searchResult,
+  sortByLowToHigh,
+  setSortByLowToHigh,
+}: propsType) => {
   const [searching, _setSearching] = React.useState(false);
-  const [searchResult, setSearchResult] = React.useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const {
     allXPData,
@@ -42,31 +44,25 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     filteredWorkingGroupXPData,
     filteredStackExchangeXPData,
     filteredInternalOperationsXPData,
-  } = filteredData(data);
+  } = filteredData(
+    dashboardData.sort((a, b) => {
+      if (sortByLowToHigh) {
+        return (
+          a.overallXP.details.total_amount - b.overallXP.details.total_amount
+        );
+      } else {
+        return (
+          b.overallXP.details.total_amount - a.overallXP.details.total_amount
+        );
+      }
+    })
+  );
 
   const handlers = useSwipeable({
     onSwipedRight: () => setActiveTab((prev) => (prev > 0 ? prev - 1 : prev)),
     onSwipedLeft: () => setActiveTab((prev) => (prev < 7 ? prev + 1 : prev)),
   });
 
-  const handleSearch = (event: { target: { value: any } }) => {
-    const searchWord = event.target.value;
-    setWordEntered(searchWord);
-
-    if (searchWord === '') {
-      setSearchResult(false);
-      return setData(dashboardData);
-    }
-
-    if (searchWord !== '') {
-      setSearchResult(true);
-    }
-
-    const newFilter = dashboardData.filter((value) => {
-      return value.name.toLowerCase().includes(searchWord.toLowerCase());
-    });
-    setData(newFilter);
-  };
   return (
     <Container
       backgroundColor={useColorModeValue(
@@ -493,92 +489,82 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               borderRadius="4px"
               rounded={'4px'}
             >
-              <InputGroup
+              <Box
                 borderRadius="4px"
                 background={'transparent'}
                 maxW="14rem"
                 p="0"
                 mr="0.1rem"
               >
-                <InputLeftElement w={'2.6rem'} h={'2rem'} pointerEvents="none">
-                  <Icon
-                    color={useColorModeValue(
-                      'superteamGreyLT.800',
-                      'superteamGreyDT.200'
-                    )}
-                    as={HiSearch}
-                    w={4}
-                    h={4}
-                  />
-                </InputLeftElement>
-                <Input
+                <Button
                   color={useColorModeValue(
-                    'superteamGreyDT.600',
-                    'superteamWhite.100'
+                    'superteamBlack.100',
+                    'superteamGreyLT.800'
                   )}
-                  placeholder="Search User"
+                  bg={'transparent'}
                   outline={'1px solid '}
                   outlineColor={useColorModeValue(
-                    'superteamGreyLT.600',
-                    'superteamGreyDT.50'
+                    'superteamGreyLT.300',
+                    'superteamGreyLT.800'
                   )}
-                  border={'none'}
-                  borderRadius="4px"
-                  rounded={'4px'}
-                  _placeholder={{
-                    color: useColorModeValue(
-                      'superteamGrayDT.100',
-                      'superteamGrayLT.700'
-                    ),
-                    fontSize: '12px',
-                  }}
                   _focus={{
-                    border: '1px solid',
-                    borderColor: 'superteamBlue.900',
+                    bg: 'transparent',
+                  }}
+                  _hover={{
+                    bg: 'transparent',
                   }}
                   h="2rem"
                   pb={'3px'}
-                  value={wordEntered}
-                  onChange={handleSearch}
-                />
-              </InputGroup>
+                  rounded={'4px'}
+                  fontWeight="500"
+                  fontSize={'12px'}
+                  onClick={() => {
+                    setSortByLowToHigh((sortByLowToHigh) => !sortByLowToHigh);
+                  }}
+                >
+                  Sort by |{' '}
+                  {`${sortByLowToHigh ? 'XP Low to high' : 'XP High to low'}`}
+                </Button>
+              </Box>
             </Flex>
           </TabList>
           <Flex
-            borderRadius="4px"
-            rounded={'4px'}
             display={{ base: 'flex', md: 'flex', lg: 'none' }}
             w="full"
             flexDir={'column'}
             justify="center"
             alignItems={'end'}
+            my="2"
           >
-            <InputGroup maxW="full" mt="1rem">
-              <InputLeftElement w={'2.6rem'} h={'2rem'} pointerEvents="none">
-                <Icon as={HiSearch} w={4} h={4} />
-              </InputLeftElement>
-              <Input
-                color={'superteamWhite'}
-                placeholder="Search User"
-                outline={'1px solid '}
-                outlineColor="superteamBlack.200"
-                border={'none'}
-                borderRadius="4px"
-                rounded={'4px'}
-                _placeholder={{
-                  color: 'superteamBlack.800',
-                  fontSize: '12px',
-                }}
-                h="2rem"
-                pb={'3px'}
-                value={wordEntered}
-                onChange={handleSearch}
-                _focus={{
-                  border: '1px solid',
-                  borderColor: 'superteamBlue.900',
-                }}
-              />
-            </InputGroup>
+            <Button
+              color={useColorModeValue(
+                'superteamBlack.100',
+                'superteamGreyLT.800'
+              )}
+              w="full"
+              bg={'transparent'}
+              outline={'1px solid '}
+              outlineColor={useColorModeValue(
+                'superteamGreyLT.300',
+                'superteamGreyLT.800'
+              )}
+              _focus={{
+                bg: 'transparent',
+              }}
+              _hover={{
+                bg: 'transparent',
+              }}
+              pb={'3px'}
+              rounded={'4px'}
+              fontWeight="500"
+              fontSize={'15px'}
+              onClick={() => {
+                setSortByLowToHigh((sortByLowToHigh) => !sortByLowToHigh);
+              }}
+            >
+              Sort by |{' '}
+              {`${sortByLowToHigh ? 'XP Low to high' : 'XP High to low'}`}
+            </Button>
           </Flex>
           <TabPanels {...handlers} p="0">
             <TabPanel p="0">

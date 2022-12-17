@@ -4,6 +4,9 @@ import {
   Container,
   Heading,
   HStack,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Select,
   Stack,
   Text,
@@ -12,15 +15,23 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { BiSearchAlt2 } from 'react-icons/bi';
 import { skillKind } from '../../enums/skill';
 import CustomTag from '../HOC/Tag.HOC';
+import MedalSVG from '../Logo/MedalSVG';
 import { receivedXPFromAirtableType } from './Row/interfaces/airtableRecievedXP';
 
 type propsType = {
   lastSevenDaysData: receivedXPFromAirtableType[];
+  handleSearch: (event: { target: { value: any } }) => void;
+  wordEntered: string;
 };
 
-const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
+const DashboardHeader = ({
+  lastSevenDaysData,
+  handleSearch,
+  wordEntered,
+}: propsType) => {
   const grouped: receivedXPFromAirtableType[] = [];
 
   for (let i = 0; i < lastSevenDaysData.length; i++) {
@@ -77,11 +88,11 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
   const lightTextColor = useColorModeValue(
     'superteamGreyLT.800',
     'superteamGreyDT.100'
-  )
+  );
   const darkTextColor = useColorModeValue(
     'superteamBlack.100',
     'superteamWhite.100'
-  )
+  );
   return (
     <Container
       fontFamily={'Inter'}
@@ -104,6 +115,7 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
       >
         <VStack
           width={'fit-content'}
+          maxW={'422px'}
           py={{ base: '2rem', md: '', lg: '1rem' }}
           gap="0.6rem"
           height={'fit-content'}
@@ -139,7 +151,7 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
             <Box as="span" fontWeight={'200'}>
               /
             </Box>{' '}
-            <Box as="span">Reputation Dashboard</Box>
+            <Box as="span">XP System</Box>
           </Heading>
           <Text
             color={useColorModeValue(
@@ -152,6 +164,49 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
             XP system helps us understand who did what when and why this is just
             random text that you just wasted 20 seconds reading, get a life
           </Text>
+          <Box>
+            <InputGroup>
+              <InputLeftElement h="full" pointerEvents="none">
+                <BiSearchAlt2
+                  color={useColorModeValue(
+                    'superteamGreyDT.700',
+                    'superteamGreyLT.800'
+                  )}
+                />
+              </InputLeftElement>
+              <Input
+                color={useColorModeValue(
+                  'superteamGreyDT.700',
+                  'superteamWhite.100'
+                )}
+                placeholder="Search User"
+                outline={'1px solid '}
+                outlineColor={useColorModeValue(
+                  'superteamGreyLT.700',
+                  'superteamGreyLT.800'
+                )}
+                border={'none'}
+                borderRadius="4px"
+                rounded={'4px'}
+                _placeholder={{
+                  color: useColorModeValue(
+                    'superteamGreyDT.800',
+                    'superteamGreyLT.800'
+                  ),
+                  fontSize: '12px',
+                  fontWeight: '500',
+                }}
+                _focus={{
+                  border: '1px solid',
+                  borderColor: 'superteamBlue.900',
+                }}
+                h="2rem"
+                pb={'3px'}
+                value={wordEntered}
+                onChange={handleSearch}
+              />
+            </InputGroup>
+          </Box>
         </VStack>
         <HStack
           align={'top'}
@@ -226,7 +281,12 @@ const DashboardHeader = ({ lastSevenDaysData }: propsType) => {
                       flexDir={'row'}
                     >
                       <HStack gap="1.2rem" alignItems={'flex-start'}>
-                        <Text>{index + 1}</Text>
+                        {index + 1 <= 3 ? (
+                          <MedalSVG index={index + 1} />
+                        ) : (
+                          <Text> ` ${index + 1}.` </Text>
+                        )}
+
                         <VStack alignItems={'start'}>
                           <Text
                             lineHeight={'12px'}
