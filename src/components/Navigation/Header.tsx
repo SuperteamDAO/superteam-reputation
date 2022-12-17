@@ -71,7 +71,14 @@ export default function Header() {
           {NavbarLinks.map((link, key) => {
             return (
               <Link passHref key={key} href={link.href}>
-                <Text>{link.name}</Text>
+                <Text
+                  fontWeight={500}
+                  _hover={{
+                    fontWeight: 600,
+                  }}
+                >
+                  {link.name}
+                </Text>
               </Link>
             );
           })}
