@@ -50,15 +50,15 @@ export default function EnhancedTable({
     return arr as xpType[];
   }, [currentPage, row]);
 
-  rows.sort((a: xpType, b: xpType) => {
-    if (a?.total_amount > b?.total_amount) {
-      return -1;
-    }
-    if (a?.total_amount < b?.total_amount) {
-      return 1;
-    }
-    return 0;
-  });
+  // rows.sort((a: xpType, b: xpType) => {
+  //   if (a?.total_amount > b?.total_amount) {
+  //     return -1;
+  //   }
+  //   if (a?.total_amount < b?.total_amount) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // });
 
   const TheadBGColor = useColorModeValue(
     'superteamGreyLT.50',

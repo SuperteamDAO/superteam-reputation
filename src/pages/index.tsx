@@ -1,5 +1,6 @@
 import { Container } from '@chakra-ui/react';
 import axios from 'axios';
+import React from 'react';
 import config from '../../config/general.config';
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
@@ -15,6 +16,29 @@ export default function Home(props: {
   const { dashboardData, lastSevenDaysData } = props;
   console.log('dash data - ', dashboardData.length);
   // console.log('last seven days data - ', lastSevenDaysData);
+  // search functionality
+  const [data, setData] = React.useState(dashboardData);
+  const [wordEntered, setWordEntered] = React.useState('');
+  const [searchResult, setSearchResult] = React.useState(false);
+  const [sortByLowToHigh, setSortByLowToHigh] = React.useState(false);
+  const handleSearch = (event: { target: { value: any } }) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+
+    if (searchWord === '') {
+      setSearchResult(false);
+      return setData(dashboardData);
+    }
+
+    if (searchWord !== '') {
+      setSearchResult(true);
+    }
+
+    const newFilter = dashboardData.filter((value) => {
+      return value.name.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    setData(newFilter);
+  };
 
   return (
     <>
@@ -25,8 +49,17 @@ export default function Home(props: {
       />
       <main>
         <Container maxW="full" p="0">
-          <DashboardHeader lastSevenDaysData={lastSevenDaysData} />
-          <LeaderBoardWrapper dashboardData={dashboardData} />
+          <DashboardHeader
+            handleSearch={handleSearch}
+            lastSevenDaysData={lastSevenDaysData}
+            wordEntered={wordEntered}
+          />
+          <LeaderBoardWrapper
+            searchResult={searchResult}
+            dashboardData={data}
+            sortByLowToHigh={sortByLowToHigh}
+            setSortByLowToHigh={setSortByLowToHigh}
+          />
         </Container>
       </main>
     </>
