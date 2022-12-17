@@ -15,8 +15,9 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { HiSearch } from 'react-icons/hi';
+import { useSwipeable } from 'react-swipeable';
 import { dashboardDataType } from '../../interfaces/dashboardStore';
 import { filteredData } from '../../util/filterData';
 import EnhancedTable from './Leaderboard';
@@ -30,6 +31,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
   const [data, setData] = React.useState(dashboardData);
   const [searching, _setSearching] = React.useState(false);
   const [searchResult, setSearchResult] = React.useState(false);
+  const [activeTab, setActiveTab] = useState(0);
   const {
     allXPData,
     filteredMembersData,
@@ -41,6 +43,11 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
     filteredStackExchangeXPData,
     filteredInternalOperationsXPData,
   } = filteredData(data);
+
+  const handlers = useSwipeable({
+    onSwipedRight: () => setActiveTab((prev) => (prev > 0 ? prev - 1 : prev)),
+    onSwipedLeft: () => setActiveTab((prev) => (prev < 7 ? prev + 1 : prev)),
+  });
 
   const handleSearch = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
@@ -84,6 +91,8 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
         </Heading>
         <Tabs
           w="full"
+          index={activeTab}
+          onChange={(index) => setActiveTab(index)}
           borderBottom={'1px solid'}
           borderColor={useColorModeValue(
             'superteamGreyLT.500',
@@ -100,7 +109,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
             borderColor={useColorModeValue(
               'superteamGreyLT.500',
               'superteamGreyDT.50'
-            )} 
+            )}
             css={css({
               scrollbarWidth: 'none',
               '::-webkit-scrollbar': { display: 'none' },
@@ -571,7 +580,7 @@ const LeaderBoardWrapper = ({ dashboardData }: propsType) => {
               />
             </InputGroup>
           </Flex>
-          <TabPanels p="0">
+          <TabPanels {...handlers} p="0">
             <TabPanel p="0">
               <EnhancedTable
                 row={allXPData}

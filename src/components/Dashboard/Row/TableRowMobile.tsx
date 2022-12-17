@@ -23,7 +23,7 @@ const TableRowMobile = ({ row, index, searching, searchResult }: propTypes) => {
       width="100%"
       borderBottom="1px solid rgba(121, 155, 190, 0.2)"
       onDragEnd={() => {}}
-      onTouchEndCapture={() => {
+      onClick={() => {
         setExpandRow((prevState) => !prevState);
       }}
       _hover={{
