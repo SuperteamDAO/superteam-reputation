@@ -31,6 +31,7 @@ specifiers:
   react-dom: 18.2.0
   react-icons: ^4.6.0
   react-swipeable: ^7.0.0
+  scroll-into-view: ^1.16.2
   simple-zustand-devtools: ^1.1.0
   superjson: ^1.12.0
   swr: ^1.3.0
@@ -63,6 +64,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
   react-swipeable: 7.0.0_react@18.2.0
+  scroll-into-view: 1.16.2
   superjson: 1.12.0
   swr: 1.3.0_react@18.2.0
   typescript: 4.8.4
@@ -4592,6 +4594,10 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
+
+  /scroll-into-view/1.16.2:
+    resolution: {integrity: sha512-vyTE0i27o6eldt9xinjHec41Dw05y+faoI+s2zNKJAVOdbA5M2XZrYq/obJ8E+QDQulJ2gDjgui9w9m9RZSRng==}
+    dev: false
 
   /semver/5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}

@@ -5,7 +5,6 @@ import {
   css,
   Flex,
   Heading,
-  Tab,
   TabList,
   TabPanel,
   TabPanels,
@@ -13,11 +12,13 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { dashboardDataType } from '../../interfaces/dashboardStore';
 import { filteredData } from '../../util/filterData';
+import CustomTab from './CustomTab';
 import EnhancedTable from './Leaderboard';
+const scrollIntoView = require('scroll-into-view');
 
 type propsType = {
   dashboardData: dashboardDataType[];
@@ -25,6 +26,17 @@ type propsType = {
   sortByLowToHigh: boolean;
   setSortByLowToHigh: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+const tabsList = [
+  'Everyone',
+  'Members',
+  'Contributors',
+  'Project Work',
+  'Indie Work',
+  'Internal Ops',
+  'Working Groups',
+  'Stack Exchange',
+];
 
 const LeaderBoardWrapper = ({
   dashboardData,
@@ -57,6 +69,13 @@ const LeaderBoardWrapper = ({
       }
     })
   );
+
+  useEffect(() => {
+    const tabElement = document.getElementsByClassName(
+      `tab-${tabsList[activeTab]}`
+    );
+    scrollIntoView(tabElement[0]);
+  }, [activeTab]);
 
   const handlers = useSwipeable({
     onSwipedRight: () => setActiveTab((prev) => (prev > 0 ? prev - 1 : prev)),
@@ -116,342 +135,10 @@ const LeaderBoardWrapper = ({
             minH="3.5rem"
             h={'fit-content'}
           >
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Everyone
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Members
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Contributors
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Project Work
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Indie Work
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Internal Ops
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Working Groups
-            </Tab>
-            <Tab
-              h="3.35rem"
-              px="0"
-              py="0.9rem"
-              fontSize={'14px'}
-              fontWeight="400"
-              whiteSpace="nowrap"
-              transform="translateY(2px)"
-              transition="0.4s all"
-              borderBottom={'3px solid'}
-              borderColor={useColorModeValue(
-                'superteamWhite.100',
-                'superteamGreyDT.1000'
-              )}
-              color={useColorModeValue(
-                'superteamGreyDT.100',
-                'superteamGreyLT.800'
-              )}
-              _active={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                transition: '0.4s color',
-              }}
-              _selected={{
-                color: useColorModeValue(
-                  'superteamBlack.100',
-                  'superteamWhite.100'
-                ),
-                fontWeight: '600',
-                borderBottom: '3px solid',
-                borderColor: useColorModeValue(
-                  'superteamOrange.800',
-                  'superteamBlueLT.800'
-                ),
-                transition: '0.4s all',
-              }}
-            >
-              Stack Exchange
-            </Tab>{' '}
+            {tabsList.map((tabName, index) => (
+              <CustomTab key={index} title={tabName} />
+            ))}
+
             {/* <Tab
               h="3.35rem"
               px="0"
