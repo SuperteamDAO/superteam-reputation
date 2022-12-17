@@ -521,40 +521,42 @@ const LeaderBoardWrapper = ({
             </Flex>
           </TabList>
           <Flex
-            borderRadius="4px"
-            rounded={'4px'}
             display={{ base: 'flex', md: 'flex', lg: 'none' }}
             w="full"
             flexDir={'column'}
             justify="center"
             alignItems={'end'}
+            my="2"
           >
-            {/* <InputGroup maxW="full" mt="1rem">
-              <InputLeftElement w={'2.6rem'} h={'2rem'} pointerEvents="none">
-                <Icon as={HiSearch} w={4} h={4} />
-              </InputLeftElement>
-              <Input
-                color={'superteamWhite'}
-                placeholder="Search User"
-                outline={'1px solid '}
-                outlineColor="superteamBlack.200"
-                border={'none'}
-                borderRadius="4px"
-                rounded={'4px'}
-                _placeholder={{
-                  color: 'superteamBlack.800',
-                  fontSize: '12px',
-                }}
-                h="2rem"
-                pb={'3px'}
-                value={wordEntered}
-                onChange={handleSearch}
-                _focus={{
-                  border: '1px solid',
-                  borderColor: 'superteamBlue.900',
-                }}
-              />
-            </InputGroup> */}
+            <Button
+              color={useColorModeValue(
+                'superteamBlack.100',
+                'superteamGreyLT.800'
+              )}
+              w="full"
+              bg={'transparent'}
+              outline={'1px solid '}
+              outlineColor={useColorModeValue(
+                'superteamGreyLT.300',
+                'superteamGreyLT.800'
+              )}
+              _focus={{
+                bg: 'transparent',
+              }}
+              _hover={{
+                bg: 'transparent',
+              }}
+              pb={'3px'}
+              rounded={'4px'}
+              fontWeight="500"
+              fontSize={'15px'}
+              onClick={() => {
+                setSortByLowToHigh((sortByLowToHigh) => !sortByLowToHigh);
+              }}
+            >
+              Sort by |{' '}
+              {`${sortByLowToHigh ? 'XP Low to high' : 'XP High to low'}`}
+            </Button>
           </Flex>
           <TabPanels p="0">
             <TabPanel p="0">
