@@ -3,33 +3,17 @@ import {
   Container,
   Flex,
   Icon,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
   Stack,
-  Text,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import Link from 'next/link';
 import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
 import LogoImg from '../Logo/LogoImg';
-
-const NavbarLinks = [
-  {
-    name: 'Reputation System',
-    href: '#',
-  },
-  {
-    name: 'Projects',
-    href: '#',
-  },
-  {
-    name: 'Bounties',
-    href: '#',
-  },
-  {
-    name: 'GDP',
-    href: '#',
-  },
-];
 
 export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -68,28 +52,6 @@ export default function Header() {
           alignItems="center"
           justifyContent="center"
         >
-          {NavbarLinks.map((link, key) => {
-            return (
-              <Link passHref key={key} href={link.href}>
-                <Text
-                  fontWeight={500}
-                  _hover={{
-                    fontWeight: 600,
-                  }}
-                >
-                  {link.name}
-                </Text>
-              </Link>
-            );
-          })}
-          <Button
-            bg={useColorModeValue('superteamBlueLT.800', 'superteamOrange.800')}
-            color="white"
-            variant={'unstyled'}
-            w="8rem"
-          >
-            Submit XP
-          </Button>
           <Button variant={'unstyled'} onClick={toggleColorMode}>
             {colorMode === 'light' ? (
               <Icon
@@ -107,6 +69,131 @@ export default function Header() {
               />
             )}
           </Button>
+          <Menu>
+            <MenuButton
+              as={Button}
+              bg={useColorModeValue(
+                'superteamBlueLT.800',
+                'superteamOrange.800'
+              )}
+              color="white"
+              variant={'unstyled'}
+              w="8rem"
+            >
+              Claim XP
+            </MenuButton>
+            <MenuList
+              backgroundColor={useColorModeValue(
+                'superteamGrayLT.200',
+                'superteamGreyDT.900'
+              )}
+              border={'1px solid'}
+              borderColor={useColorModeValue(
+                'superteamGreyLT.500',
+                'superteamGreyDT.50'
+              )}
+            >
+              <MenuItem
+                as="a"
+                href="https://airtable.com/shrOqa7YLUB29Gq3n"
+                target="_blank"
+                fontSize={{ base: 'sm', md: 'md' }}
+                backgroundColor={useColorModeValue(
+                  'superteamGrayLT.200',
+                  'superteamGreyDT.900'
+                )}
+                _hover={{
+                  bg: useColorModeValue(
+                    'superteamGreyLT.100',
+                    'superteamGreyDT.50'
+                  ),
+                  color: useColorModeValue(
+                    'superteamBlack.100',
+                    'superteamWhite.100'
+                  ),
+                }}
+                _focus={{
+                  bg: useColorModeValue(
+                    'superteamGreyLT.100',
+                    'superteamGreyDT.50'
+                  ),
+                  color: useColorModeValue(
+                    'superteamBlack.100',
+                    'superteamWhite.100'
+                  ),
+                }}
+              >
+                Project Work
+              </MenuItem>
+              <MenuItem
+                as="a"
+                href=" https://airtable.com/shrxXBIaztqhDCG79"
+                target="_blank"
+                fontSize={{ base: 'sm', md: 'md' }}
+                backgroundColor={useColorModeValue(
+                  'superteamGrayLT.200',
+                  'superteamGreyDT.900'
+                )}
+                _hover={{
+                  bg: useColorModeValue(
+                    'superteamGreyLT.100',
+                    'superteamGreyDT.50'
+                  ),
+                  color: useColorModeValue(
+                    'superteamBlack.100',
+                    'superteamWhite.100'
+                  ),
+                }}
+                _focus={{
+                  bg: useColorModeValue(
+                    'superteamGreyLT.100',
+                    'superteamGreyDT.50'
+                  ),
+                  color: useColorModeValue(
+                    'superteamBlack.100',
+                    'superteamWhite.100'
+                  ),
+                }}
+              >
+                Indie Work
+              </MenuItem>
+              <MenuDivider
+                color={useColorModeValue('superteamBlack.200', '')}
+              />
+              <MenuItem
+                as="a"
+                href="https://superteam.fun/bounties"
+                target="_blank"
+                fontSize={{ base: 'sm', md: 'md' }}
+                backgroundColor={useColorModeValue(
+                  'superteamGrayLT.200',
+                  'superteamGreyDT.900'
+                )}
+                _hover={{
+                  bg: useColorModeValue(
+                    'superteamGreyLT.100',
+                    'superteamGreyDT.50'
+                  ),
+                  color: useColorModeValue(
+                    'superteamBlack.100',
+                    'superteamWhite.100'
+                  ),
+                }}
+                _focus={{
+                  bg: useColorModeValue(
+                    'superteamGreyLT.100',
+                    'superteamGreyDT.50'
+                  ),
+                  color: useColorModeValue(
+                    'superteamBlack.100',
+                    'superteamWhite.100'
+                  ),
+                }}
+              >
+                Open Bounties
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Stack>
       </Flex>
     </Container>
