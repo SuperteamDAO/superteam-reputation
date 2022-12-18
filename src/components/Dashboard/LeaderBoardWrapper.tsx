@@ -1,10 +1,10 @@
 import {
   Box,
-  Button,
   Container,
   css,
   Flex,
   Heading,
+  Select,
   TabList,
   TabPanel,
   TabPanels,
@@ -16,6 +16,7 @@ import React, { useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { dashboardDataType } from '../../interfaces/dashboardStore';
 import { filteredData } from '../../util/filterData';
+import sortingXpDataUtil, { SortByXp } from '../../util/sortingData';
 import CustomTab from './CustomTab';
 import EnhancedTable from './Leaderboard';
 const scrollIntoView = require('scroll-into-view');
@@ -23,8 +24,8 @@ const scrollIntoView = require('scroll-into-view');
 type propsType = {
   dashboardData: dashboardDataType[];
   searchResult: boolean;
-  sortByLowToHigh: boolean;
-  setSortByLowToHigh: React.Dispatch<React.SetStateAction<boolean>>;
+  sortOrder: SortByXp;
+  setSortOrder: React.Dispatch<React.SetStateAction<SortByXp>>;
 };
 
 const tabsList = [
@@ -41,8 +42,8 @@ const tabsList = [
 const LeaderBoardWrapper = ({
   dashboardData,
   searchResult,
-  sortByLowToHigh,
-  setSortByLowToHigh,
+  sortOrder,
+  setSortOrder,
 }: propsType) => {
   const [searching, _setSearching] = React.useState(false);
   const [activeTab, setActiveTab] = useState(0);
@@ -56,19 +57,7 @@ const LeaderBoardWrapper = ({
     filteredWorkingGroupXPData,
     filteredStackExchangeXPData,
     filteredInternalOperationsXPData,
-  } = filteredData(
-    dashboardData.sort((a, b) => {
-      if (sortByLowToHigh) {
-        return (
-          a.overallXP.details.total_amount - b.overallXP.details.total_amount
-        );
-      } else {
-        return (
-          b.overallXP.details.total_amount - a.overallXP.details.total_amount
-        );
-      }
-    })
-  );
+  } = filteredData(sortingXpDataUtil(dashboardData, sortOrder));
 
   useEffect(() => {
     const tabElement = document.getElementsByClassName(
@@ -183,7 +172,7 @@ const LeaderBoardWrapper = ({
                 p="0"
                 mr="0.1rem"
               >
-                <Button
+                <Select
                   color={useColorModeValue(
                     'superteamBlack.100',
                     'superteamGreyLT.800'
@@ -205,13 +194,17 @@ const LeaderBoardWrapper = ({
                   rounded={'4px'}
                   fontWeight="500"
                   fontSize={'12px'}
-                  onClick={() => {
-                    setSortByLowToHigh((sortByLowToHigh) => !sortByLowToHigh);
+                  value={sortOrder}
+                  onChange={(e) => {
+                    setSortOrder(e.target.value as SortByXp);
                   }}
                 >
-                  Sort by |{' '}
-                  {`${sortByLowToHigh ? 'XP Low to high' : 'XP High to low'}`}
-                </Button>
+                  {Object.values(SortByXp).map((sortByXp) => (
+                    <option key={sortByXp} value={sortByXp}>
+                      Sort by | {sortByXp}
+                    </option>
+                  ))}
+                </Select>
               </Box>
             </Flex>
           </TabList>
@@ -220,100 +213,112 @@ const LeaderBoardWrapper = ({
             w="full"
             flexDir={'column'}
             justify="center"
-            alignItems={'end'}
-            my="2"
+            alignItems={'flex-start'}
+            mt="8"
           >
-            <Button
-              color={useColorModeValue(
-                'superteamBlack.100',
-                'superteamGreyLT.800'
-              )}
-              w="full"
-              bg={'transparent'}
-              outline={'1px solid '}
-              outlineColor={useColorModeValue(
-                'superteamGreyLT.300',
-                'superteamGreyLT.800'
-              )}
-              _focus={{
-                bg: 'transparent',
-              }}
-              _hover={{
-                bg: 'transparent',
-              }}
-              pb={'3px'}
-              rounded={'4px'}
-              fontWeight="500"
-              fontSize={'15px'}
-              onClick={() => {
-                setSortByLowToHigh((sortByLowToHigh) => !sortByLowToHigh);
-              }}
+            <Box
+              borderRadius="4px"
+              background={'transparent'}
+              maxW="14rem"
+              p="0"
+              mr="0.1rem"
             >
-              Sort by |{' '}
-              {`${sortByLowToHigh ? 'XP Low to high' : 'XP High to low'}`}
-            </Button>
+              <Select
+                color={useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamGreyLT.800'
+                )}
+                bg={'transparent'}
+                outline={'1px solid '}
+                outlineColor={useColorModeValue(
+                  'superteamGreyLT.300',
+                  'superteamGreyLT.800'
+                )}
+                _focus={{
+                  bg: 'transparent',
+                }}
+                _hover={{
+                  bg: 'transparent',
+                }}
+                h="2.5rem"
+                pb={'3px'}
+                rounded={'4px'}
+                fontWeight="500"
+                fontSize={'12px'}
+                value={sortOrder}
+                onChange={(e) => {
+                  setSortOrder(e.target.value as SortByXp);
+                }}
+              >
+                {Object.values(SortByXp).map((sortByXp) => (
+                  <option key={sortByXp} value={sortByXp}>
+                    Sort by | {sortByXp}
+                  </option>
+                ))}
+              </Select>
+            </Box>
           </Flex>
           <TabPanels {...handlers} p="0">
             <TabPanel p="0">
               <EnhancedTable
                 row={allXPData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredMembersData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredContributorsData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>{' '}
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredProjectWorkXPData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredIndieWorkXPData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredInternalOperationsXPData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>{' '}
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredWorkingGroupXPData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>
             <TabPanel p="0">
               <EnhancedTable
                 row={filteredStackExchangeXPData}
-                searching={searching}
+                sortOrder={sortOrder}
                 searchResult={searchResult}
               />
             </TabPanel>
             {/* <TabPanel p="0">
               <EnhancedTable
                 row={filteredBountiesXPData}
-                searching={searching}
+                sortOrder={sortOrder}
               />
             </TabPanel> */}
           </TabPanels>
