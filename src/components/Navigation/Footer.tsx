@@ -48,9 +48,10 @@ const Footer = () => {
       <Flex
         flexDir={'row'}
         justify="space-between"
-        align={'center'}
+        align={{ md: 'center', base: 'flex-start' }}
         mx="auto"
         w="100%"
+        px={4}
         maxW="7xl"
       >
         <LogoImg />
@@ -59,10 +60,9 @@ const Footer = () => {
             'superteamGreyDT.100',
             'superteamGreyLT.600'
           )}
-          direction={'row'}
+          direction={{ md: 'row', base: 'column' }}
           spacing={[2, 6]}
           display="flex"
-          alignItems="center"
           justifyContent="center"
         >
           {footerLinks.map((link, key) => {
