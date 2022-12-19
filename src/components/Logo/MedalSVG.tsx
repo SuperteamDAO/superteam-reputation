@@ -1,6 +1,15 @@
-import { Center } from '@chakra-ui/react';
+import { Center, Text } from '@chakra-ui/react';
+import { SortByXp } from '../../util/sortingData';
+interface MedalSVGProps {
+  index: number;
+  showIndex?: boolean;
+}
 
-const MedalSVG = ({ index }: { index: number }) => {
+// include all xp orders that should not show a medal
+export const hideMedalOrder = [SortByXp.lowToHighXp];
+
+const MedalSVG = ({ index, showIndex = true }: MedalSVGProps) => {
+  if (index > 3 || showIndex) return <Text> {index} </Text>;
   let color: string =
     index === 1
       ? '#FFCA0D'

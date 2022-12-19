@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { xpType } from '../../interfaces/xp';
+import { SortByXp } from '../../util/sortingData';
 import Pagination from '../Pagination';
 import TableRow from './Row/TableRow';
 import TableRowMobile from './Row/TableRowMobile';
@@ -21,7 +22,8 @@ import TableRowMobile from './Row/TableRowMobile';
 
 type propsType = {
   row: (xpType | undefined)[];
-  searching: boolean;
+  // eslint-disable-next-line no-undef
+  sortOrder: SortByXp;
   searchResult: boolean;
 };
 
@@ -35,7 +37,7 @@ type propsType = {
 
 export default function EnhancedTable({
   row,
-  searching,
+  sortOrder,
   searchResult,
 }: propsType) {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
@@ -165,7 +167,7 @@ export default function EnhancedTable({
                     row={row}
                     key={key}
                     index={(currentPage - 1) * 15 + key}
-                    searching={searching}
+                    sortOrder={sortOrder}
                     searchResult={searchResult}
                   />
                 ) : (
@@ -173,7 +175,7 @@ export default function EnhancedTable({
                     row={row}
                     key={key}
                     index={(currentPage - 1) * 15 + key}
-                    searching={searching}
+                    sortOrder={sortOrder}
                     searchResult={searchResult}
                   />
                 )

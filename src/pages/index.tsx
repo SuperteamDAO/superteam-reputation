@@ -7,6 +7,7 @@ import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
 import SEO from '../components/SEO/SEO';
 import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { dashboardDataType } from '../interfaces/dashboardStore';
+import { SortByXp } from '../util/sortingData';
 
 export default function Home(props: {
   dashboardData: dashboardDataType[];
@@ -20,7 +21,7 @@ export default function Home(props: {
   const [data, setData] = React.useState(dashboardData);
   const [wordEntered, setWordEntered] = React.useState('');
   const [searchResult, setSearchResult] = React.useState(false);
-  const [sortByLowToHigh, setSortByLowToHigh] = React.useState(false);
+  const [sortOrder, setSortOrder] = React.useState(SortByXp.highToLowXp);
   const handleSearch = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
@@ -57,8 +58,8 @@ export default function Home(props: {
           <LeaderBoardWrapper
             searchResult={searchResult}
             dashboardData={data}
-            sortByLowToHigh={sortByLowToHigh}
-            setSortByLowToHigh={setSortByLowToHigh}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
           />
         </Container>
       </main>

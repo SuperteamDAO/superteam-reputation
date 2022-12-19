@@ -281,11 +281,7 @@ const DashboardHeader = ({
                       flexDir={'row'}
                     >
                       <HStack gap="1.2rem" alignItems={'flex-start'}>
-                        {index + 1 <= 3 ? (
-                          <MedalSVG index={index + 1} />
-                        ) : (
-                          <Text> ` ${index + 1}.` </Text>
-                        )}
+                        <MedalSVG index={index + 1} showIndex={false} />
 
                         <VStack alignItems={'start'}>
                           <Text

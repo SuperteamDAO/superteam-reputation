@@ -2,8 +2,9 @@ import { Center, Flex, Icon, Text, Tr } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { xpType } from '../../../interfaces/xp';
+import { SortByXp } from '../../../util/sortingData';
 import CustomTag from '../../HOC/Tag.HOC';
-import MedalSVG from '../../Logo/MedalSVG';
+import MedalSVG, { hideMedalOrder } from '../../Logo/MedalSVG';
 import { ExpandedRowMobile } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
 import RowCategories from './RowCategories';
@@ -11,11 +12,11 @@ import RowCategories from './RowCategories';
 type propTypes = {
   row: xpType;
   index: number;
-  searching: boolean;
+  sortOrder: SortByXp;
   searchResult: boolean;
 };
 
-const TableRowMobile = ({ row, index, searching, searchResult }: propTypes) => {
+const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
   const [expandRow, setExpandRow] = React.useState(false);
   return (
     <Tr
@@ -31,13 +32,10 @@ const TableRowMobile = ({ row, index, searching, searchResult }: propTypes) => {
       }}
     >
       <Flex p="1.2rem" w="100%" gap="2rem" direction="row">
-        {searchResult ? (
-          ` ${index + 1}.`
-        ) : index + 1 <= 3 ? (
-          <MedalSVG index={index + 1} />
-        ) : (
-          ` ${index + 1}.`
-        )}
+        <MedalSVG
+          index={index + 1}
+          showIndex={searchResult || hideMedalOrder.includes(sortOrder)}
+        />
         <Flex gap="0.3rem" direction="column">
           <Text color="white" fontSize={'14px'} textTransform="capitalize">
             {row?.name.split('#')[0]}

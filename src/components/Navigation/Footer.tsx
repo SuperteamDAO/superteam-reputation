@@ -11,27 +11,27 @@ import LogoImg from '../Logo/LogoImg';
 const footerLinks = [
   {
     name: 'Earn',
-    href: '#',
+    href: 'https://earn.superteam.fun/',
   },
   {
     name: 'Build',
-    href: '#',
+    href: 'https://build.superteam.fun/',
   },
   {
     name: 'Twitter',
-    href: '#',
+    href: 'https://twitter.com/superteamdao',
   },
   {
     name: 'Discord',
-    href: '#',
+    href: 'https://discord.com/invite/Mq3ReaekgG',
   },
   {
     name: 'Substack',
-    href: '#',
+    href: 'https://superteam.substack.com/',
   },
   {
     name: 'Youtube',
-    href: '#',
+    href: 'https://www.youtube.com/@superteampodcast',
   },
 ];
 const Footer = () => {
@@ -48,9 +48,10 @@ const Footer = () => {
       <Flex
         flexDir={'row'}
         justify="space-between"
-        align={'center'}
+        align={{ md: 'center', base: 'flex-start' }}
         mx="auto"
         w="100%"
+        px={4}
         maxW="7xl"
       >
         <LogoImg />
@@ -59,15 +60,14 @@ const Footer = () => {
             'superteamGreyDT.100',
             'superteamGreyLT.600'
           )}
-          direction={'row'}
+          direction={{ md: 'row', base: 'column' }}
           spacing={[2, 6]}
           display="flex"
-          alignItems="center"
           justifyContent="center"
         >
           {footerLinks.map((link, key) => {
             return (
-              <Link passHref key={key} href={link.href}>
+              <Link passHref key={key} target="_blank" href={link.href}>
                 <Text
                   fontWeight={500}
                   _hover={{
