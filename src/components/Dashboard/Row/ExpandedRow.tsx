@@ -1,8 +1,9 @@
 import { Flex, Td, Text, Tr, useColorModeValue } from '@chakra-ui/react';
 import { skillKind } from '../../../enums/skill';
 import { xpType } from '../../../interfaces/xp';
+import { projectDataType } from '../../../pages/projects';
+import CustomChip from '../../HOC/Chip.HOC';
 import CustomTag from '../../HOC/Tag.HOC';
-
 type propsType = {
   expandRow: boolean;
   row: xpType;
@@ -275,5 +276,67 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
         </Flex>
       </Flex>
     </Flex>
+  );
+};
+type projectPropsType = {
+  expandRow: boolean;
+  row: projectDataType;
+};
+export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
+  const bgColor = useColorModeValue(
+    'superteamGreyLT.50',
+    'superteamGreyDT.900'
+  );
+  return row.members ? (
+    row.members.map((member, index) => (
+      <Tr key={index} display={expandRow ? 'auto' : 'none'} bg={bgColor}>
+        <Td>
+          <div></div>
+        </Td>
+        <Td>
+          <Flex minW="full" direction={'column'} gap="0.7rem">
+            <Text fontSize="14px">{member.name}</Text>
+          </Flex>
+        </Td>
+        <Td>
+          <Flex minW="full" direction={'column'} gap="0.7rem">
+            {' '}
+            <Text fontSize="14px">{member.xp}</Text>
+          </Flex>
+        </Td>
+        <Td>
+          <Flex
+            minW="full"
+            direction={'column'}
+            gap="0.7rem"
+            maxW={'fit-content'}
+          >
+            {member.skill.toLowerCase() === skillKind.DEV && (
+              <CustomChip text="Development" colorScheme="superteamGreen" />
+            )}
+            {member.skill.toLowerCase() === skillKind.DESIGN && (
+              <CustomChip text="Design" colorScheme="superteamBlueDT" />
+            )}
+            {member.skill.toLowerCase() === skillKind.STRATEGY && (
+              <CustomChip text="Strategy" colorScheme="superteamCyan" />
+            )}
+            {member.skill.toLowerCase() === skillKind.VIDEO && (
+              <CustomChip text="Video" colorScheme="superteamRed" />
+            )}
+            {member.skill.toLowerCase() === skillKind.WRITING && (
+              <CustomChip text="Writing" colorScheme="superteamPink" />
+            )}
+            {member.skill.toLowerCase() === skillKind.OPS && (
+              <CustomChip text="Operations" colorScheme="superteamYellow" />
+            )}
+          </Flex>
+        </Td>
+        <Td>
+          <div></div>
+        </Td>
+      </Tr>
+    ))
+  ) : (
+    <></>
   );
 };

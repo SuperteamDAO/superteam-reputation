@@ -5,6 +5,7 @@ const CustomChip = ({ colorScheme, text }: any) => {
     <Box
       bg={useColorModeValue(`${colorScheme}.50`, `${colorScheme}.100`)}
       backgroundBlendMode=""
+      maxW="fit-content"
       fontSize={'10px'}
       p="4px 18px 5px 18px"
       rounded="full"

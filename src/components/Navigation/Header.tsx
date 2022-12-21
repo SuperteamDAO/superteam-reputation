@@ -12,6 +12,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
 import LogoImg from '../Logo/LogoImg';
 
@@ -52,6 +53,7 @@ export default function Header() {
           alignItems="center"
           justifyContent="center"
         >
+          <Link href={'/projects'}>Projects</Link><Link href={'/bounties'}>Bounties</Link>
           <Button variant={'unstyled'} onClick={toggleColorMode}>
             {colorMode === 'light' ? (
               <Icon
