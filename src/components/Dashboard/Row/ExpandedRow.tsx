@@ -287,56 +287,100 @@ export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
     'superteamGreyLT.50',
     'superteamGreyDT.900'
   );
-  return row.members ? (
-    row.members.map((member, index) => (
-      <Tr key={index} display={expandRow ? 'auto' : 'none'} bg={bgColor}>
+  const tableHeadingFontColor = useColorModeValue(
+    'superteamGreyDT.400',
+    'superteamGreyLT.800 '
+  );
+  return (
+    <>
+      <Tr display={expandRow ? 'auto' : 'none'}>
         <Td>
           <div></div>
         </Td>
         <Td>
-          <Flex minW="full" direction={'column'} gap="0.7rem">
-            <Text fontSize="14px">{member.name}</Text>
-          </Flex>
+          <Text color={tableHeadingFontColor} fontSize="14px">
+            Name
+          </Text>
         </Td>
         <Td>
-          <Flex minW="full" direction={'column'} gap="0.7rem">
-            {' '}
-            <Text fontSize="14px">{member.xp}</Text>
-          </Flex>
+          <Text color={tableHeadingFontColor} fontSize="14px">
+            Role
+          </Text>
+        </Td>{' '}
+        <Td>
+          <Text color={tableHeadingFontColor} fontSize="14px">
+            Skill
+          </Text>
         </Td>
         <Td>
-          <Flex
-            minW="full"
-            direction={'column'}
-            gap="0.7rem"
-            maxW={'fit-content'}
-          >
-            {member.skill.toLowerCase() === skillKind.DEV && (
-              <CustomChip text="Development" colorScheme="superteamGreen" />
-            )}
-            {member.skill.toLowerCase() === skillKind.DESIGN && (
-              <CustomChip text="Design" colorScheme="superteamBlueDT" />
-            )}
-            {member.skill.toLowerCase() === skillKind.STRATEGY && (
-              <CustomChip text="Strategy" colorScheme="superteamCyan" />
-            )}
-            {member.skill.toLowerCase() === skillKind.VIDEO && (
-              <CustomChip text="Video" colorScheme="superteamRed" />
-            )}
-            {member.skill.toLowerCase() === skillKind.WRITING && (
-              <CustomChip text="Writing" colorScheme="superteamPink" />
-            )}
-            {member.skill.toLowerCase() === skillKind.OPS && (
-              <CustomChip text="Operations" colorScheme="superteamYellow" />
-            )}
-          </Flex>
-        </Td>
-        <Td>
-          <div></div>
+          <Text color={tableHeadingFontColor} fontSize="14px">
+            XP
+          </Text>
         </Td>
       </Tr>
-    ))
-  ) : (
-    <></>
+      {row.members ? (
+        row.members.map((member, index) => (
+          <Tr key={index} display={expandRow ? 'auto' : 'none'} bg={bgColor}>
+            <Td>
+              <div></div>
+            </Td>
+            <Td>
+              <Flex minW="full" direction={'column'}>
+                <Text fontSize="14px">{member.name}</Text>
+              </Flex>
+            </Td>
+            <Td>
+              <Flex minW="full" direction={'column'} gap="0.7rem">
+                {member.name === row.lead_name ? (
+                  <Text fontSize="14px">Lead</Text>
+                ) : (
+                  <Text fontSize="14px">Member</Text>
+                )}
+              </Flex>
+            </Td>
+            <Td>
+              <Flex
+                minW="full"
+                direction={'column'}
+                gap="0.7rem"
+                maxW={'fit-content'}
+              >
+                {member.skill.toLowerCase() === skillKind.DEV && (
+                  <CustomChip text="Development" colorScheme="superteamGreen" />
+                )}
+                {member.skill.toLowerCase() === skillKind.DESIGN && (
+                  <CustomChip text="Design" colorScheme="superteamBlueDT" />
+                )}
+                {member.skill.toLowerCase() === skillKind.STRATEGY && (
+                  <CustomChip text="Strategy" colorScheme="superteamCyan" />
+                )}
+                {member.skill.toLowerCase() === skillKind.VIDEO && (
+                  <CustomChip text="Video" colorScheme="superteamRed" />
+                )}
+                {member.skill.toLowerCase() === skillKind.WRITING && (
+                  <CustomChip text="Writing" colorScheme="superteamPink" />
+                )}
+                {member.skill.toLowerCase() === skillKind.OPS && (
+                  <CustomChip text="Operations" colorScheme="superteamYellow" />
+                )}
+              </Flex>
+            </Td>
+            <Td>
+              <Flex w="7rem" flexDir="row" gap="0.4rem">
+                <Text fontWeight="500" fontSize={'14px'}>
+                  {Math.round(member.xp)}
+                </Text>
+                <CustomTag text="XP" />
+              </Flex>
+            </Td>
+            <Td>
+              <div></div>
+            </Td>
+          </Tr>
+        ))
+      ) : (
+        <></>
+      )}
+    </>
   );
 };

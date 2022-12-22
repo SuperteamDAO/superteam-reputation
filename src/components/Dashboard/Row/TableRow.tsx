@@ -215,7 +215,7 @@ export const ProjectsTableRow = ({
           </Flex>
         </Td>
         <Td>
-          <Flex h={10} w="7rem" flexDir="row" gap="0.4rem">
+          <Flex  flexDir="row" gap="0.4rem">
             <Text
               fontWeight="500"
               className={inter.className}
@@ -246,6 +246,7 @@ export const ProjectsTableRow = ({
             </Text>
           </Flex>
         </Td>
+        <Td w="1.2rem"></Td>
         <Td>
           <Center
             rounded={'full'}
