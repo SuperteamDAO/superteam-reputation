@@ -323,9 +323,7 @@ export function ProjectsTable({
                     fontWeight="500"
                     fontSize={'14px'}
                     color={tableHeadingFontColor}
-                  >
-                    Index
-                  </Th>
+                  ></Th>
                   <Th
                     width={'30rem'}
                     maxWidth="30rem"
@@ -342,7 +340,7 @@ export function ProjectsTable({
                     fontSize={'14px'}
                     color={tableHeadingFontColor}
                   >
-                    Project Lead
+                    Total XP
                   </Th>
                   <Th
                     textTransform={'capitalize'}
@@ -350,8 +348,9 @@ export function ProjectsTable({
                     fontSize={'14px'}
                     color={tableHeadingFontColor}
                   >
-                    Total XP
+                    Project Lead
                   </Th>
+                  <Th w="1.2rem"></Th>
                   <Th w="1.2rem"></Th>
                 </Tr>
               </Thead>
