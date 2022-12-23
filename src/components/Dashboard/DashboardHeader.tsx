@@ -153,17 +153,7 @@ const DashboardHeader = ({
             </Box>{' '}
             <Box as="span">XP System</Box>
           </Heading>
-          <Text
-            color={useColorModeValue(
-              'superteamGreyDT.400',
-              'superteamGreyLT.300'
-            )}
-            fontSize={['16px', '17px', '17px']}
-            maxW="xl"
-          >
-            XP system helps us understand who did what when and why this is just
-            random text that you just wasted 20 seconds reading, get a life
-          </Text>
+
           <Box>
             <InputGroup>
               <InputLeftElement h="full" pointerEvents="none">

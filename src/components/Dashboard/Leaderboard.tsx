@@ -226,9 +226,6 @@ export default function EnhancedTable({
             <Text fontWeight="500" fontSize="18px" color={textColor}>
               404 Nothing Found
             </Text>
-            <Text maxW="26rem" fontWeight="400" fontSize="17px">
-              XP system helps us understand who did what when and why this is{' '}
-            </Text>
           </Center>
         )}
       </Container>
@@ -423,9 +420,6 @@ export function ProjectsTable({
             </Center>
             <Text fontWeight="500" fontSize="18px" color={textColor}>
               404 Nothing Found
-            </Text>
-            <Text maxW="26rem" fontWeight="400" fontSize="17px">
-              XP system helps us understand who did what when and why this is{' '}
             </Text>
           </Center>
         )}
