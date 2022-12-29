@@ -1,11 +1,20 @@
-import { Center, Flex, Icon, Text, Tr } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  Icon,
+  Text,
+  Tr,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import * as React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { xpType } from '../../../interfaces/xp';
+import { projectDataType } from '../../../pages/projects';
 import { SortByXp } from '../../../util/sortingData';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG, { hideMedalOrder } from '../../Logo/MedalSVG';
-import { ExpandedRowMobile } from './ExpandedRow';
+import { ExpandedProjectRowMobile, ExpandedRowMobile } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
 import RowCategories from './RowCategories';
 
@@ -74,4 +83,93 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
   );
 };
 
+type projectPropsType = {
+  row: projectDataType;
+  index: number;
+  sortOrder: any;
+  searchResult: any;
+};
+
+export const ProjectsTableRowMobile = ({
+  index,
+  row,
+  searchResult,
+  sortOrder,
+}: projectPropsType) => {
+  const [expandRow, setExpandRow] = React.useState(false);
+  const BackgroundColor = useColorModeValue(
+    'superteamGreyLT.50',
+    'superteamGreyDT.900'
+  );
+  return (
+    <Box
+      bg={expandRow ? BackgroundColor : ''}
+      borderBottom="1px solid rgba(121, 155, 190, 0.2)"
+      onDragEnd={() => {}}
+      onClick={() => {
+        setExpandRow((prevState) => !prevState);
+      }}
+      _hover={{
+        background: 'superteamBlack.800',
+      }}
+    >
+      <Flex p="1.2rem" gap="2rem" direction="row">
+        <Text
+          padding="5px"
+          color={useColorModeValue(
+            'superteamGreyLT.700',
+            'superteamGreyDT.500'
+          )}
+        >
+          {index + 1}
+        </Text>
+        <Flex flex="1" gap="0.3rem" direction="column">
+          <Flex justifyContent={'space-between'}>
+            <Text
+              as="p"
+              sx={{
+                whiteSpace: 'break-spaces',
+              }}
+              color={useColorModeValue(
+                'superteamBlack.100',
+                'superteamWhite.100'
+              )}
+              fontSize={'14px'}
+              textTransform="capitalize"
+            >
+              {row?.project_name}
+            </Text>
+            <Flex flexDir="row" gap="0.4rem">
+              <Text
+                fontWeight="500"
+                color={useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                )}
+                fontSize={'14px'}
+              >
+                {Math.round(row?.total_xp)}
+              </Text>
+              <CustomTag text="XP" />
+            </Flex>
+          </Flex>
+
+          <Text color="rgba(121, 155, 190, 0.47)" fontSize={'12px'}>
+            {row?.lead_name}
+          </Text>
+        </Flex>{' '}
+        <Center ml="auto" alignItems="top">
+          <Icon
+            cursor={'pointer'}
+            as={FiChevronDown}
+            w={6}
+            h={6}
+            color={'rgba(121, 155, 190, 0.2)'}
+          />
+        </Center>
+      </Flex>
+      <ExpandedProjectRowMobile expandRow={expandRow} row={row} />
+    </Box>
+  );
+};
 export default TableRowMobile;

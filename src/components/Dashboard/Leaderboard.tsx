@@ -18,7 +18,7 @@ import { projectDataType } from '../../pages/projects';
 import { SortByXp } from '../../util/sortingData';
 import Pagination from '../Pagination';
 import TableRow, { ProjectsTableRow } from './Row/TableRow';
-import TableRowMobile from './Row/TableRowMobile';
+import TableRowMobile, { ProjectsTableRowMobile } from './Row/TableRowMobile';
 //import XPGraph from './graph';
 
 type propsType = {
@@ -362,15 +362,28 @@ export function ProjectsTable({
                 'superteamGreyDT.50'
               )}
             >
-              {rows.map((row: any, key: number) => (
-                <ProjectsTableRow
-                  row={row}
-                  key={key}
-                  index={(currentPage - 1) * 15 + key}
-                  sortOrder={sortOrder}
-                  searchResult={searchResult}
-                />
-              ))}
+              {rows.map((row: any, key: number) => {
+                if (isSmallerThan990) {
+                  return (
+                    <ProjectsTableRowMobile
+                      key={key}
+                      index={(currentPage - 1) * 15 + key}
+                      row={row}
+                      sortOrder={sortOrder}
+                      searchResult={searchResult}
+                    />
+                  );
+                }
+                return (
+                  <ProjectsTableRow
+                    row={row}
+                    key={key}
+                    index={(currentPage - 1) * 15 + key}
+                    sortOrder={sortOrder}
+                    searchResult={searchResult}
+                  />
+                );
+              })}
             </Tbody>
           </Table>
         </TableContainer>

@@ -1,7 +1,19 @@
-import { Flex, Td, Text, Tr, useColorModeValue } from '@chakra-ui/react';
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Flex,
+  Td,
+  Text,
+  Tr,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { skillKind } from '../../../enums/skill';
 import { xpType } from '../../../interfaces/xp';
-import { projectDataType } from '../../../pages/projects';
+import { memberDetailsType, projectDataType } from '../../../pages/projects';
 import CustomChip from '../../HOC/Chip.HOC';
 import CustomTag from '../../HOC/Tag.HOC';
 type propsType = {
@@ -24,7 +36,7 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
         <div></div>
       </Td>
       <Td>
-        <Flex minW="full" direction={'column'} gap="0.7rem">
+        <Flex direction={'column'} gap="0.7rem">
           {row?.skills.map((skill, key) => {
             if (skill.skill === skillKind.DEV) {
               return (
@@ -382,5 +394,115 @@ export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
         <></>
       )}
     </>
+  );
+};
+
+const ProjectSkillsAndXpExpand = ({
+  member,
+  row,
+}: {
+  member: memberDetailsType;
+  row: projectDataType;
+}) => {
+  return (
+    <Flex
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      direction="column"
+      w="full"
+      h="full"
+      maxW="100%"
+    >
+      <Accordion variant={'unstyled'} allowToggle>
+        <AccordionItem
+          sx={{
+            borderTopWidth: '0px',
+            '&:last-of-type': {
+              borderBottomWidth: '0px',
+            },
+          }}
+        >
+          <h2>
+            <AccordionButton>
+              <Flex w="full" justifyContent={'space-between'}>
+                <Box>
+                  <Text fontSize="12px">{member.name}</Text>
+                </Box>
+                <Box>
+                  {member.name === row.lead_name ? (
+                    <Text fontSize="12px">Lead</Text>
+                  ) : (
+                    <Text fontSize="12px">Member</Text>
+                  )}
+                </Box>
+              </Flex>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Flex justifyContent={'space-between'}>
+              <Flex direction={'column'} gap="0.7rem" maxW={'fit-content'}>
+                {member.skill.toLowerCase() === skillKind.DEV && (
+                  <CustomChip text="Development" colorScheme="superteamGreen" />
+                )}
+                {member.skill.toLowerCase() === skillKind.DESIGN && (
+                  <CustomChip text="Design" colorScheme="superteamBlueDT" />
+                )}
+                {member.skill.toLowerCase() === skillKind.STRATEGY && (
+                  <CustomChip text="Strategy" colorScheme="superteamCyan" />
+                )}
+                {member.skill.toLowerCase() === skillKind.VIDEO && (
+                  <CustomChip text="Video" colorScheme="superteamRed" />
+                )}
+                {member.skill.toLowerCase() === skillKind.WRITING && (
+                  <CustomChip text="Writing" colorScheme="superteamPink" />
+                )}
+                {member.skill.toLowerCase() === skillKind.OPS && (
+                  <CustomChip text="Operations" colorScheme="superteamYellow" />
+                )}
+              </Flex>
+              <Box>
+                <Flex flexDir="row" gap="0.4rem">
+                  <Text fontWeight="500" fontSize={'14px'}>
+                    {Math.round(member.xp)}
+                  </Text>
+                  <CustomTag text="XP" />
+                </Flex>
+              </Box>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    </Flex>
+  );
+};
+
+export const ExpandedProjectRowMobile = ({
+  expandRow,
+  row,
+}: projectPropsType) => {
+  const bgColor = useColorModeValue(
+    'superteamGreyLT.50',
+    'superteamGreyDT.900'
+  );
+
+  return (
+    <Flex direction="column" bg={bgColor} display={expandRow ? 'auto' : 'none'}>
+      {row.members ? (
+        row.members.map((member, index) => (
+          <Flex
+            px="4"
+            direction="row"
+            key={index}
+            justifyContent="space-between"
+          >
+            <ProjectSkillsAndXpExpand member={member} row={row} />
+          </Flex>
+        ))
+      ) : (
+        <></>
+      )}
+    </Flex>
   );
 };
