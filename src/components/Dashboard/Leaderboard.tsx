@@ -304,89 +304,94 @@ export function ProjectsTable({
             <Text color="superteamGray.300">{row.length} results</Text>
           </HStack>
         )}
-        <TableContainer>
-          <Table w="full" variant="unstyled">
-            {!isSmallerThan990 && (
-              <Thead
-                border="1px solid"
-                borderColor={TableBorderColor}
-                borderBottomColor={borderColor}
-                borderTopRadius="6px"
-                bg={TheadBGColor}
-                borderRadius={'10px'}
-                roundedTop="md"
-              >
-                <Tr>
-                  <Th
-                    padding="12px"
-                    textTransform={'capitalize'}
-                    fontWeight="500"
-                    fontSize={'14px'}
-                    color={tableHeadingFontColor}
-                  ></Th>
-                  <Th
-                    width={'30rem'}
-                    maxWidth="30rem"
-                    textTransform={'capitalize'}
-                    fontWeight="500"
-                    fontSize={'14px'}
-                    color={tableHeadingFontColor}
-                  >
-                    Name
-                  </Th>
-                  <Th
-                    textTransform={'capitalize'}
-                    fontWeight="500"
-                    fontSize={'14px'}
-                    color={tableHeadingFontColor}
-                  >
-                    Total XP
-                  </Th>
-                  <Th
-                    textTransform={'capitalize'}
-                    fontWeight="500"
-                    fontSize={'14px'}
-                    color={tableHeadingFontColor}
-                  >
-                    Project Lead
-                  </Th>
-                  <Th w="1.2rem"></Th>
-                  <Th w="1.2rem"></Th>
-                </Tr>
-              </Thead>
-            )}
-            <Tbody
-              border="1px solid"
-              borderColor={useColorModeValue(
-                'superteamGreyLT.500',
-                'superteamGreyDT.50'
+        {isSmallerThan990 &&
+          rows.map((row: any, key: number) => {
+            return (
+              <ProjectsTableRowMobile
+                key={key}
+                index={(currentPage - 1) * 15 + key}
+                row={row}
+                sortOrder={sortOrder}
+                searchResult={searchResult}
+              />
+            );
+          })}
+        {!isSmallerThan990 && (
+          <TableContainer>
+            <Table w="full" variant="unstyled">
+              {!isSmallerThan990 && (
+                <Thead
+                  border="1px solid"
+                  borderColor={TableBorderColor}
+                  borderBottomColor={borderColor}
+                  borderTopRadius="6px"
+                  bg={TheadBGColor}
+                  borderRadius={'10px'}
+                  roundedTop="md"
+                >
+                  <Tr>
+                    <Th
+                      padding="12px"
+                      textTransform={'capitalize'}
+                      fontWeight="500"
+                      fontSize={'14px'}
+                      color={tableHeadingFontColor}
+                    ></Th>
+                    <Th
+                      width={'30rem'}
+                      maxWidth="30rem"
+                      textTransform={'capitalize'}
+                      fontWeight="500"
+                      fontSize={'14px'}
+                      color={tableHeadingFontColor}
+                    >
+                      Name
+                    </Th>
+                    <Th
+                      textTransform={'capitalize'}
+                      fontWeight="500"
+                      fontSize={'14px'}
+                      color={tableHeadingFontColor}
+                    >
+                      Total XP
+                    </Th>
+                    <Th
+                      textTransform={'capitalize'}
+                      fontWeight="500"
+                      fontSize={'14px'}
+                      color={tableHeadingFontColor}
+                    >
+                      Project Lead
+                    </Th>
+                    <Th w="1.2rem"></Th>
+                    <Th w="1.2rem"></Th>
+                  </Tr>
+                </Thead>
               )}
-            >
-              {rows.map((row: any, key: number) => {
-                if (isSmallerThan990) {
+              <Tbody
+                border="1px solid"
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                borderColor={useColorModeValue(
+                  'superteamGreyLT.500',
+                  'superteamGreyDT.50'
+                )}
+              >
+                {rows.map((row: any, key: number) => {
                   return (
-                    <ProjectsTableRowMobile
+                    <ProjectsTableRow
+                      row={row}
                       key={key}
                       index={(currentPage - 1) * 15 + key}
-                      row={row}
                       sortOrder={sortOrder}
                       searchResult={searchResult}
                     />
                   );
-                }
-                return (
-                  <ProjectsTableRow
-                    row={row}
-                    key={key}
-                    index={(currentPage - 1) * 15 + key}
-                    sortOrder={sortOrder}
-                    searchResult={searchResult}
-                  />
-                );
-              })}
-            </Tbody>
-          </Table>
-        </TableContainer>
+                })}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        )}
+
         {rows.length === 0 && (
           <Center
             height={'60vh'}

@@ -103,8 +103,13 @@ export const ProjectsTableRowMobile = ({
   );
   return (
     <Box
+      border="1px solid"
+      borderColor={useColorModeValue(
+        'superteamGreyLT.500',
+        'superteamGreyDT.50'
+      )}
+      mx="2"
       bg={expandRow ? BackgroundColor : ''}
-      borderBottom="1px solid rgba(121, 155, 190, 0.2)"
       onDragEnd={() => {}}
       onClick={() => {
         setExpandRow((prevState) => !prevState);
