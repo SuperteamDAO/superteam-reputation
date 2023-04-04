@@ -12,9 +12,6 @@ const config: ThemeConfig = {
 
 const theme = extendTheme({
   colors: {
-    superteamWhite: {
-      100: '#ffffff',
-    },
     superteamBlack: {
       100: '#000000',
     },
@@ -57,13 +54,13 @@ const theme = extendTheme({
       900: '#0007B8',
     },
     superteamBlueDT: {
-      50:'#DCDEF6',
+      50: '#DCDEF6',
       100: '#202442',
       200: '#1B2047',
       300: '#161C4C',
       400: '#111951',
       500: '#0C1556',
-      800:'#535AFF',
+      800: '#535AFF',
     },
     superteamAquaBlueLT: {
       100: '#DAF8FF',
@@ -106,22 +103,32 @@ const theme = extendTheme({
     superteamGreenDT: {
       100: '#14352C',
     },
-
+    superteamBlue: {
+      50: '#E0E4FA',
+      300: '#A3A5FF',
+      500: '#0022D6',
+      800: '#131839',
+    },
     superteamCyan: {
-      50: '#DAF8FF',
+      50: '#E0EEF1',
       100: '#163642',
-      800: '#0BD3FF',
+      300: '#00C3F0',
+      500: '#00708A',
+      800: '#132B37',
     },
     superteamGreen: {
-      50:'#D0EFE0',
+      50: '#E0EFE8',
       100: '#14352C',
+      300: '#14D7A0',
+      500: '#007A40',
       700: '#00A67E',
-      800: '#00CF6C',
+      800: '#162F30',
     },
     superteamPink: {
-      50: '#F5DAFF',
-      100: '#3A1E41',
-      800: '#FF34F7',
+      50: '#EDC2EC',
+      300: '#FF61FA',
+      500: '#B602B0',
+      800: '#1F0D26',
     },
     superteamPurple: {
       50: '',
@@ -132,22 +139,18 @@ const theme = extendTheme({
       500: '#BF0BFF',
       800: '#700099',
     },
-    superteamPurpleDark: {
-      100: '',
-      200: '',
-      300: '',
-      400: '',
-      500: '',
-    },
     superteamRed: {
-      50: '#FFDAEA',
-      100: '#3A182D',
-      800: '#FF0B71',
+      50: '#EEC2D4',
+      300: '#FF75AF',
+      500: '#B8004D',
+      800: '#210D1C',
     },
     superteamYellow: {
-      50: '#FFFEDA',
+      50: '#F3EBE0',
       100: '#3A3B1E',
-      800: '#DCD300',
+      300: '#F8B535',
+      500: '#9E5C00',
+      800: '#3D2900',
     },
     superteamOrange: {
       50: '#F8EDD9',
@@ -164,6 +167,13 @@ const theme = extendTheme({
     superteamBrown: {
       300: '#BE8A79',
     },
+    superteamErrorDM: '#EF4444',
+    superteamErrorLM: '#D32F2F',
+    superteamSuccessDM: '#22C55E',
+    superteamSuccessLM: '#388E3C',
+    superteamSurfacePrimaryDM: '#0E1218',
+    superteamSurfacePrimaryLM: '#FFFFFF',
+    superteamSurfaceSecondaryDM: '#161A22',
   },
   config,
   styles,

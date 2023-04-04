@@ -51,8 +51,8 @@ export default function Projects({ projectsData }: propsType) {
       p="0"
       maxW={'full'}
       backgroundColor={useColorModeValue(
-        'superteamWhite.100',
-        'superteamGreyDT.1000'
+        'superteamSurfacePrimaryLM',
+        'superteamSurfacePrimaryDM'
       )}
     >
       <ProjectsTable

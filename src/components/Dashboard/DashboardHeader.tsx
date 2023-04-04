@@ -91,7 +91,7 @@ const DashboardHeader = ({
   );
   const darkTextColor = useColorModeValue(
     'superteamBlack.100',
-    'superteamWhite.100'
+    'superteamSurfacePrimaryLM.100'
   );
   return (
     <Container
@@ -128,7 +128,7 @@ const DashboardHeader = ({
             fontWeight="800"
             color={useColorModeValue(
               'superteamBlack.100',
-              'superteamWhite.100'
+              'superteamSurfacePrimaryLM.100'
             )}
             display="flex"
             gap="0.5rem"
@@ -167,7 +167,7 @@ const DashboardHeader = ({
               <Input
                 color={useColorModeValue(
                   'superteamGreyDT.700',
-                  'superteamWhite.100'
+                  'superteamSurfacePrimaryLM.100'
                 )}
                 placeholder="Search User"
                 outline={'1px solid '}
@@ -272,7 +272,6 @@ const DashboardHeader = ({
                     >
                       <HStack gap="1.2rem" alignItems={'flex-start'}>
                         <MedalSVG index={index + 1} showIndex={false} />
-
                         <VStack alignItems={'start'}>
                           <Text
                             lineHeight={'12px'}
@@ -384,7 +383,7 @@ const DashboardHeader = ({
                     ),
                     color: useColorModeValue(
                       'superteamBlack.100',
-                      'superteamWhite.100'
+                      'superteamSurfacePrimaryLM.100'
                     ),
                   }}
                   _focus={{
@@ -394,7 +393,7 @@ const DashboardHeader = ({
                     ),
                     color: useColorModeValue(
                       'superteamBlack.100',
-                      'superteamWhite.100'
+                      'superteamSurfacePrimaryLM.100'
                     ),
                   }}
                 >
@@ -416,7 +415,7 @@ const DashboardHeader = ({
                     ),
                     color: useColorModeValue(
                       'superteamBlack.100',
-                      'superteamWhite.100'
+                      'superteamSurfacePrimaryLM.100'
                     ),
                   }}
                   _focus={{
@@ -426,7 +425,7 @@ const DashboardHeader = ({
                     ),
                     color: useColorModeValue(
                       'superteamBlack.100',
-                      'superteamWhite.100'
+                      'superteamSurfacePrimaryLM.100'
                     ),
                   }}
                 >
@@ -451,7 +450,7 @@ const DashboardHeader = ({
                     ),
                     color: useColorModeValue(
                       'superteamBlack.100',
-                      'superteamWhite.100'
+                      'superteamSurfacePrimaryLM.100'
                     ),
                   }}
                   _focus={{
@@ -461,7 +460,7 @@ const DashboardHeader = ({
                     ),
                     color: useColorModeValue(
                       'superteamBlack.100',
-                      'superteamWhite.100'
+                      'superteamSurfacePrimaryLM.100'
                     ),
                   }}
                 >

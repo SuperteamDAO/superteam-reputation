@@ -74,8 +74,8 @@ const LeaderBoardWrapper = ({
   return (
     <Container
       backgroundColor={useColorModeValue(
-        'superteamWhite.100',
-        'superteamGreyDT.1000'
+        'superteamSurfacePrimaryLM.100',
+        'superteamSurfacePrimaryDM'
       )}
       fontFamily={'Inter'}
       maxW="full"
@@ -142,13 +142,13 @@ const LeaderBoardWrapper = ({
               _active={{
                 color: useColorModeValue(
                   'superteamBlack.100',
-                  'superteamWhite.100'
+                  'superteamSurfacePrimaryLM.100'
                 ),
               }}
               _selected={{
                 color: useColorModeValue(
                   'superteamBlack.100',
-                  'superteamWhite.100'
+                  'superteamSurfacePrimaryLM.100'
                 ),
                 borderBottom: '2px solid',
                 borderColor: useColorModeValue('superteamOrange.800', 'superteamBlueLT.800'),

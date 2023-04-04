@@ -16,13 +16,13 @@ const RowCategories = ({ row }: propTypes) => {
             <CustomChip
               key={key}
               text="Development"
-              colorScheme='superteamGreen'
+              colorScheme="superteamGreen"
             />
           );
         }
         if (skill.skill === skillKind.DESIGN) {
           return (
-            <CustomChip key={key} text="Design" colorScheme="superteamBlueDT" />
+            <CustomChip key={key} text="Design" colorScheme="superteamBlue" />
           );
         }
         if (skill.skill === skillKind.VIDEO) {

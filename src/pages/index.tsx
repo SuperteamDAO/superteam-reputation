@@ -15,13 +15,13 @@ export default function Home(props: {
   lastSevenDaysData: receivedXPFromAirtableType[];
 }) {
   const { dashboardData, lastSevenDaysData } = props;
-  console.log('dash data - ', dashboardData.length);
-  // console.log('last seven days data - ', lastSevenDaysData);
+
   // search functionality
   const [data, setData] = React.useState(dashboardData);
   const [wordEntered, setWordEntered] = React.useState('');
   const [searchResult, setSearchResult] = React.useState(false);
   const [sortOrder, setSortOrder] = React.useState(SortByXp.highToLowXp);
+
   const handleSearch = (event: { target: { value: any } }) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);

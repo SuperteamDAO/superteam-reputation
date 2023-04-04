@@ -1,5 +1,4 @@
 import { Container } from '@chakra-ui/react';
-import React from 'react';
 import Footer from './Navigation/Footer';
 import Header from './Navigation/Header';
 

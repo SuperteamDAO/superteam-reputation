@@ -89,7 +89,7 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.DEV) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -99,7 +99,7 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.DESIGN) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -109,7 +109,7 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.STRATEGY) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -119,7 +119,7 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.VIDEO) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -129,7 +129,7 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.WRITING) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -139,7 +139,7 @@ export const ExpandedRow = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.OPS) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -227,7 +227,7 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.DEV) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -237,7 +237,7 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.DESIGN) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -247,7 +247,7 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.STRATEGY) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -257,7 +257,7 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.VIDEO) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -267,7 +267,7 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.WRITING) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -277,7 +277,7 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
             if (skill.skill === skillKind.OPS) {
               return (
                 <Flex flexDir="row" gap="0.4rem" key={key}>
-                  <Text color={'superteamWhite'} fontSize={'14px'}>
+                  <Text color={'superteamSurfacePrimaryLM'} fontSize={'14px'}>
                     {Math.round(skill.amount)}
                   </Text>
                   <CustomTag colorScheme={'superteamGray'} text="XP" />
@@ -361,7 +361,7 @@ export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
                   <CustomChip text="Development" colorScheme="superteamGreen" />
                 )}
                 {member.skill.toLowerCase() === skillKind.DESIGN && (
-                  <CustomChip text="Design" colorScheme="superteamBlueDT" />
+                  <CustomChip text="Design" colorScheme="superteamBlue" />
                 )}
                 {member.skill.toLowerCase() === skillKind.STRATEGY && (
                   <CustomChip text="Strategy" colorScheme="superteamCyan" />
@@ -447,7 +447,7 @@ const ProjectSkillsAndXpExpand = ({
                   <CustomChip text="Development" colorScheme="superteamGreen" />
                 )}
                 {member.skill.toLowerCase() === skillKind.DESIGN && (
-                  <CustomChip text="Design" colorScheme="superteamBlueDT" />
+                  <CustomChip text="Design" colorScheme="superteamBlue" />
                 )}
                 {member.skill.toLowerCase() === skillKind.STRATEGY && (
                   <CustomChip text="Strategy" colorScheme="superteamCyan" />

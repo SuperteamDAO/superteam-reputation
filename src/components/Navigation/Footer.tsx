@@ -40,8 +40,8 @@ const Footer = () => {
       maxW="full"
       p="0.8rem"
       backgroundColor={useColorModeValue(
-        'superteamWhite.100',
-        'superteamGreyDT.1000'
+        'superteamSurfacePrimaryLM.100',
+        'superteamSurfacePrimaryDM'
       )}
       pb="4rem"
     >

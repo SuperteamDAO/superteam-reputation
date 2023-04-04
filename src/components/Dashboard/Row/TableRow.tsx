@@ -77,7 +77,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
             <Text
               color={useColorModeValue(
                 'superteamBlack.100',
-                'superteamWhite.100'
+                'superteamSurfacePrimaryLM.100'
               )}
               fontSize={'14px'}
               textTransform="capitalize"
@@ -105,7 +105,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
               className={inter.className}
               color={useColorModeValue(
                 'superteamBlack.100',
-                'superteamWhite.100'
+                'superteamSurfacePrimaryLM.100'
               )}
               fontSize={'14px'}
             >
@@ -203,7 +203,7 @@ export const ProjectsTableRow = ({
             <Text
               color={useColorModeValue(
                 'superteamBlack.100',
-                'superteamWhite.100'
+                'superteamSurfacePrimaryLM.100'
               )}
               fontSize={'14px'}
               textTransform="capitalize"
@@ -215,13 +215,13 @@ export const ProjectsTableRow = ({
           </Flex>
         </Td>
         <Td>
-          <Flex  flexDir="row" gap="0.4rem">
+          <Flex flexDir="row" gap="0.4rem">
             <Text
               fontWeight="500"
               className={inter.className}
               color={useColorModeValue(
                 'superteamBlack.100',
-                'superteamWhite.100'
+                'superteamSurfacePrimaryLM.100'
               )}
               fontSize={'14px'}
             >
@@ -235,7 +235,7 @@ export const ProjectsTableRow = ({
             <Text
               color={useColorModeValue(
                 'superteamBlack.100',
-                'superteamWhite.100'
+                'superteamSurfacePrimaryLM.100'
               )}
               fontSize={'14px'}
               textTransform="capitalize"
