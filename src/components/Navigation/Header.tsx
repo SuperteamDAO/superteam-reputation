@@ -53,7 +53,8 @@ export default function Header() {
           alignItems="center"
           justifyContent="center"
         >
-          <Link href={'/projects'}>Projects</Link><Link href={'/bounties'}>Bounties</Link>
+          <Link href={'/projects'}>Projects</Link>
+          <Link href={'/bounties'}>Bounties</Link>
           <Button variant={'unstyled'} onClick={toggleColorMode}>
             {colorMode === 'light' ? (
               <Icon
@@ -111,7 +112,7 @@ export default function Header() {
                   ),
                   color: useColorModeValue(
                     'superteamBlack.100',
-                    'superteamWhite.100'
+                    'superteamSurfacePrimaryLM.100'
                   ),
                 }}
                 _focus={{
@@ -121,7 +122,7 @@ export default function Header() {
                   ),
                   color: useColorModeValue(
                     'superteamBlack.100',
-                    'superteamWhite.100'
+                    'superteamSurfacePrimaryLM.100'
                   ),
                 }}
               >
@@ -143,7 +144,7 @@ export default function Header() {
                   ),
                   color: useColorModeValue(
                     'superteamBlack.100',
-                    'superteamWhite.100'
+                    'superteamSurfacePrimaryLM.100'
                   ),
                 }}
                 _focus={{
@@ -153,7 +154,7 @@ export default function Header() {
                   ),
                   color: useColorModeValue(
                     'superteamBlack.100',
-                    'superteamWhite.100'
+                    'superteamSurfacePrimaryLM.100'
                   ),
                 }}
               >
@@ -178,7 +179,7 @@ export default function Header() {
                   ),
                   color: useColorModeValue(
                     'superteamBlack.100',
-                    'superteamWhite.100'
+                    'superteamSurfacePrimaryLM.100'
                   ),
                 }}
                 _focus={{
@@ -188,7 +189,7 @@ export default function Header() {
                   ),
                   color: useColorModeValue(
                     'superteamBlack.100',
-                    'superteamWhite.100'
+                    'superteamSurfacePrimaryLM.100'
                   ),
                 }}
               >

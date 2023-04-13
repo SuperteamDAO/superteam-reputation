@@ -32,7 +32,7 @@ const GraphColumn = ({ row }: propsType) => {
     }
     return acc;
   }, [] as { xp: number; monthYear: string }[]);
-// last month data 
+  // last month data
   const lastSixMonths = [...new Array(6)].map((_, index) => {
     const date = new Date();
     date.setMonth(date.getMonth() - index); // get  month index starts from 0 - Jan
@@ -81,11 +81,11 @@ const GraphColumn = ({ row }: propsType) => {
             label="XP earned this month"
             fontSize="xs"
             colorScheme="whiteAlpha"
-            bg="superteamWhite"
+            bg="superteamSurfacePrimaryLM"
             rounded="md"
             fontWeight="400"
           >
-            <Text color="superteamWhite" fontSize="14px">
+            <Text color="superteamSurfacePrimaryLM" fontSize="14px">
               {Math.round(lastSixMonths[0].xp)}
             </Text>
           </Tooltip>
@@ -106,7 +106,7 @@ const GraphColumn = ({ row }: propsType) => {
             label="XP earned last month"
             fontSize="xs"
             colorScheme={'whiteAlpha'}
-            bg={'superteamWhite'}
+            bg={'superteamSurfacePrimaryLM'}
             rounded="md"
             fontWeight="400"
           >
@@ -118,7 +118,7 @@ const GraphColumn = ({ row }: propsType) => {
             label="XP growth"
             fontSize="xs"
             colorScheme={'whiteAlpha'}
-            bg={'superteamWhite'}
+            bg={'superteamSurfacePrimaryLM'}
             rounded="md"
             fontWeight="400"
           >

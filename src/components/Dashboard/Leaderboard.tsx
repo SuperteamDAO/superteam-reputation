@@ -59,7 +59,10 @@ export default function EnhancedTable({
     'superteamGreyLT.50',
     'superteamGreyDT.900'
   );
-  const TableBorderColor = useColorModeValue('white', 'superteamGreyDT.900');
+  const TableBorderColor = useColorModeValue(
+    'superteamSurfacePrimaryLM',
+    'superteamGreyDT.900'
+  );
   const borderColor = useColorModeValue(
     'superteamGreyLT.500',
     'superteamGreyDT.50'

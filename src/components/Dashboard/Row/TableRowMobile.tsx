@@ -137,7 +137,7 @@ export const ProjectsTableRowMobile = ({
               }}
               color={useColorModeValue(
                 'superteamBlack.100',
-                'superteamWhite.100'
+                'superteamSurfacePrimaryLM.100'
               )}
               fontSize={'14px'}
               textTransform="capitalize"
@@ -149,7 +149,7 @@ export const ProjectsTableRowMobile = ({
                 fontWeight="500"
                 color={useColorModeValue(
                   'superteamBlack.100',
-                  'superteamWhite.100'
+                  'superteamSurfacePrimaryLM.100'
                 )}
                 fontSize={'14px'}
               >

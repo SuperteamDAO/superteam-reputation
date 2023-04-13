@@ -14,17 +14,23 @@ const CustomTab = ({ title }: { title: string }) => {
       transition="0.4s all"
       borderBottom={'3px solid'}
       borderColor={useColorModeValue(
-        'superteamWhite.100',
-        'superteamGreyDT.1000'
+        'superteamSurfacePrimaryLM',
+        'superteamSurfacePrimaryDM'
       )}
       color={useColorModeValue('superteamGreyDT.100', 'superteamGreyLT.800')}
       _active={{
-        color: useColorModeValue('superteamBlack.100', 'superteamWhite.100'),
+        color: useColorModeValue(
+          'superteamBlack.100',
+          'superteamSurfacePrimaryLM'
+        ),
         fontWeight: '600',
         transition: '0.4s color',
       }}
       _selected={{
-        color: useColorModeValue('superteamBlack.100', 'superteamWhite.100'),
+        color: useColorModeValue(
+          'superteamBlack.100',
+          'superteamSurfacePrimaryLM'
+        ),
         fontWeight: '600',
         borderBottom: '3px solid',
         borderColor: useColorModeValue(
