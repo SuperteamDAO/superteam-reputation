@@ -7,9 +7,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Select,
   Stack,
-  Text,
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
@@ -17,8 +15,6 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { skillKind } from '../../enums/skill';
-import CustomTag from '../HOC/Tag.HOC';
-import MedalSVG from '../Logo/MedalSVG';
 import { receivedXPFromAirtableType } from './Row/interfaces/airtableRecievedXP';
 
 type propsType = {
@@ -205,7 +201,7 @@ const DashboardHeader = ({
           width={['full', 'auto', 'auto', 'auto']}
           justify={'space-between'}
         >
-          <Box display="flex" flexDir={'column'} alignItems="end">
+          {/* <Box display="flex" flexDir={'column'} alignItems="end">
             <HStack
               width={'fit-content'}
               roundedTop={'4px'}
@@ -308,7 +304,7 @@ const DashboardHeader = ({
                   );
                 })}
             </VStack>
-          </Box>
+          </Box> */}
           {/* <Text
               as="a"
               href="https://superteam-onboarding.gitbook.io/the-superteam-handbook/community/the-reputation-system"

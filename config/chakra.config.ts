@@ -57,13 +57,13 @@ const theme = extendTheme({
       900: '#0007B8',
     },
     superteamBlueDT: {
-      50:'#DCDEF6',
+      50: '#DCDEF6',
       100: '#202442',
       200: '#1B2047',
       300: '#161C4C',
       400: '#111951',
       500: '#0C1556',
-      800:'#535AFF',
+      800: '#535AFF',
     },
     superteamAquaBlueLT: {
       100: '#DAF8FF',
@@ -113,7 +113,7 @@ const theme = extendTheme({
       800: '#0BD3FF',
     },
     superteamGreen: {
-      50:'#D0EFE0',
+      50: '#D0EFE0',
       100: '#14352C',
       700: '#00A67E',
       800: '#00CF6C',

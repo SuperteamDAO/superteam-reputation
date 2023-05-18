@@ -32,7 +32,7 @@ const GraphColumn = ({ row }: propsType) => {
     }
     return acc;
   }, [] as { xp: number; monthYear: string }[]);
-// last month data 
+  // last month data
   const lastSixMonths = [...new Array(6)].map((_, index) => {
     const date = new Date();
     date.setMonth(date.getMonth() - index); // get  month index starts from 0 - Jan

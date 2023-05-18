@@ -53,7 +53,8 @@ export default function Header() {
           alignItems="center"
           justifyContent="center"
         >
-          <Link href={'/projects'}>Projects</Link><Link href={'/bounties'}>Bounties</Link>
+          <Link href={'/projects'}>Projects</Link>
+          <Link href={'/bounties'}>Bounties</Link>
           <Button variant={'unstyled'} onClick={toggleColorMode}>
             {colorMode === 'light' ? (
               <Icon
