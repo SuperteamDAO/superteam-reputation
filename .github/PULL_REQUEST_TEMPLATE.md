@@ -41,4 +41,5 @@
 ## Discord Details (!important)
 
 <!-- In order to allocate you the xp, you will have to provide your full discord username eg Discord:irffan#2419 -->
+
 Discord:

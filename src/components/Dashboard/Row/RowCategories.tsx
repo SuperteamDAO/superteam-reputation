@@ -16,7 +16,7 @@ const RowCategories = ({ row }: propTypes) => {
             <CustomChip
               key={key}
               text="Development"
-              colorScheme='superteamGreen'
+              colorScheme="superteamGreen"
             />
           );
         }
