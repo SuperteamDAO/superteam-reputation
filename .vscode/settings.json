@@ -5,11 +5,11 @@
     "source.fixAll": true,
     "source.organizeImports": true
   },
-  "cSpell.words": [
-    "borderbottomcolor",
-    "projectworkxp"
-  ],
+  "cSpell.words": ["borderbottomcolor", "projectworkxp"],
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }

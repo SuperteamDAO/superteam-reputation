@@ -4,13 +4,9 @@ import {
   Flex,
   Icon,
   Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
   Stack,
   useColorMode,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
@@ -53,7 +49,8 @@ export default function Header() {
           alignItems="center"
           justifyContent="center"
         >
-          <Link href={'/projects'}>Projects</Link><Link href={'/bounties'}>Bounties</Link>
+          <Link href={'/projects'}>Projects</Link>
+          <Link href={'/bounties'}>Bounties</Link>
           <Button variant={'unstyled'} onClick={toggleColorMode}>
             {colorMode === 'light' ? (
               <Icon
@@ -72,19 +69,16 @@ export default function Header() {
             )}
           </Button>
           <Menu>
-            <MenuButton
-              as={Button}
-              bg={useColorModeValue(
-                'superteamBlueLT.800',
-                'superteamOrange.800'
-              )}
+            <Button
+              bg={useColorModeValue('superteamBlueLT.800', 'superteamOrange.800')}
               color="white"
               variant={'unstyled'}
               w="8rem"
+              onClick={() => window.open("https://airtable.com/shrVdwTsjIimrEiUm")}
             >
               Claim XP
-            </MenuButton>
-            <MenuList
+            </Button>
+            {/* <MenuList
               backgroundColor={useColorModeValue(
                 'superteamGrayLT.200',
                 'superteamGreyDT.900'
@@ -194,7 +188,7 @@ export default function Header() {
               >
                 Open Bounties
               </MenuItem>
-            </MenuList>
+            </MenuList> */}
           </Menu>
         </Stack>
       </Flex>
