@@ -7,9 +7,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Select,
   Stack,
-  Text,
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
@@ -319,7 +317,7 @@ const DashboardHeader = ({
                   );
                 })}
             </VStack>
-          </Box>
+          </Box> */}
           {/* <Text
               as="a"
               href="https://superteam-onboarding.gitbook.io/the-superteam-handbook/community/the-reputation-system"

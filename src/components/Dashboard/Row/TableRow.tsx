@@ -215,7 +215,7 @@ export const ProjectsTableRow = ({
           </Flex>
         </Td>
         <Td>
-          <Flex  flexDir="row" gap="0.4rem">
+          <Flex flexDir="row" gap="0.4rem">
             <Text
               fontWeight="500"
               className={inter.className}
