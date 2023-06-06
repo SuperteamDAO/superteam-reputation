@@ -77,7 +77,7 @@ export default function Projects({ projectsData }: propsType) {
 
 export async function getStaticProps() {
   return axios
-    .get(`${process.env.PROJECTS_URL}/api/v1/xp/projects`)
+    .get(`${process.env.PROJECTS_URL}`)
     .then(async (res) => {
       const projectsData = res.data.data;
       return {

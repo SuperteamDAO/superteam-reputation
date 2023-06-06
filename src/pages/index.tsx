@@ -69,7 +69,7 @@ export default function Home(props: {
 
 export async function getStaticProps() {
   return axios
-    .get(`${process.env.BACKEND_URL}/xp`)
+    .get(`${process.env.BACKEND_URL}xp`)
     .then(async (res) => {
       const personData = res.data.personData;
       const bountyDataJson = res.data.bountyDataJson;
