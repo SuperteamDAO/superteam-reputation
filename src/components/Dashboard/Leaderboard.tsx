@@ -10,7 +10,7 @@ import {
   Thead,
   Tr,
   useColorModeValue,
-  useMediaQuery,
+  useMediaQuery
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { xpType } from '../../interfaces/xp';
@@ -27,6 +27,9 @@ type propsType = {
   sortOrder: SortByXp;
   searchResult: boolean;
 };
+
+const noDataHeading = '404: Data not found';
+const noDataText = `We suspect it's on a beach somewhere sipping margaritas`
 
 export default function EnhancedTable({
   row,
@@ -224,10 +227,10 @@ export default function EnhancedTable({
               </svg>
             </Center>
             <Text fontWeight="500" fontSize="18px" color={textColor}>
-              404 Nothing Found
+              {noDataHeading}
             </Text>
             <Text maxW="26rem" fontWeight="400" fontSize="17px">
-              XP system helps us understand who did what when and why this is{' '}
+              {noDataText}
             </Text>
           </Center>
         )}
@@ -440,10 +443,10 @@ export function ProjectsTable({
               </svg>
             </Center>
             <Text fontWeight="500" fontSize="18px" color={textColor}>
-              404 Nothing Found
+              {noDataHeading}
             </Text>
             <Text maxW="26rem" fontWeight="400" fontSize="17px">
-              XP system helps us understand who did what when and why this is{' '}
+              {noDataText}
             </Text>
           </Center>
         )}
