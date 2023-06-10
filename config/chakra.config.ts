@@ -21,6 +21,8 @@ const theme = extendTheme({
     superteamGreyLT: {
       25: '#FCFCFC',
       50: '#F7F7F9', // light mode navbar bg
+      75: '#000099',
+      125: '#FBFCFD',
       100: '#F2F2F2',
       200: '#F0F0F0',
       300: '#EBEBEB',
@@ -30,9 +32,10 @@ const theme = extendTheme({
       700: '#BDBDBD',
       800: '#A3A3A3',
       900: '#8A8A8A',
+      950: 'rgba(0, 34, 214, 0.04)',
     },
     superteamGreyDT: {
-      25: '',
+      25: '#CCCCCC',
       50: '#252931',
       100: '#707070',
       200: '#575757',
@@ -43,7 +46,9 @@ const theme = extendTheme({
       700: '#383838',
       750: '#252931',
       800: '#1F1F1F',
+      850: '#0E1218',
       900: '#161A22',
+      950: '#0E1218',
       1000: '#0E1218',
       1100: '#040404',
     },

@@ -51,9 +51,7 @@ export default function Home(props: {
       <main>
         <Container maxW="full" p="0">
           <DashboardHeader
-            handleSearch={handleSearch}
             lastSevenDaysData={lastSevenDaysData}
-            wordEntered={wordEntered}
           />
           <LeaderBoardWrapper
             searchResult={searchResult}
