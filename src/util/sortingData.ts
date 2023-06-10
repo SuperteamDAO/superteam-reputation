@@ -1,7 +1,7 @@
 import { dashboardDataType } from '../interfaces/dashboardStore';
 export enum SortByXp {
-  lowToHighXp = 'Xp Low to High',
-  highToLowXp = 'Xp High to Low',
+  lowToHighXp = 'XP Low to High',
+  highToLowXp = 'XP High to Low',
 }
 const sortingXpDataUtil = (data: dashboardDataType[], order: SortByXp) => {
   switch (order) {
