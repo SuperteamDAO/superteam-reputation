@@ -138,9 +138,9 @@ const DashboardHeader = ({
             variant={'unstyled'}
             w="12rem"
             fontSize={"14px"}
-            onClick={() => window.open("https://superteam-onboarding.gitbook.io/the-superteam-handbook/community/the-reputation-system")}
+            onClick={() => window.open("https://docs.superteam.fun/the-superteam-handbook/community/the-reputation-system")}
           >
-            Superteam Handbook
+            Learn More
           </Button>
         </VStack>
 
