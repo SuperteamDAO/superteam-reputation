@@ -2,19 +2,17 @@ import { Container } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react';
 import config from '../../config/general.config';
-import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
 import SEO from '../components/SEO/SEO';
-import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { dashboardDataType } from '../interfaces/dashboardStore';
 import { SortByXp } from '../util/sortingData';
 
 export default function Home(props: {
   dashboardData: dashboardDataType[];
   bountyDataJson: any;
-  lastSevenDaysData: receivedXPFromAirtableType[];
+  // lastSevenDaysData: receivedXPFromAirtableType[];
 }) {
-  const { dashboardData, lastSevenDaysData } = props;
+  const { dashboardData } = props;
   console.log('dash data - ', dashboardData.length);
   // console.log('last seven days data - ', lastSevenDaysData);
   // search functionality
@@ -50,9 +48,9 @@ export default function Home(props: {
       />
       <main>
         <Container maxW="full" p="0">
-          <DashboardHeader
+          {/* <DashboardHeader
             lastSevenDaysData={lastSevenDaysData}
-          />
+          /> */}
           <LeaderBoardWrapper
             searchResult={searchResult}
             dashboardData={data}

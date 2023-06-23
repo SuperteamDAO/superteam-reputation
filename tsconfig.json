@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/api/airtableData.js"
+    "src/pages/api/airtableData.ts"
   ],
   "exclude": ["node_modules"]
 }
