@@ -84,52 +84,6 @@ const getBountiesRecordsFunction = async () => {
     return bounties;
 };
 
-// const getBrainTrustRecordsFunction = async () => {
-//     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.BRAIN_TRUST_BASE);
-//     const table = base('Recurring Team XP');
-//     const data: { name: any; xp: any; skill: any; allocated: boolean }[] = [];
-//     await table
-//         .select({
-//             maxRecords: 1000,
-//             view: 'All',
-//         })
-//         .eachPage(function page(records, fetchNextPage) {
-//             records.forEach(function (record) {
-//                 data.push({
-//                     name: record.get('Name (from Member)') ? record.get('Name (from Member)')[0] : null,
-//                     xp: record.get('XP')[0] || null,
-//                     skill: record.get('Skill Category') || null,
-//                     allocated: true,
-//                 });
-//             });
-//             fetchNextPage();
-//         });
-
-//     // const table2 = base('Team');
-//     // const data2 = [];
-//     // await table2
-//     //   .select({
-//     //     maxRecords: 1000,
-//     //     view: "Relevant",
-//     //   })
-//     //   .eachPage(function page(records, fetchNextPage) {
-//     //     records.forEach(function(record) {
-//     //         data2.push({
-//     //           name: record.get('Name') || null,
-//     //           xp: record.get('XP') || null,
-//     //           skill: 'Strategy',
-//     //           allocated: true
-//     //         });
-//     //     });
-//     //     fetchNextPage();
-//     // });
-
-//     // // concat the two tables
-//     // const data3 = data.concat(data2);
-
-//     // return data3;
-//     return data;
-// };
 
 const getCommunityRecordsFunction = async () => {
     const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
