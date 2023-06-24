@@ -29,6 +29,7 @@ export async function dataCalculator() {
             writing: any;
             strategy: any;
             operations: any;
+            region: any
         },
     ] = await getXPRecordFunction();
 
@@ -57,6 +58,8 @@ export async function dataCalculator() {
             videography: person.videography,
             strategy: person.strategy,
             writing: person.writing,
+            region: person.region,
+
         };
     });
 
@@ -141,6 +144,7 @@ export async function dataCalculator() {
         return {
             name: person.name,
             personType: person.personType,
+
             overallXP: {
                 total: overallXP.find((personXP) => personXP.name === person.name),
                 details: xpSourcesSum,

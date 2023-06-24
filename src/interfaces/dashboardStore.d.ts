@@ -24,4 +24,5 @@ export type dashboardDataType = {
   workingGroupsXP?: xpType;
   bountiesXP?: xpType;
   stackExchangeXP?: xpType;
+  region?: string
 };

@@ -300,7 +300,7 @@ const getXPRecordFunction = async () => {
             .select({
                 // Selecting the first 3 records in XP by skill:
                 maxRecords: 1000,
-                view: 'XP by skill',
+                view: 'Reputation Dashboard',
             })
             .eachPage(
                 function page(records, fetchNextPage) {
@@ -315,6 +315,7 @@ const getXPRecordFunction = async () => {
                         const writing = fields['Writing XP'] || 0;
                         const video = fields['Video XP'] || 0;
                         const total = fields['Total XP'] || 0;
+                        const region = fields['Region'] as string;
                         xps.push({
                             name: name,
                             person_type: personType,
@@ -325,6 +326,7 @@ const getXPRecordFunction = async () => {
                             strategy: strategy || 0,
                             writing: writing || 0,
                             videography: video || 0,
+                            region: region,
                         });
                     });
                     fetchNextPage();
