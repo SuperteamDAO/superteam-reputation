@@ -1,5 +1,5 @@
 import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
-import { dashboardDataType, totalOverallXPType } from '../interfaces/dashboardStore';
+import { totalOverallXPType } from '../interfaces/dashboardStore';
 import { xpType } from '../interfaces/xp';
 import { getBountiesRecordsFunction, getXPRecordFunction } from '../lib/airtable';
 import {
@@ -131,7 +131,7 @@ export async function dataCalculator() {
     });
 
     // add all the xps into one object called person: {name: string, personType: string, overallXP: , projectWorkXP: , indieWorkXP: , internalOpsXp: }
-    const personData: dashboardDataType[] = personDetailsData.map((person) => {
+    const personData: any[] = personDetailsData.map((person) => {
         const xpSourcesSum = overallXPDetails(
             [
                 projectWorkCalculatedXP.find((personXP) => personXP.name === person.name),
@@ -142,7 +142,7 @@ export async function dataCalculator() {
                 stackExchangeCalculatedXP.find((personXP) => personXP.name === person.name),
             ] as xpType[],
             person.name,
-            overallXP.find((personXP) => personXP.name === person.name) as totalOverallXPType,
+            overallXP.find((personXP) => personXP.name === person.name) as unknown as totalOverallXPType,
         );
         return {
             name: person.name,
