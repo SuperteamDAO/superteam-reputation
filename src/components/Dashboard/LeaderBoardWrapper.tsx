@@ -324,7 +324,7 @@ const LeaderBoardWrapper = ({
                       >
                         <Popover placement="left-start">
                           <PopoverTrigger>
-                            <Text w="64px">Skills</Text>
+                            <Text w="64px">Skill</Text>
                           </PopoverTrigger>
                           <PopoverContent
                             w="124px"
