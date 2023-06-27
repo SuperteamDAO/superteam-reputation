@@ -79,7 +79,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
                 'superteamWhite.100'
               )}
               fontSize={'14px'}
-              textTransform="capitalize"
+              textTransform="lowercase"
               fontWeight="500"
               className={inter.className}
             >
