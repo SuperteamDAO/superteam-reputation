@@ -21,15 +21,17 @@ export async function dataCalculator() {
     const xpDataJson: [
         {
             name: string;
-            total_xp: any;
+            total_xp: number;
             person_type: string;
-            development: any;
-            design: any;
-            videography: any;
-            writing: any;
-            strategy: any;
-            operations: any;
-            region: any
+            development: number;
+            design: number;
+            videography: number;
+            writing: number;
+            strategy: number;
+            operations: number;
+            region: number
+            xp_per_month: number
+
         },
     ] = await getXPRecordFunction();
 
@@ -59,6 +61,7 @@ export async function dataCalculator() {
             strategy: person.strategy,
             writing: person.writing,
             region: person.region,
+            xp_per_month: person.xp_per_month
 
         };
     });

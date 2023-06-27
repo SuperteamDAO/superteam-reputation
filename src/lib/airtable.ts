@@ -1,5 +1,23 @@
 import Airtable from 'airtable';
 
+const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
+
+
+type XPRecordType = {
+    name: string;
+    person_type: string;
+    total_xp: number;
+    design: number;
+    development: number;
+    operations: number;
+    strategy: number;
+    writing: number;
+    videography: number;
+    region: string;
+    xp_per_month: number;
+
+}
+
 const getFilteredRecords = (records: any[]) => {
     // filter out the records where allocation is null and xp is not null
     return records.filter((record: { allocated: null; xp: null }) => {
@@ -8,7 +26,6 @@ const getFilteredRecords = (records: any[]) => {
 };
 
 const getIndieRecordsFunction = async () => {
-    const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
     const table = base('Indie Work');
     const data: { name: any; allocated: any; xp: any; skill: any }[] = [];
     await table
@@ -32,7 +49,7 @@ const getIndieRecordsFunction = async () => {
 };
 
 const getBountiesRecordsFunction = async () => {
-    const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
+
     const table = base('Bounties');
     const bounties: { name: any; allocated: boolean; xp: any; skill: string }[] = [];
     await table
@@ -86,7 +103,7 @@ const getBountiesRecordsFunction = async () => {
 
 
 const getCommunityRecordsFunction = async () => {
-    const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
+
     const table = base('Community');
     const data: {
         [x: string]: null;
@@ -122,7 +139,7 @@ const getCommunityRecordsFunction = async () => {
 };
 
 const getProjectsWorkRecordsFunction = async () => {
-    const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
+
     const table = base('Project Work');
     const data: {
         name: any;
@@ -165,7 +182,7 @@ const getProjectsWorkRecordsFunction = async () => {
 };
 
 const getCabsRecordsFunction = async () => {
-    const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
+
     const table = base('CAB/SubDAO XPs');
     const data: {
         name: any;
@@ -208,7 +225,7 @@ const getCabsRecordsFunction = async () => {
 };
 
 const getStackXpRecordsFunction = async (_req: undefined, _res: undefined) => {
-    const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
+
     const table = base('Superteam StackEx XP');
     const data: { name: any; xp: any; skill: string; allocated: boolean }[] = [];
     await table
@@ -245,10 +262,12 @@ const getAllTitleFunction = async () => {
     };
 };
 
-const getXPRecordFunction = async () => {
-    const xps: any = [];
+const getXPRecordFunction = async (): Promise<XPRecordType[] | any> => {
+
+
+    const xps: XPRecordType[] = [];
     try {
-        const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID!);
+
 
         base('XP Summary')
             .select({
@@ -270,6 +289,7 @@ const getXPRecordFunction = async () => {
                         const video = fields['Video XP'] || 0;
                         const total = fields['Total XP'] || 0;
                         const region = fields['Region'] as string;
+                        const xpPerMonth = fields['XP Earned this month'] || 0;
                         xps.push({
                             name: name,
                             person_type: personType,
@@ -281,6 +301,7 @@ const getXPRecordFunction = async () => {
                             writing: writing || 0,
                             videography: video || 0,
                             region: region,
+                            xp_per_month: xpPerMonth || 0,
                         });
                     });
                     fetchNextPage();
