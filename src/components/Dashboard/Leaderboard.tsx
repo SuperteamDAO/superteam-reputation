@@ -135,7 +135,7 @@ export default function EnhancedTable({
                     fontSize={'14px'}
                     color={tableHeadingFontColor}
                   >
-                    XP Growth
+                    XP/Month
                   </Th>
                   <Th
                     w="full"

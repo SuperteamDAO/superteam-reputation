@@ -17,7 +17,6 @@ import { SortByXp } from '../../../util/sortingData';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG, { hideMedalOrder } from '../../Logo/MedalSVG';
 import { ExpandedProjectRow, ExpandedRow } from './ExpandedRow';
-import GraphColumn from './GraphColumn';
 import RowCategories from './RowCategories';
 
 type propTypes = {
@@ -116,7 +115,17 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
         </Td>
         <Td w="12rem">
           <Box w="8rem">
-            <GraphColumn row={row} />
+
+            {row?.xp_per_month &&
+              <Text
+                fontWeight="500"
+                className={inter.className}
+                color={row?.xp_per_month > 0 ? '#00A67E' : '#FF0B71'}
+                fontSize={'14px'}
+              >
+                {row?.xp_per_month}
+              </Text>
+            }
           </Box>
         </Td>
         <Td>

@@ -79,7 +79,21 @@ export function filteredData(data: dashboardDataType[]) {
 
   const allXPData_data = data.map((item) => {
     if (item.overallXP.details) {
+      item.overallXP.details['region'] = item.overallXP?.total?.region;
+      item.overallXP.details['xp_per_month'] = item.overallXP?.total?.xp_per_month;
       return item.overallXP.details;
+    }
+  });
+
+  const region_data = data.map((item) => {
+    if (item.overallXP.total) {
+      return item.overallXP.total.region;
+    }
+  });
+
+  const monthly_xp_data = data.map((item) => {
+    if (item.overallXP.total) {
+      return item.overallXP.total.xp_per_month;
     }
   });
 
@@ -90,6 +104,8 @@ export function filteredData(data: dashboardDataType[]) {
 
   return {
     allXPData,
+    region_data,
+    monthly_xp_data
     // filteredMembersData,
     // filteredBountiesXPData,
     // filteredIndieWorkXPData,

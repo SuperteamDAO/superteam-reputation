@@ -8,6 +8,8 @@ type propsType = {
 };
 
 const GraphColumn = ({ row }: propsType) => {
+
+  const monthlyXP = row.xp_per_month;
   const cumulativeData: { date: Date; xp: number }[] = row.xp.amount.map(
     (amount, index) => {
       return {
@@ -86,7 +88,8 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text color="superteamWhite" fontSize="14px">
-              {Math.round(lastSixMonths[0].xp)}
+              Month: {row.xp_per_month}
+
             </Text>
           </Tooltip>
           <CustomTag text="XP" />

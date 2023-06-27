@@ -54,6 +54,8 @@ const LeaderBoardWrapper = ({
 }: propsType) => {
   const {
     allXPData,
+    region_data,
+    monthly_xp_data
     // filteredMembersData,
     // filteredBountiesXPData,
     // filteredIndieWorkXPData,
