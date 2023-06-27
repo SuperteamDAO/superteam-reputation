@@ -1,20 +1,18 @@
 import { Container } from '@chakra-ui/react';
-import axios from 'axios';
 import React from 'react';
 import config from '../../config/general.config';
-import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
 import SEO from '../components/SEO/SEO';
-import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
 import { dashboardDataType } from '../interfaces/dashboardStore';
+import { dataCalculator } from '../util/dataCalculator';
 import { SortByXp } from '../util/sortingData';
 
 export default function Home(props: {
   dashboardData: dashboardDataType[];
   bountyDataJson: any;
-  lastSevenDaysData: receivedXPFromAirtableType[];
+  // lastSevenDaysData: receivedXPFromAirtableType[];
 }) {
-  const { dashboardData, lastSevenDaysData } = props;
+  const { dashboardData } = props;
   console.log('dash data - ', dashboardData.length);
   // console.log('last seven days data - ', lastSevenDaysData);
   // search functionality
@@ -50,9 +48,9 @@ export default function Home(props: {
       />
       <main>
         <Container maxW="full" p="0">
-          <DashboardHeader
+          {/* <DashboardHeader
             lastSevenDaysData={lastSevenDaysData}
-          />
+          /> */}
           <LeaderBoardWrapper
             searchResult={searchResult}
             dashboardData={data}
@@ -66,30 +64,17 @@ export default function Home(props: {
 }
 
 export async function getStaticProps() {
-  return axios
-    .get(`${process.env.BACKEND_URL}xp`)
-    .then(async (res) => {
-      const personData = res.data.personData;
-      const bountyDataJson = res.data.bountyDataJson;
-      const lastSevenDaysData = res.data.lastSevenDaysData;
-      return {
-        props: {
-          bountyDataJson,
-          dashboardData: personData,
-          lastSevenDaysData,
-        },
-        revalidate: 10,
-      };
-    })
-    .catch((err) => {
-      console.log('err -> ', err);
-      return {
-        props: {
-          bountyDataJson: {},
-          dashboardData: {},
-          lastSevenDaysData: {},
-        },
-        revalidate: 10,
-      };
-    });
+
+
+  const { personData, bountyDataJson } = await dataCalculator();
+  const lastSevenDaysData = {};
+  console.log({ personData, bountyDataJson })
+  return {
+    props: {
+      bountyDataJson,
+      dashboardData: personData,
+      lastSevenDaysData,
+    },
+    revalidate: 10,
+  };
 }
