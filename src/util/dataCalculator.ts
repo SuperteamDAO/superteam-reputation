@@ -1,5 +1,5 @@
 import { receivedXPFromAirtableType } from '../interfaces/airtableRecievedXP';
-import { dashboardDataType, totalOverallXPType } from '../interfaces/dashboardStore';
+import { totalOverallXPType } from '../interfaces/dashboardStore';
 import { xpType } from '../interfaces/xp';
 import { getBountiesRecordsFunction, getXPRecordFunction } from '../lib/airtable';
 import {
@@ -21,15 +21,17 @@ export async function dataCalculator() {
     const xpDataJson: [
         {
             name: string;
-            total_xp: any;
+            total_xp: number;
             person_type: string;
-            development: any;
-            design: any;
-            videography: any;
-            writing: any;
-            strategy: any;
-            operations: any;
-            region: any
+            development: number;
+            design: number;
+            videography: number;
+            writing: number;
+            strategy: number;
+            operations: number;
+            region: number
+            xp_per_month: number
+
         },
     ] = await getXPRecordFunction();
 
@@ -59,6 +61,7 @@ export async function dataCalculator() {
             strategy: person.strategy,
             writing: person.writing,
             region: person.region,
+            xp_per_month: person.xp_per_month
 
         };
     });
@@ -128,7 +131,7 @@ export async function dataCalculator() {
     });
 
     // add all the xps into one object called person: {name: string, personType: string, overallXP: , projectWorkXP: , indieWorkXP: , internalOpsXp: }
-    const personData: dashboardDataType[] = personDetailsData.map((person) => {
+    const personData: any[] = personDetailsData.map((person) => {
         const xpSourcesSum = overallXPDetails(
             [
                 projectWorkCalculatedXP.find((personXP) => personXP.name === person.name),
@@ -139,7 +142,7 @@ export async function dataCalculator() {
                 stackExchangeCalculatedXP.find((personXP) => personXP.name === person.name),
             ] as xpType[],
             person.name,
-            overallXP.find((personXP) => personXP.name === person.name) as totalOverallXPType,
+            overallXP.find((personXP) => personXP.name === person.name) as unknown as totalOverallXPType,
         );
         return {
             name: person.name,

@@ -13,7 +13,7 @@ export default function Home(props: {
   // lastSevenDaysData: receivedXPFromAirtableType[];
 }) {
   const { dashboardData } = props;
-  console.log('dash data - ', dashboardData.length);
+  console.log('dash data - ', dashboardData);
   // console.log('last seven days data - ', lastSevenDaysData);
   // search functionality
   const [data, setData] = React.useState(dashboardData);

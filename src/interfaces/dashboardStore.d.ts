@@ -8,6 +8,8 @@ export type totalOverallXPType = {
   videography: number;
   strategy: number;
   writing: number;
+  region: string,
+  xp_per_month: number
 };
 
 export type overallXP = {
@@ -24,5 +26,4 @@ export type dashboardDataType = {
   workingGroupsXP?: xpType;
   bountiesXP?: xpType;
   stackExchangeXP?: xpType;
-  region?: string
 };
