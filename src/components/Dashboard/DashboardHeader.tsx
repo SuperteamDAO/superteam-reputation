@@ -10,9 +10,7 @@ type propsType = {
   lastSevenDaysData: receivedXPFromAirtableType[];
 };
 
-const DashboardHeader = ({
-  lastSevenDaysData,
-}: propsType) => {
+const DashboardHeader = () => {
   // --- WEEKLY TOP DATA ---- COMMENTED FOR NOW
   // const grouped: receivedXPFromAirtableType[] = [];
 

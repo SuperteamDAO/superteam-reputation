@@ -1,6 +1,7 @@
 import { Container } from '@chakra-ui/react';
 import React from 'react';
 import config from '../../config/general.config';
+import DashboardHeader from '../components/Dashboard/DashboardHeader';
 import LeaderBoardWrapper from '../components/Dashboard/LeaderBoardWrapper';
 import SEO from '../components/SEO/SEO';
 import { dashboardDataType } from '../interfaces/dashboardStore';
@@ -48,9 +49,7 @@ export default function Home(props: {
       />
       <main>
         <Container maxW="full" p="0">
-          {/* <DashboardHeader
-            lastSevenDaysData={lastSevenDaysData}
-          /> */}
+          <DashboardHeader />
           <LeaderBoardWrapper
             searchResult={searchResult}
             dashboardData={data}
