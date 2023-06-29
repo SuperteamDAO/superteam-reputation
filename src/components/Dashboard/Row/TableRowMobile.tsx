@@ -32,7 +32,7 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
       bg={expandRow ? '#1B1F27' : ''}
       width="100%"
       borderBottom="1px solid rgba(121, 155, 190, 0.2)"
-      onDragEnd={() => {}}
+      onDragEnd={() => { }}
       onClick={() => {
         setExpandRow((prevState) => !prevState);
       }}
@@ -73,7 +73,7 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
         </Flex>
         <Flex
           maxW={'14rem'}
-          // transform={{ base: 'translateX(-1rem)', sm: 'translateX(-3rem)' }}
+        // transform={{ base: 'translateX(-1rem)', sm: 'translateX(-3rem)' }}
         >
           <GraphColumn row={row} />
         </Flex>
@@ -110,7 +110,7 @@ export const ProjectsTableRowMobile = ({
       )}
       mx="2"
       bg={expandRow ? BackgroundColor : ''}
-      onDragEnd={() => {}}
+      onDragEnd={() => { }}
       onClick={() => {
         setExpandRow((prevState) => !prevState);
       }}
