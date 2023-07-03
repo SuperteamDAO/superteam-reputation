@@ -40,7 +40,7 @@ const GraphColumn = ({ row }: propsType) => {
             fontWeight="400"
           >
             <Text color={graphColor} fontSize="14px">
-              Month: {row.xp_per_month}
+              This Month: {row.xp_per_month}
 
             </Text>
           </Tooltip>
