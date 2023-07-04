@@ -8,6 +8,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import * as React from 'react';
+import ReactCountryFlag from "react-country-flag";
 import { FiChevronDown } from 'react-icons/fi';
 import { xpType } from '../../../interfaces/xp';
 import { projectDataType } from '../../../pages/projects';
@@ -17,7 +18,7 @@ import MedalSVG, { hideMedalOrder } from '../../Logo/MedalSVG';
 import { ExpandedProjectRowMobile, ExpandedRowMobile } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
 import RowCategories from './RowCategories';
-
+import code from './code.json';
 type propTypes = {
   row: xpType;
   index: number;
@@ -27,6 +28,13 @@ type propTypes = {
 
 const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
   const [expandRow, setExpandRow] = React.useState(false);
+
+  const getCountryCode = (countryName: string) => {
+    const foundCountry = code.find(
+      (country) => country.countryName === countryName
+    );
+    return foundCountry ? foundCountry.countryCode : '';
+  };
   return (
     <Tr
       bg={expandRow ? '#1B1F27' : ''}
@@ -46,9 +54,22 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
           showIndex={searchResult || hideMedalOrder.includes(sortOrder)}
         />
         <Flex gap="0.3rem" direction="column">
-          <Text color="white" fontSize={'14px'} textTransform="capitalize">
-            {row?.name.split('#')[0]}
-          </Text>
+          <Flex gap="0.3rem" direction="row">
+
+            {row?.region && (
+              <ReactCountryFlag
+                countryCode={getCountryCode(row.region)}
+                svg
+                style={{
+                  width: '1.5em',
+                  height: '1.3em',
+                }}
+              />
+            )}
+            <Text color="white" fontSize={'14px'} textTransform="capitalize">
+              {row?.name.split('#')[0]}
+            </Text>
+          </Flex>{' '}
           <Text color="rgba(121, 155, 190, 0.47)" fontSize={'12px'}>
             {row?.name}
           </Text>

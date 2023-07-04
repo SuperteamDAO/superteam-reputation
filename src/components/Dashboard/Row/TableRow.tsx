@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { Inter } from '@next/font/google';
 import * as React from 'react';
+import ReactCountryFlag from "react-country-flag";
 import { FiChevronDown } from 'react-icons/fi';
 import { xpType } from '../../../interfaces/xp';
 import { projectDataType } from '../../../pages/projects';
@@ -18,7 +19,7 @@ import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG, { hideMedalOrder } from '../../Logo/MedalSVG';
 import { ExpandedProjectRow, ExpandedRow } from './ExpandedRow';
 import RowCategories from './RowCategories';
-
+import code from './code.json';
 type propTypes = {
   row: xpType;
   index: number;
@@ -37,7 +38,12 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
     'superteamGreyLT.50',
     'superteamGreyDT.900'
   );
-
+  const getCountryCode = (countryName: string) => {
+    const foundCountry = code.find(
+      (country) => country.countryName === countryName
+    );
+    return foundCountry ? foundCountry.countryCode : '';
+  };
   return (
     <>
       <Tr
@@ -73,18 +79,31 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
         </Td>
         <Td padding="18px">
           <Flex flexDir={'column'} w="13rem">
-            <Text
-              color={useColorModeValue(
-                'superteamBlack.100',
-                'superteamWhite.100'
+            <Flex flexDir={'row'} w="13rem">
+              {row?.region && (
+                <ReactCountryFlag
+                  countryCode={getCountryCode(row.region)}
+                  svg
+                  style={{
+                    width: '1.5em',
+                    height: '1.3em',
+                    marginRight: '0.5em'
+                  }}
+                />
               )}
-              fontSize={'14px'}
-              textTransform="lowercase"
-              fontWeight="500"
-              className={inter.className}
-            >
-              {row?.name.split('#')[0]}
-            </Text>
+              <Text
+                color={useColorModeValue(
+                  'superteamBlack.100',
+                  'superteamWhite.100'
+                )}
+                fontSize={'14px'}
+                textTransform="lowercase"
+                fontWeight="500"
+                className={inter.className}
+              >
+                {row?.name.split('#')[0]}
+              </Text>
+            </Flex>
             <Text
               color={useColorModeValue(
                 'superteamGreyLT.800',
@@ -96,6 +115,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
               {row?.name}
             </Text>
           </Flex>
+
         </Td>
         <Td>
           <Flex h={10} w="7rem" flexDir="row" gap="0.4rem">
@@ -154,7 +174,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
             />
           </Center>
         </Td>
-      </Tr>
+      </Tr >
       <ExpandedRow expandRow={expandRow} row={row} />
     </>
   );
@@ -241,6 +261,7 @@ export const ProjectsTableRow = ({
         </Td>
         <Td w={'50rem'} padding="18px">
           <Flex flexDir={'column'} w="13rem">
+
             <Text
               color={useColorModeValue(
                 'superteamBlack.100',
