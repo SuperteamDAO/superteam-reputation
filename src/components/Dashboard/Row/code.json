@@ -1,0 +1,26 @@
+[
+    {
+        "countryName": "Germany",
+        "countryCode": "DE"
+    },
+    {
+        "countryName": "India",
+        "countryCode": "IN"
+    },
+    {
+        "countryName": "Mexico",
+        "countryCode": "MX"
+    },
+    {
+        "countryName": "Turkey",
+        "countryCode": "TR"
+    },
+    {
+        "countryName": "Vietnam",
+        "countryCode": "VN"
+    },
+    {
+        "countryName": "United Kingdom",
+        "countryCode": "GB"
+    }
+]
