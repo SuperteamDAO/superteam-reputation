@@ -23,6 +23,7 @@ import { dashboardDataType } from '../../interfaces/dashboardStore';
 import { filteredData } from '../../util/filterData';
 import sortingXpDataUtil, { SortByXp } from '../../util/sortingData';
 import { filterList, sortingFinalXPDataUtil } from '../../util/sortingXPData';
+import { filterRegionList, filterSkillsList, sortingFinalXPDataFilterUtil } from '../../util/sortingXPDataFilters';
 import EnhancedTable from './Leaderboard';
 import { xpType } from './Row/interfaces/xp';
 // const scrollIntoView = require('scroll-into-view');
@@ -71,7 +72,10 @@ const LeaderBoardWrapper = ({
 
   const [skillXPData, setSkillXPData] = useState<(xpType | undefined)[]>(allXPData);
   const [selectedSkill, setSelectedSkill] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [regionXPIndex, setRegionXPIndex] = useState(-1);
+  const [skillsXPIndex, setSkillsXPIndex] = useState(-1);
 
   // HANDLERS FOR OLD TABLE DISPLAY
   // useEffect(() => {
@@ -86,17 +90,26 @@ const LeaderBoardWrapper = ({
   //   onSwipedLeft: () => setActiveTab((prev) => (prev < 7 ? prev + 1 : prev)),
   // });
 
-  const filterXPBySkills = (skillIndex: number) => {
-    let selected = filterList[skillIndex];
-    let filteredXP = sortingFinalXPDataUtil(allXPData as xpType[], sortOrder, selected);
+  const filterXP = (regionIndex: number, skillsIndex: number) => {
+    let selectedRegion = (regionIndex === -1) ? "" : filterRegionList[regionIndex];
+    let selectedSkill = (skillsIndex === -1) ? "" : filterSkillsList[skillsIndex];
+    let filteredXP = sortingFinalXPDataFilterUtil(allXPData as xpType[], sortOrder, selectedRegion, selectedSkill);
 
-    setSelectedSkill(selected);
-    setSkillXPData(filteredXP)
+    setSelectedRegion(selectedRegion);
+    setSelectedSkill(selectedSkill);
+    setSkillXPData(filteredXP);
   }
 
-  const handleSkillRemove = () => {
+  const handleSkillsFilterRemove = () => {
     setSelectedSkill("");
-    setSkillXPData(allXPData);
+    setSkillsXPIndex(-1);
+    filterXP(regionXPIndex, -1);
+  }
+
+  const handleRegionFilterRemove = () => {
+    setSelectedRegion("");
+    setRegionXPIndex(-1);
+    filterXP(-1, skillsXPIndex);
   }
 
   const handleSort = (e: any) => {
@@ -273,8 +286,23 @@ const LeaderBoardWrapper = ({
                   mx="12px"
                 >
                   Skill: {selectedSkill}
-                  <Box as='span' ml="8px" cursor="pointer" fontWeight="bold" onClick={handleSkillRemove}>x</Box>
+                  <Box as='span' ml="8px" cursor="pointer" fontWeight="bold" onClick={handleSkillsFilterRemove}>x</Box>
                 </Box> : ""}
+                {
+                  selectedRegion ? <Box
+                    fontSize="13px"
+                    backgroundColor={skillBackgroundColor}
+                    border={skillBorderColor}
+                    boxShadow="0px 2px 12px rgba(0, 0, 0, 0.24)"
+                    borderRadius="16px"
+                    p={"6px 12px"}
+                    whiteSpace="nowrap"
+                    mx="12px"
+                  >
+                    Region: {selectedRegion}
+                    <Box as='span' ml="8px" cursor="pointer" fontWeight="bold" onClick={handleRegionFilterRemove}>x</Box>
+                  </Box> : ""
+                }
                 <Menu closeOnSelect={false}>
                   <MenuButton >
                     <BiFilterAlt
@@ -310,7 +338,51 @@ const LeaderBoardWrapper = ({
                         p="8px"
                         m="8px"
                         w="96px"
-                      >Country</MenuItem>
+                      >
+                        <Popover placement="left-start">
+                          <PopoverTrigger>
+                            <Text w="64px">Country</Text>
+                          </PopoverTrigger>
+                          <PopoverContent
+                            w="124px"
+                            backgroundColor={useColorModeValue(
+                              "rgba(0, 34, 214, 0.12)",
+                              "rgba(255, 255, 255, 0.25)"
+                            )}
+                            fontSize="12px"
+                            mr="8px"
+                          >
+                            <Flex
+                              direction="column"
+                              padding="4px 8px"
+                              border={useColorModeValue(
+                                "1px solid rgba(0, 34, 214, 0.24)",
+                                "1px solid rgba(255, 255, 255, 0.4)"
+                              )}
+                              borderRadius="4px"
+                            >
+                              {filterRegionList.map((item, index) =>
+                                <Box
+                                  mb="4px"
+                                  _hover={{
+                                    backgroundColor: "rgba(255, 255, 255, 0.55)"
+                                  }}
+                                  p="4px"
+                                  cursor="pointer"
+                                  key={index}
+                                  w="104px"
+                                  onClick={() => {
+                                    setRegionXPIndex(index);
+                                    filterXP(index, skillsXPIndex);
+                                  }}
+                                >
+                                  {item}
+                                </Box>
+                              )}
+                            </Flex>
+                          </PopoverContent>
+                        </Popover>
+                      </MenuItem>
 
                       <MenuItem
                         backgroundColor="transparent"
@@ -356,7 +428,10 @@ const LeaderBoardWrapper = ({
                                   cursor="pointer"
                                   key={index}
                                   w="104px"
-                                  onClick={() => filterXPBySkills(index)}
+                                  onClick={() => {
+                                    setSkillsXPIndex(index);
+                                    filterXP(regionXPIndex, index);
+                                  }}
                                 >
                                   {item}
                                 </Box>

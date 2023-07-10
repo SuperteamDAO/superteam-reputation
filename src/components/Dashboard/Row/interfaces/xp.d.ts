@@ -23,6 +23,7 @@ export type xpType = {
     amount: number[];
     dates: Date[];
   };
+  region?: string;
 };
 
 export type xp = {

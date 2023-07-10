@@ -15,6 +15,7 @@ export const sortingFinalXPDataUtil = (
   order: SortByXp,
   selectedSkill: string
 ) => {
+  
   if (selectedSkill) {
     let filteredXP = data.filter((value) =>
       value?.skills.some((item) => item.skill === selectedSkill.toLowerCase())
