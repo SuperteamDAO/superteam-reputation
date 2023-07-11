@@ -24,7 +24,7 @@ export type xpType = {
     dates: Date[];
   };
   region?: string;
-  rank: number;
+  rank?: number;
   xp_per_month?: number;
 };
 
