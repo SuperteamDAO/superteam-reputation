@@ -24,6 +24,7 @@ export type xpType = {
     dates: Date[];
   };
   region?: string;
+  rank: number;
 };
 
 export type xp = {
