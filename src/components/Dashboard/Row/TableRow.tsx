@@ -16,7 +16,7 @@ import { xpType } from '../../../interfaces/xp';
 import { projectDataType } from '../../../pages/projects';
 import { SortByXp } from '../../../util/sortingData';
 import CustomTag from '../../HOC/Tag.HOC';
-import MedalSVG, { hideMedalOrder } from '../../Logo/MedalSVG';
+import MedalSVG from '../../Logo/MedalSVG';
 import { ExpandedProjectRow, ExpandedRow } from './ExpandedRow';
 import RowCategories from './RowCategories';
 import code from './code.json';
@@ -44,6 +44,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
     );
     return foundCountry ? foundCountry.countryCode : '';
   };
+
   return (
     <>
       <Tr
@@ -72,8 +73,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
         >
           <div>
             <MedalSVG
-              index={index + 1}
-              showIndex={searchResult || hideMedalOrder.includes(sortOrder)}
+              index={row.rank}
             />
           </div>
         </Td>
@@ -118,7 +118,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
 
         </Td>
         <Td>
-          <Flex h={10} w="7rem" flexDir="row" gap="0.4rem">
+          <Flex h={5} w="7rem" flexDir="row" gap="0.4rem">
             <Text
               fontWeight="500"
               className={inter.className}
@@ -237,6 +237,10 @@ export const ProjectsTableRow = ({
               fontSize={'14px'}
               textTransform="capitalize"
               fontWeight="500"
+              overflow={'hidden'}
+              whiteSpace={'nowrap'}
+              textOverflow={'ellipsis'}
+              maxWidth={'300px'}
               className={inter.className}
             >
               {row?.project_name}

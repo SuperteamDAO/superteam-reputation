@@ -25,17 +25,14 @@ export const sortingFinalXPDataFilterUtil = (
   selectedSkill: string
 ) => {
   let filteredXP = data;
-  if(selectedRegion || selectedSkill)
-  {
-    if (selectedRegion) 
-    {
-      filteredXP = filteredXP.filter((value) =>
-        value?.region?.toString() === selectedRegion
+  if (selectedRegion || selectedSkill) {
+    if (selectedRegion) {
+      filteredXP = filteredXP.filter(
+        (value) => value?.region?.toString() === selectedRegion
       ) as xpType[];
     }
 
-    if (selectedSkill) 
-    {
+    if (selectedSkill) {
       filteredXP = filteredXP.filter((value) =>
         value?.skills.some((item) => item.skill === selectedSkill.toLowerCase())
       ) as xpType[];
@@ -54,10 +51,8 @@ export const sortingFinalXPDataFilterUtil = (
           return a.skills[aIndex].amount - b.skills[bIndex].amount;
         }
       });
-    } 
-  }
-  else
-  {
+    }
+  } else {
     filteredXP = filteredXP.sort((a, b) => {
       if (order === SortByXp.highToLowXp) {
         return b.total_amount - a.total_amount;
