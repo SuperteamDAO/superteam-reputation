@@ -25,14 +25,16 @@ export const sortingFinalXPDataFilterUtil = (
   selectedSkill: string
 ) => {
   let filteredXP = data;
+  let swithToInitialPage = false;
   if (selectedRegion || selectedSkill) {
+    swithToInitialPage = true;
     if (selectedRegion) {
       filteredXP = filteredXP.filter(
         (value) => value?.region?.toString() === selectedRegion
       ) as xpType[];
     }
 
-    if (selectedSkill) {
+    if (selectedSkill !== '') {
       filteredXP = filteredXP.filter((value) =>
         value?.skills.some((item) => item.skill === selectedSkill.toLowerCase())
       ) as xpType[];
@@ -53,6 +55,7 @@ export const sortingFinalXPDataFilterUtil = (
       });
     }
   } else {
+    swithToInitialPage = false;
     filteredXP = filteredXP.sort((a, b) => {
       if (order === SortByXp.highToLowXp) {
         return b.total_amount - a.total_amount;
@@ -62,5 +65,5 @@ export const sortingFinalXPDataFilterUtil = (
     });
   }
 
-  return filteredXP;
+  return { filteredXP, swithToInitialPage };
 };

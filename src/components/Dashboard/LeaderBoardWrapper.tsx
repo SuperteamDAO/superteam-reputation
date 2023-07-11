@@ -26,7 +26,6 @@ import { filterList, sortingFinalXPDataUtil } from '../../util/sortingXPData';
 import { filterRegionList, filterSkillsList, sortingFinalXPDataFilterUtil } from '../../util/sortingXPDataFilters';
 import EnhancedTable from './Leaderboard';
 import { xpType } from './Row/interfaces/xp';
-// const scrollIntoView = require('scroll-into-view');
 
 type propsType = {
   dashboardData: dashboardDataType[];
@@ -34,18 +33,6 @@ type propsType = {
   sortOrder: SortByXp;
   setSortOrder: React.Dispatch<React.SetStateAction<SortByXp>>;
 };
-
-// ---- BROWSE BY NAVIGATION ITEM (OLD) ----
-// const tabsList = [
-//   'Everyone',
-//   'Members',
-//   'Contributors',
-//   'Project Work',
-//   'Indie Work',
-//   'Internal Ops',
-//   'Working Groups',
-//   'Stack Exchange',
-// ];
 
 const LeaderBoardWrapper = ({
   dashboardData,
@@ -57,47 +44,29 @@ const LeaderBoardWrapper = ({
     allXPData,
     region_data,
     monthly_xp_data
-    // filteredMembersData,
-    // filteredBountiesXPData,
-    // filteredIndieWorkXPData,
-    // filteredContributorsData,
-    // filteredProjectWorkXPData,
-    // filteredWorkingGroupXPData,
-    // filteredStackExchangeXPData,
-    // filteredInternalOperationsXPData,
   } = filteredData(sortingXpDataUtil(dashboardData, sortOrder));
 
-  // const [searching, _setSearching] = React.useState(false);
-  // const [activeTab, setActiveTab] = useState(0);
-
   const [skillXPData, setSkillXPData] = useState<(xpType | undefined)[]>(allXPData);
+  const [countryRegionFilteredData, setCountryRegionFilteredData] = useState<(xpType | undefined)[]>(allXPData);
   const [selectedSkill, setSelectedSkill] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [regionXPIndex, setRegionXPIndex] = useState(-1);
   const [skillsXPIndex, setSkillsXPIndex] = useState(-1);
+  const [switchPageToOne, setSwitchPageToOne] = useState(false);
+  let countryRegionFilteredDataVar: (xpType | undefined)[] = countryRegionFilteredData;
 
-  // HANDLERS FOR OLD TABLE DISPLAY
-  // useEffect(() => {
-  //   const tabElement = document.getElementsByClassName(
-  //     `tab-${tabsList[activeTab]}`
-  //   );
-  //   scrollIntoView(tabElement[0]);
-  // }, [activeTab]);
-
-  // const handlers = useSwipeable({
-  //   onSwipedRight: () => setActiveTab((prev) => (prev > 0 ? prev - 1 : prev)),
-  //   onSwipedLeft: () => setActiveTab((prev) => (prev < 7 ? prev + 1 : prev)),
-  // });
-
-  const filterXP = (regionIndex: number, skillsIndex: number) => {
+  const filterXP = (regionIndex: number, skillsIndex: number, latestSearchQuery?: string) => {
     let selectedRegion = (regionIndex === -1) ? "" : filterRegionList[regionIndex];
     let selectedSkill = (skillsIndex === -1) ? "" : filterSkillsList[skillsIndex];
-    let filteredXP = sortingFinalXPDataFilterUtil(allXPData as xpType[], sortOrder, selectedRegion, selectedSkill);
+    let { filteredXP, swithToInitialPage } = sortingFinalXPDataFilterUtil(allXPData as xpType[], sortOrder, selectedRegion, selectedSkill);
 
+    setSwitchPageToOne(swithToInitialPage || ((latestSearchQuery ?? searchQuery) != ""));
     setSelectedRegion(selectedRegion);
     setSelectedSkill(selectedSkill);
-    setSkillXPData(filteredXP);
+    setCountryRegionFilteredData(filteredXP);
+    countryRegionFilteredDataVar = filteredXP;
+    handleUserSearchValue(latestSearchQuery ?? searchQuery);
   }
 
   const handleSkillsFilterRemove = () => {
@@ -115,16 +84,20 @@ const LeaderBoardWrapper = ({
   const handleSort = (e: any) => {
     setSortOrder(e.target.value as SortByXp);
     const x = skillXPData.slice(0) as xpType[];
-    setSkillXPData(sortingFinalXPDataUtil(x, e.target.value as SortByXp, selectedSkill));
+    let filteredXP = sortingFinalXPDataUtil(x, e.target.value as SortByXp, selectedSkill);
+
+    setSkillXPData(filteredXP);
   }
 
   const handleUserSearch = (e: any) => {
-    const searchName = e.target.value;
-    let skillXPDataFiltered = allXPData.filter(value => value?.name.toLowerCase().includes(searchName.toLowerCase()));
-    skillXPDataFiltered = sortingFinalXPDataUtil(skillXPDataFiltered as xpType[], sortOrder, selectedSkill);
+    filterXP(regionXPIndex, skillsXPIndex, e.target.value);
+  }
 
-    setSkillXPData(skillXPDataFiltered);
-    setSearchQuery(e.target.value);
+  const handleUserSearchValue = (searchName: string) => {
+    let filteredXP = countryRegionFilteredDataVar.filter(value => value?.name.toLowerCase().includes(searchName.toLowerCase()));
+
+    setSkillXPData(filteredXP);
+    setSearchQuery(searchName);
   }
 
   const skillBackgroundColor = useColorModeValue("rgba(0, 0, 0, 0.08)", "rgba(255, 255, 255, 0.15)");
@@ -459,6 +432,8 @@ const LeaderBoardWrapper = ({
             row={skillXPData}
             sortOrder={sortOrder}
             searchResult={searchResult}
+            initialPage={switchPageToOne}
+            searchedQuery={searchQuery}
           />
         </VStack>
       </Stack>

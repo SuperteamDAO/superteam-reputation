@@ -26,6 +26,8 @@ type propsType = {
   // eslint-disable-next-line no-undef
   sortOrder: SortByXp;
   searchResult: boolean;
+  initialPage?: boolean;
+  searchedQuery?: string;
 };
 
 const noDataHeading = '404: Data not found';
@@ -35,16 +37,22 @@ export default function EnhancedTable({
   row,
   sortOrder,
   searchResult,
+  initialPage,
+  searchedQuery
 }: propsType) {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [isSmallerThan990] = useMediaQuery('(max-width: 990px)');
+  const [cachedSearchQuery, setCachedSearchQuery] = React.useState("");
+  const [cachedRow, setCachedRow] = React.useState<(xpType | undefined)[]>();
 
   const PageSize = 15;
-
   const rows = React.useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
+    let changeToInitial = ((cachedSearchQuery !== searchedQuery) || (cachedRow !== row)) && initialPage;
+    const firstPageIndex = ((changeToInitial ? 1 : currentPage) - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     const arr = row.slice(firstPageIndex, lastPageIndex);
+    setCachedSearchQuery(searchedQuery ?? "");
+    setCachedRow(row);
     return arr as xpType[];
   }, [currentPage, row]);
 
