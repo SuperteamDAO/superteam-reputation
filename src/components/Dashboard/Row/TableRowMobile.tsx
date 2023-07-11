@@ -14,7 +14,7 @@ import { xpType } from '../../../interfaces/xp';
 import { projectDataType } from '../../../pages/projects';
 import { SortByXp } from '../../../util/sortingData';
 import CustomTag from '../../HOC/Tag.HOC';
-import MedalSVG, { hideMedalOrder } from '../../Logo/MedalSVG';
+import MedalSVG from '../../Logo/MedalSVG';
 import { ExpandedProjectRowMobile, ExpandedRowMobile } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
 import RowCategories from './RowCategories';
@@ -50,8 +50,7 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
     >
       <Flex p="1.2rem" w="100%" gap="2rem" direction="row">
         <MedalSVG
-          index={index + 1}
-          showIndex={searchResult || hideMedalOrder.includes(sortOrder)}
+          index={row.rank!}
         />
         <Flex gap="0.3rem" direction="column">
           <Flex gap="0.3rem" direction="row">

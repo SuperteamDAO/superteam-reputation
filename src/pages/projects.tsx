@@ -23,6 +23,7 @@ export type projectDataType = {
 type propsType = {
   projectsData: projectDataType[];
 };
+
 export default function Projects({ projectsData }: propsType) {
   const [data, setData] = React.useState(projectsData);
   const [wordEntered, setWordEntered] = React.useState('');
@@ -47,6 +48,16 @@ export default function Projects({ projectsData }: propsType) {
     });
     setData(newFilter);
   };
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].members != null) {
+      for (let j = 0; j < data[i].members!.length; j++) {
+        if (data[i].members![j].skill === "Ops")
+          data[i].members![j].skill = "Operations";
+      }
+    }
+  }
+
   return (
     <>
       <SEO

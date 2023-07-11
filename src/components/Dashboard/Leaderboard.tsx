@@ -48,15 +48,9 @@ export default function EnhancedTable({
     return arr as xpType[];
   }, [currentPage, row]);
 
-  // rows.sort((a: xpType, b: xpType) => {
-  //   if (a?.total_amount > b?.total_amount) {
-  //     return -1;
-  //   }
-  //   if (a?.total_amount < b?.total_amount) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // });
+  for (let i = 0; i < row.length; i++) {
+    if (!row[i]?.rank) row[i]!.rank = i + 1;
+  }
 
   const TheadBGColor = useColorModeValue(
     'superteamGreyLT.50',
@@ -292,7 +286,7 @@ export function ProjectsTable({
   return (
     <Container maxW={'7xl'} px="0" py="3rem">
       <HStack maxW={'full'} justifyContent="space-between">
-        <Text fontWeight={'600'}>Projects XP</Text>
+        <Text fontWeight={'600'} paddingLeft={'10px'}>Projects XP</Text>
       </HStack>
       <Container
         fontFamily={'Inter'}
