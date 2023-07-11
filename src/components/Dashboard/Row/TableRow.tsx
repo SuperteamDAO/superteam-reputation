@@ -73,7 +73,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
         >
           <div>
             <MedalSVG
-              index={row.rank}
+              index={row.rank!}
             />
           </div>
         </Td>

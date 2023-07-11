@@ -50,7 +50,7 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
     >
       <Flex p="1.2rem" w="100%" gap="2rem" direction="row">
         <MedalSVG
-          index={row.rank}
+          index={row.rank!}
         />
         <Flex gap="0.3rem" direction="column">
           <Flex gap="0.3rem" direction="row">
