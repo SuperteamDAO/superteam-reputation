@@ -39,7 +39,7 @@ const GraphColumn = ({ row }: propsType) => {
             rounded="md"
             fontWeight="400"
           >
-            <Text color={graphColor} fontSize="24px" >
+            <Text color={graphColor} fontSize="14px" >
               This Month: {row.xp_per_month}
 
             </Text>
