@@ -65,7 +65,7 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
                 }}
               />
             )}
-            <Text color="white" fontSize={'14px'} textTransform="capitalize">
+            <Text color="white" fontSize={'14px'}>
               {row?.name.split('#')[0]}
             </Text>
           </Flex>{' '}
