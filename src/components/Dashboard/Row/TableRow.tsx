@@ -6,20 +6,20 @@ import {
   Td,
   Text,
   Tr,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { Inter } from '@next/font/google';
 import * as React from 'react';
 import ReactCountryFlag from "react-country-flag";
 import { FiChevronDown } from 'react-icons/fi';
 import { xpType } from '../../../interfaces/xp';
-import { projectDataType } from '../../../pages/projects';
+import { memberDetailsType, projectDataType } from '../../../pages/projects';
 import { SortByXp } from '../../../util/sortingData';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
+import code from './code.json';
 import { ExpandedProjectRow, ExpandedRow } from './ExpandedRow';
 import RowCategories from './RowCategories';
-import code from './code.json';
 type propTypes = {
   row: xpType;
   index: number;
@@ -182,6 +182,7 @@ const TableRow = ({ row, index, sortOrder, searchResult }: propTypes) => {
 
 type projectPropsType = {
   row: projectDataType;
+  members: memberDetailsType[];
   index: number;
   sortOrder: any;
   searchResult: any;
@@ -190,6 +191,7 @@ type projectPropsType = {
 export const ProjectsTableRow = ({
   row,
   index,
+  members,
   sortOrder,
   searchResult,
 }: projectPropsType) => {
@@ -243,7 +245,7 @@ export const ProjectsTableRow = ({
               maxWidth={'300px'}
               className={inter.className}
             >
-              {row?.project_name}
+              {row?.title}
             </Text>
           </Flex>
         </Td>
@@ -258,7 +260,7 @@ export const ProjectsTableRow = ({
               )}
               fontSize={'14px'}
             >
-              {Math.round(row?.total_xp)}
+              {Math.round(row?.totalXp)}
             </Text>
             <CustomTag text="XP" />
           </Flex>
@@ -276,7 +278,7 @@ export const ProjectsTableRow = ({
               fontWeight="500"
               className={inter.className}
             >
-              {row?.lead_name}
+              {row?.leadName}
             </Text>
           </Flex>
         </Td>
@@ -306,7 +308,7 @@ export const ProjectsTableRow = ({
         </Td>
       </Tr>
       {/*@ts-ignore*/}
-      <ExpandedProjectRow expandRow={expandRow} row={row} />
+      <ExpandedProjectRow expandRow={expandRow} row={row} members={members} />
     </>
   );
 };

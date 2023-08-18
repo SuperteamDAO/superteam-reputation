@@ -9,7 +9,7 @@ import {
   Td,
   Text,
   Tr,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { skillKind } from '../../../enums/skill';
 import { xpType } from '../../../interfaces/xp';
@@ -293,8 +293,9 @@ export const ExpandedRowMobile = ({ expandRow, row }: propsType) => {
 type projectPropsType = {
   expandRow: boolean;
   row: projectDataType;
+  members: memberDetailsType[];
 };
-export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
+export const ExpandedProjectRow = ({ expandRow, row, members }: projectPropsType) => {
   const bgColor = useColorModeValue(
     'superteamGreyLT.50',
     'superteamGreyDT.900'
@@ -330,8 +331,8 @@ export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
           </Text>
         </Td>
       </Tr>
-      {row.members ? (
-        row.members.map((member, index) => (
+      {members ? (
+        members.map((member, index) => (
           <Tr key={index} display={expandRow ? 'auto' : 'none'} bg={bgColor}>
             <Td>
               <div></div>
@@ -343,7 +344,7 @@ export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
             </Td>
             <Td>
               <Flex minW="full" direction={'column'} gap="0.7rem">
-                {member.name === row.lead_name ? (
+                {member.name === row.leadName ? (
                   <Text fontSize="14px">Lead</Text>
                 ) : (
                   <Text fontSize="14px">Member</Text>
@@ -380,7 +381,7 @@ export const ExpandedProjectRow = ({ expandRow, row }: projectPropsType) => {
             <Td>
               <Flex w="7rem" flexDir="row" gap="0.4rem">
                 <Text fontWeight="500" fontSize={'14px'}>
-                  {Math.round(member.xp)}
+                  {Math.round(member.totalXp)}
                 </Text>
                 <CustomTag text="XP" />
               </Flex>
@@ -430,7 +431,7 @@ const ProjectSkillsAndXpExpand = ({
                   <Text fontSize="12px">{member.name}</Text>
                 </Box>
                 <Box>
-                  {member.name === row.lead_name ? (
+                  {member.name === row.leadName ? (
                     <Text fontSize="12px">Lead</Text>
                   ) : (
                     <Text fontSize="12px">Member</Text>
@@ -465,7 +466,7 @@ const ProjectSkillsAndXpExpand = ({
               <Box>
                 <Flex flexDir="row" gap="0.4rem">
                   <Text fontWeight="500" fontSize={'14px'}>
-                    {Math.round(member.xp)}
+                    {Math.round(member.totalXp)}
                   </Text>
                   <CustomTag text="XP" />
                 </Flex>
@@ -481,6 +482,7 @@ const ProjectSkillsAndXpExpand = ({
 export const ExpandedProjectRowMobile = ({
   expandRow,
   row,
+  members
 }: projectPropsType) => {
   const bgColor = useColorModeValue(
     'superteamGreyLT.50',
@@ -489,8 +491,8 @@ export const ExpandedProjectRowMobile = ({
 
   return (
     <Flex direction="column" bg={bgColor} display={expandRow ? 'auto' : 'none'}>
-      {row.members ? (
-        row.members.map((member, index) => (
+      {members ? (
+        members.map((member, index) => (
           <Flex
             px="4"
             direction="row"

@@ -1,30 +1,34 @@
 import { Container, useColorModeValue } from '@chakra-ui/react';
-import axios from 'axios';
 import React from 'react';
 import config from '../../config/general.config';
 import { ProjectsTable } from '../components/Dashboard/Leaderboard';
 import SEO from '../components/SEO/SEO';
+import { getProjectsFunction, getProjectXPFunction } from '../lib/airtable';
 
 export type memberDetailsType = {
-  id: string;
   name: string;
-  xp: number;
+  totalXp: number;
+  type: string;
   skill: string;
-  project_name: string;
+  project: string;
 };
+
 export type projectDataType = {
-  id: string;
-  project_name: string;
-  total_xp: number;
-  lead_name: string;
-  members: memberDetailsType[] | null;
+  title: string;
+  url: string;
+  description: string;
+  multiplier: number;
+  leadName: string;
+  totalXp: number;
+  members: string[];
 };
 
 type propsType = {
   projectsData: projectDataType[];
+  membersData: memberDetailsType[];
 };
 
-export default function Projects({ projectsData }: propsType) {
+export default function Projects({ projectsData, membersData }: propsType) {
   const [data, setData] = React.useState(projectsData);
   const [wordEntered, setWordEntered] = React.useState('');
   const [searchResult, setSearchResult] = React.useState(false);
@@ -42,21 +46,21 @@ export default function Projects({ projectsData }: propsType) {
     }
 
     const newFilter = projectsData.filter((value) => {
-      return value.project_name
+      return value.title
         .toLowerCase()
         .includes(searchWord.toLowerCase());
     });
     setData(newFilter);
   };
 
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].members != null) {
-      for (let j = 0; j < data[i].members!.length; j++) {
-        if (data[i].members![j].skill === "Ops")
-          data[i].members![j].skill = "Operations";
-      }
-    }
-  }
+  // for (let i = 0; i < data.length; i++) {
+  //   if (data[i].members != null) {
+  //     for (let j = 0; j < data[i].members!.length; j++) {
+  //       if (data[i].members![j].skill === "Ops")
+  //         data[i].members![j].skill = "Operations";
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -79,6 +83,7 @@ export default function Projects({ projectsData }: propsType) {
             row={data}
             sortOrder={'none'}
             searchResult={searchResult}
+            members={membersData}
           />
         </Container>
       </main>
@@ -87,24 +92,13 @@ export default function Projects({ projectsData }: propsType) {
 }
 
 export async function getStaticProps() {
-  return axios
-    .get(`${process.env.PROJECTS_URL}`)
-    .then(async (res) => {
-      const projectsData = res.data.data;
-      return {
-        props: {
-          projectsData,
-        },
-        revalidate: 10,
-      };
-    })
-    .catch((err) => {
-      console.log('err -> ', err);
-      return {
-        props: {
-          projectsData: {},
-        },
-        revalidate: 10,
-      };
-    });
+  const projectsData = await getProjectsFunction();
+  const membersData = await getProjectXPFunction();
+
+  return {
+    props: {
+      projectsData,
+      membersData
+    }
+  };
 }

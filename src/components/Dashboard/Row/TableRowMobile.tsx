@@ -5,20 +5,20 @@ import {
   Icon,
   Text,
   Tr,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
 import * as React from 'react';
 import ReactCountryFlag from "react-country-flag";
 import { FiChevronDown } from 'react-icons/fi';
 import { xpType } from '../../../interfaces/xp';
-import { projectDataType } from '../../../pages/projects';
+import { memberDetailsType, projectDataType } from '../../../pages/projects';
 import { SortByXp } from '../../../util/sortingData';
 import CustomTag from '../../HOC/Tag.HOC';
 import MedalSVG from '../../Logo/MedalSVG';
+import code from './code.json';
 import { ExpandedProjectRowMobile, ExpandedRowMobile } from './ExpandedRow';
 import GraphColumn from './GraphColumn';
 import RowCategories from './RowCategories';
-import code from './code.json';
 type propTypes = {
   row: xpType;
   index: number;
@@ -106,6 +106,7 @@ const TableRowMobile = ({ row, index, sortOrder, searchResult }: propTypes) => {
 type projectPropsType = {
   row: projectDataType;
   index: number;
+  members: memberDetailsType[],
   sortOrder: any;
   searchResult: any;
 };
@@ -113,6 +114,7 @@ type projectPropsType = {
 export const ProjectsTableRowMobile = ({
   index,
   row,
+  members,
   searchResult,
   sortOrder,
 }: projectPropsType) => {
@@ -162,7 +164,7 @@ export const ProjectsTableRowMobile = ({
               fontSize={'14px'}
               textTransform="capitalize"
             >
-              {row?.project_name}
+              {row?.title}
             </Text>
             <Flex flexDir="row" gap="0.4rem">
               <Text
@@ -173,14 +175,14 @@ export const ProjectsTableRowMobile = ({
                 )}
                 fontSize={'14px'}
               >
-                {Math.round(row?.total_xp)}
+                {Math.round(row?.totalXp)}
               </Text>
               <CustomTag text="XP" />
             </Flex>
           </Flex>
 
           <Text color="rgba(121, 155, 190, 0.47)" fontSize={'12px'}>
-            {row?.lead_name}
+            {row?.leadName}
           </Text>
         </Flex>{' '}
         <Center ml="auto" alignItems="top">
@@ -193,7 +195,7 @@ export const ProjectsTableRowMobile = ({
           />
         </Center>
       </Flex>
-      <ExpandedProjectRowMobile expandRow={expandRow} row={row} />
+      <ExpandedProjectRowMobile expandRow={expandRow} row={row} members={members} />
     </Box>
   );
 };
