@@ -264,7 +264,7 @@ const getXPRecordFunction = async (): Promise<XPRecordType[] | any> => {
       .select({
         // Selecting the first 3 records in XP by skill:
         maxRecords: 1000,
-        view: 'Reputation Dashboard',
+        view: 'XP by skill',
       })
       .eachPage(
         function page(records, fetchNextPage) {
