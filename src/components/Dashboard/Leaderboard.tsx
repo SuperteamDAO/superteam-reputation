@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { xpType } from '../../interfaces/xp';
-import { projectDataType } from '../../pages/projects';
+import { memberDetailsType, projectDataType } from '../../pages/projects';
 import { SortByXp } from '../../util/sortingData';
 import Pagination from '../Pagination';
 import TableRow, { ProjectsTableRow } from './Row/TableRow';
@@ -256,12 +256,14 @@ type projectPropsDataType = {
   row: projectDataType[];
   searchResult: any;
   sortOrder: any;
+  members: memberDetailsType[];
 };
 
 export function ProjectsTable({
   row,
   searchResult,
   sortOrder,
+  members
 }: projectPropsDataType) {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [isSmallerThan990] = useMediaQuery('(max-width: 990px)');
@@ -310,11 +312,12 @@ export function ProjectsTable({
           </HStack>
         )}
         {isSmallerThan990 &&
-          rows.map((row: any, key: number) => {
+          rows.map((row: projectDataType, key: number) => {
             return (
               <ProjectsTableRowMobile
                 key={key}
                 index={(currentPage - 1) * 15 + key}
+                members={members.filter(member => member.project === row.title)}
                 row={row}
                 sortOrder={sortOrder}
                 searchResult={searchResult}
@@ -381,7 +384,7 @@ export function ProjectsTable({
                   'superteamGreyDT.50'
                 )}
               >
-                {rows.map((row: any, key: number) => {
+                {rows.map((row: projectDataType, key: number) => {
                   return (
                     <ProjectsTableRow
                       row={row}
@@ -389,6 +392,7 @@ export function ProjectsTable({
                       index={(currentPage - 1) * 15 + key}
                       sortOrder={sortOrder}
                       searchResult={searchResult}
+                      members={members.filter(member => member.project === row.title)}
                     />
                   );
                 })}
