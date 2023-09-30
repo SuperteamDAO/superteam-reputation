@@ -44,7 +44,7 @@ export default function Home(props: {
     <>
       <SEO
         title={`${config.general.name}`}
-        description={`${config.general.name} System Dashboard for SuperteamDAO`}
+        description={`${config.general.name} System Dashboard`}
         image={`https://res.cloudinary.com/demonicirfan/image/upload/v1669216518/Frame_910_ofy3nr.png`}
       />
       <main>
