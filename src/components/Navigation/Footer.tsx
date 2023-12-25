@@ -7,33 +7,8 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import LogoImg from '../Logo/LogoImg';
+import SocialMediaIcons from '../Logo/Socialimg';
 
-const footerLinks = [
-  {
-    name: 'Earn',
-    href: 'https://earn.superteam.fun/',
-  },
-  {
-    name: 'Build',
-    href: 'https://build.superteam.fun/',
-  },
-  {
-    name: 'Twitter',
-    href: 'https://twitter.com/superteamdao',
-  },
-  {
-    name: 'Discord',
-    href: 'https://discord.com/invite/Mq3ReaekgG',
-  },
-  {
-    name: 'Substack',
-    href: 'https://superteam.substack.com/',
-  },
-  {
-    name: 'Youtube',
-    href: 'https://www.youtube.com/@superteampodcast',
-  },
-];
 const Footer = () => {
   return (
     <Container
@@ -65,20 +40,8 @@ const Footer = () => {
           display="flex"
           justifyContent="center"
         >
-          {footerLinks.map((link, key) => {
-            return (
-              <Link passHref key={key} target="_blank" href={link.href}>
-                <Text
-                  fontWeight={500}
-                  _hover={{
-                    fontWeight: 600,
-                  }}
-                >
-                  {link.name}
-                </Text>
-              </Link>
-            );
-          })}
+          < SocialMediaIcons />
+          
         </Stack>
       </Flex>
     </Container>
