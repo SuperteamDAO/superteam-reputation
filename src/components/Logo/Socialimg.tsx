@@ -1,12 +1,14 @@
 import { Center, HStack, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 
 const SocialMediaIcons = () => {
   const earnLogoURL = useColorModeValue('/earnLogoDark.png', '/earnLogo.png');
   const buildLogoURL = useColorModeValue('/buildLogoDark.png', '/buildLogo.png');
   const twitterLogoURL = useColorModeValue('/twitter.png', '/twitterDark.png');
+  const substackLogoURL = useColorModeValue('/substackDark.png', '/substack.png');
+  const discordLogoURL = useColorModeValue('/discordDark.png', '/discord.png');
+  const youtubeLogoURL = useColorModeValue('/youtubeDark.png', '/youtube.png');
 
   return (
     <Center>
@@ -21,13 +23,13 @@ const SocialMediaIcons = () => {
           <Image src={twitterLogoURL} alt="Twitter" width={24} height={24} />
         </a>
         <a href="https://www.youtube.com/@superteampodcast">
-          <Image src="/youtube.png" alt="YouTube" width={24} height={24} />
+          <Image src={youtubeLogoURL} alt="YouTube" width={24} height={24} />
         </a>
         <a href="https://discord.com/invite/Mq3ReaekgG">
-          <Image src="/discord.png" alt="Discord" width={28} height={28} />
+          <Image src={discordLogoURL} alt="Discord" width={28} height={28} />
         </a>
         <a href="https://superteam.substack.com/">
-          <Image src="/substack.png" alt="Substack" width={28} height={28} />
+          <Image src={substackLogoURL} alt="Substack" width={17} height={17} />
         </a>
       </HStack>
     </Center>
