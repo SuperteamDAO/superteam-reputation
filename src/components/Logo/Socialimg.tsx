@@ -13,12 +13,6 @@ const SocialMediaIcons = () => {
   return (
     <Center>
       <HStack spacing="24px">
-        <a href="https://earn.superteam.fun/">
-          <Image src={earnLogoURL} alt="Earn" width={50} height={45} />
-        </a>
-        <a href="https://build.superteam.fun/">
-          <Image src={buildLogoURL} alt="Build" width={65} height={55} />
-        </a>
         <a href="https://twitter.com/superteamdao">
           <Image src={twitterLogoURL} alt="Twitter" width={24} height={24} />
         </a>
