@@ -10,7 +10,11 @@ export const filterRegionList = [
   'UAE' , 
   'UK',
   'Nigeria',
-  'Israel'
+  'Israel',
+  'Brazil',
+  'Malaysia',
+  'Philippines',
+  'Balkan'
 ];
 
 export const filterSkillsList = [
