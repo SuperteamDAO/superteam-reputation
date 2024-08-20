@@ -54,9 +54,13 @@
     {
         "countryName": "France",
         "countryCode": "FR"
+    },
+    {
+        "countryName": "Canada",
+        "countryCode": "CA"
+    },
+    {
+        "countryName": "Singapore",
+        "countryCode": "SG"
     }
-    
-    
-    
-    
 ]
