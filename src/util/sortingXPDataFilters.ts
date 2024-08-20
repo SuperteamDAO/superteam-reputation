@@ -16,7 +16,9 @@ export const filterRegionList = [
   'Philippines',
   'Balkan',
   'Japan',
-  'France'
+  'France',
+  'Canada',
+  'Singapore'
 ];
 
 export const filterSkillsList = [
